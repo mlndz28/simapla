@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    h1= title
+    hr
+    div.row
+      form
+        div.col-sm-4.col-sm-offset-4.text-center
+          a#solicitar-usuario(href='login') Ingresar a la plataforma
+    hr

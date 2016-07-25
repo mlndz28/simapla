@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var database = require('./middleware/mysql/connection');
+
 var app = express();
 
 // view engine setup
@@ -27,6 +29,11 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function (req, res, next) {
+  database.getConnection();
+  next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
