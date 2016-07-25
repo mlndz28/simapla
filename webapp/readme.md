@@ -17,4 +17,4 @@ Ver la aplicación en la dirección indicada(e.g. `http://localhost:3000`).
  - **`bin/www`**: script para correr la aplicación.
  - **`public/`**: contenido estático, estilos y javascripts para el cliente.
  - **`routes/`**: define las rutas del proyecto, es middleware que se usa en `app.js`.
- - **`views/`**: son los templates en jade para generar el html.
+ - **`views/`**: son los templates en ~~jade~~ pug para generar el html.
