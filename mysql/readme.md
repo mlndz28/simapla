@@ -6,6 +6,25 @@ sea fácil modificarlas y debugearlas. También se puede optar por crear un scri
 que solo contenga las partes deseadas.
 
 La estructura de la carpeta [`src`](src) es bastante sencilla.
+```
+src/
+  |- Schema/
+  |   |- SimaplaDb.sql
+  |- Settings/
+  |   |- FinalSettings.sql
+  |   |- Settings.sql
+  |- Table/
+  |   |- AddressXPerson.sql
+  |   |- Administrator.sql
+  |   |- Attendance.sql
+  |   |- ...
+  |- Users/
+      |- emilio.sql
+      |- fabian.sql
+      |- marcello.sql
+      |- nicolas.sql
+      |- ...
+```
 
 ## Generando el script ##
 Para generar el script se debe hacer lo siguiente:
