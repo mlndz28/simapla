@@ -10,69 +10,56 @@ jsonfile.spaces = 2;
  *
  * Note that such folder(both dist and dist/tables must exist).
  */
-const filePath = './SimaplaDB25jul16-920pm.sql';
+const filePath = './workbench.sql';
 var gen = new TableGenerator();
 gen.generate(filePath);
 
 function TableGenerator() {
   const outputPath = './dist/';
+  if (!fs.existsSync(outputPath)) fs.mkdirSync(dir); // initialize path
 
   this.generate = function(filePath) {
     createTableFiles(filePath);
+  }
+
+  function loadTables(data) {
+    data = data.replace(/\r/gm, '');
+    let restr = "(?:" +
+                "-- -+\\s+" +
+                "-- ([a-z]+) [a-z`]+\\.\\`([a-z]+)\\`\\s+" +
+                "-- -+\\s+" +
+                "(([ \\ta-z0-9\\(\\)\\._,;='`@*-]+\\s)+)" +
+                ")";
+    // /(?:-- -+\s+-- ([a-z]+) [a-z`]+\.\`([a-z]+)\`\s+-- -+\s+(([ \ta-z0-9\(\)\._,;='`@*-]+\s)+))/gim
+    let re = new RegExp(restr, "gmi");
+    let block, blocks = [];
+    while((block = re.exec(data)) !== null) blocks.push(block);
+    return blocks;
   }
 
   function createTableFiles(filePath) {
     fs.readFile(filePath, (err, data) => {
       // exit on error.
       if (err) return console.log(err);
-
       data = data.toString();
-
-      var re = /-- Table `SimaplaDb`\.`.+`/gm;
-      var tables = data.match(re);
-
-      // exit if no match.
-      if (tables === null) return console.log("No tables found.");
-
-      // get the table names.
-      tables = tables.map(function(element) {
-        return element.replace('-- Table `SimaplaDb`.`', '').replace('`', '')
-      });
-
-      // Save a list with the order in the script.
-      jsonfile.writeFile(outputPath + 'found-tables.json', tables);
-
-      for (let i = 0; i < tables.length; i++) {
-        writeDeclaration(tables[i], data);
+      let blocks = loadTables(data);
+      for (let i = 0; i < blocks.length; i++) {
+        writeBlock(blocks[i]);
       }
     });
-  };
+  }
 
-  function writeDeclaration(table, data) {
-    // find from -- Table `SimaplaDb`.`tableName` to next empty line.
-    var re = new RegExp(
-      "-- Table `SimaplaDb`\.`" + table + "`(.|\r\n)+?^[\r\n|\r|\n]", "gm");
-
-    // find anything that isn't a comment and has content.
-    var codeRe = /^(?!--).+/gm;
-
-    var declaration = data.match(re);
-
-    // exit if no match.
-    if (declaration === null) return console.log("Declaration not found.");
-
-    // trim down to code of table declaration.
-    declaration = "SELECT 'tables/" + table + "';\r\n" + // Print table name.
-                  declaration[0].match(codeRe).join("\r\n") + "\r\n";
-
-    // write file and log status.
-    var destination = outputPath + `tables/${table}.sql`;
-    fs.writeFile(destination, declaration, (err) => {
+  function writeBlock(block) {
+    let destinationPath = `${outputPath}${block[1]}`;
+    if (!fs.existsSync(destinationPath)) fs.mkdirSync(destinationPath);
+    let destinationFile = `${destinationPath}/${block[2]}.sql`;
+    let body = `SELECT '${block[1]} ${block[2]}';\n${block[3]}`;
+    fs.writeFile(destinationFile, body, (err) => {
       if (err) {
-        console.log('ERROR: File ' + destination + ' not created.');
+        console.log('ERROR: File ' + destinationFile + ' not created.');
         console.log(err);
       } else {
-        console.log('File ' + destination + ' created.')
+        console.log('File ' + destinationFile + ' created.')
       }
     });
   }
