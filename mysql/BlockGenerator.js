@@ -4,17 +4,29 @@ jsonfile.spaces = 2;
 
 /**
  * This script will take a workbench generated sql script and make a single
- * file for each table in the script. The output files will be created at
- * dist/tables folder so that the generated files won't overwrite the existing
- * ones at src/tables folder.
+ * file for each 'block' in the script. The output files will be created in
+ * dist/ folders so that the generated files won't overwrite the existing
+ * ones at src/ folders.
  *
- * Note that such folder(both dist and dist/tables must exist).
+ * A block is the way workbench boundles a serie of commands. i.e.
+
+-- -----------------------------------------------------
+-- Table `SimaplaDb`.`Country`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SimaplaDb`.`Country` (
+  `idCountry` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`idCountry`))
+ENGINE = InnoDB;
+
+ * a new file ./dist/Table/Country.sql will be created. Note that the words
+ * Table and Country are scraped from the workbench file.
  */
 const filePath = './workbench.sql';
-var gen = new TableGenerator();
+var gen = new BlockGenerator();
 gen.generate(filePath);
 
-function TableGenerator() {
+function BlockGenerator() {
   const outputPath = './dist/';
   if (!fs.existsSync(outputPath)) fs.mkdirSync(dir); // initialize path
 
@@ -22,7 +34,7 @@ function TableGenerator() {
     createTableFiles(filePath);
   }
 
-  function loadTables(data) {
+  function loadBlocks(data) {
     data = data.replace(/\r/gm, '');
     let restr = "(?:" +
                 "-- -+\\s+" +
@@ -42,7 +54,7 @@ function TableGenerator() {
       // exit on error.
       if (err) return console.log(err);
       data = data.toString();
-      let blocks = loadTables(data);
+      let blocks = loadBlocks(data);
       for (let i = 0; i < blocks.length; i++) {
         writeBlock(blocks[i]);
       }
