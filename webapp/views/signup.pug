@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  div.container
+    h1= title
+    hr
+    div.row
+      form
+        div.col-sm-4.col-sm-offset-4
+          h2.text-center= 'Registro en la plataforma'
+          hr
+          div.form-group
+            label(for='carnet')= 'Carnet:'
+            input#carnet.form-control(type='text')
+          div.form-group
+            label(for='nombre')= 'Nombre:'
+            input#nombre.form-control(type='text')
+          div.form-group
+            label(for='apellido')= 'Apellido:'
+            input#apellido.form-control(type='text')
+          div.form-group
+            label(for='cedula')= 'Cédula:'
+            input#cedula.form-control(type='text')
+          div.form-group
+            label(for='email')= 'Email:'
+            input#email.form-control(type='email')
+          div.form-group
+            label(for='pass') Contraseña:
+            input#pass.form-control(type='password')
+          a#ingresar.text-small(href='login') Ingresar
+          hr
+          button.btn.btn-block.btn-lg.btn-primary(type='submit')= 'Ingresar'
+    hr
