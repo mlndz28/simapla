@@ -174,9 +174,9 @@ ENGINE = InnoDB;
 -- Table `SimaplaDb`.`InstrumentName`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SimaplaDb`.`InstrumentName` (
-  `idInstrumentNames` INT NOT NULL AUTO_INCREMENT,
+  `idInstrumentName` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idInstrumentNames`))
+  PRIMARY KEY (`idInstrumentName`))
 ENGINE = InnoDB;
 
 
@@ -185,17 +185,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SimaplaDb`.`Teacher` (
   `Person_idPerson` INT NOT NULL,
-  `InstrumentName_idInstrumentNames` INT NOT NULL,
-  PRIMARY KEY (`Person_idPerson`, `InstrumentName_idInstrumentNames`),
-  INDEX `fk_Teacher_InstrumentName1_idx` (`InstrumentName_idInstrumentNames` ASC),
+  `InstrumentName_idInstrumentName` INT NOT NULL,
+  PRIMARY KEY (`Person_idPerson`, `InstrumentName_idInstrumentName`),
+  INDEX `fk_Teacher_InstrumentName1_idx` (`InstrumentName_idInstrumentName` ASC),
   CONSTRAINT `fk_Teacher_Person1`
     FOREIGN KEY (`Person_idPerson`)
     REFERENCES `SimaplaDb`.`Person` (`idPerson`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Teacher_InstrumentName1`
-    FOREIGN KEY (`InstrumentName_idInstrumentNames`)
-    REFERENCES `SimaplaDb`.`InstrumentName` (`idInstrumentNames`)
+    FOREIGN KEY (`InstrumentName_idInstrumentName`)
+    REFERENCES `SimaplaDb`.`InstrumentName` (`idInstrumentName`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -251,14 +251,14 @@ CREATE TABLE IF NOT EXISTS `SimaplaDb`.`Instrument` (
   `price` INT(7) NULL,
   `color` VARCHAR(10) NOT NULL,
   `model` VARCHAR(10) NOT NULL,
-  `InstrumentName_idInstrumentNames` INT NOT NULL,
+  `InstrumentName_idInstrumentName` INT NOT NULL,
   `Patrimony_idPatrimony` INT NOT NULL,
-  PRIMARY KEY (`idInstrument`, `InstrumentName_idInstrumentNames`, `Patrimony_idPatrimony`),
-  INDEX `fk_Instrument_InstrumentName1_idx` (`InstrumentName_idInstrumentNames` ASC),
+  PRIMARY KEY (`idInstrument`, `InstrumentName_idInstrumentName`, `Patrimony_idPatrimony`),
+  INDEX `fk_Instrument_InstrumentName1_idx` (`InstrumentName_idInstrumentName` ASC),
   INDEX `fk_Instrument_Patrimony1_idx` (`Patrimony_idPatrimony` ASC),
   CONSTRAINT `fk_Instrument_InstrumentName1`
-    FOREIGN KEY (`InstrumentName_idInstrumentNames`)
-    REFERENCES `SimaplaDb`.`InstrumentName` (`idInstrumentNames`)
+    FOREIGN KEY (`InstrumentName_idInstrumentName`)
+    REFERENCES `SimaplaDb`.`InstrumentName` (`idInstrumentName`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Instrument_Patrimony1`
@@ -520,37 +520,37 @@ CREATE TABLE IF NOT EXISTS `SimaplaDb`.`GroupXEvent` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE USER 'marcello' IDENTIFIED BY '1234';
+CREATE USER IF NOT EXISTS 'marcello' IDENTIFIED BY '1234';
 
 GRANT ALL ON `SimaplaDb`.* TO 'marcello';
 GRANT SELECT ON TABLE `SimaplaDb`.* TO 'marcello';
 GRANT SELECT, INSERT, TRIGGER ON TABLE `SimaplaDb`.* TO 'marcello';
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `SimaplaDb`.* TO 'marcello';
 GRANT EXECUTE ON `SimaplaDb`.* TO 'marcello';
-CREATE USER 'fabian' IDENTIFIED BY '1234';
+CREATE USER IF NOT EXISTS 'fabian' IDENTIFIED BY '1234';
 
 GRANT SELECT ON TABLE `SimaplaDb`.* TO 'fabian';
 GRANT SELECT, INSERT, TRIGGER ON TABLE `SimaplaDb`.* TO 'fabian';
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `SimaplaDb`.* TO 'fabian';
 GRANT EXECUTE ON `SimaplaDb`.* TO 'fabian';
-CREATE USER 'emilio' IDENTIFIED BY '1234';
+CREATE USER IF NOT EXISTS 'emilio' IDENTIFIED BY '1234';
 
 GRANT SELECT ON TABLE `SimaplaDb`.* TO 'emilio';
 GRANT SELECT, INSERT, TRIGGER ON TABLE `SimaplaDb`.* TO 'emilio';
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `SimaplaDb`.* TO 'emilio';
 GRANT EXECUTE ON `SimaplaDb`.* TO 'emilio';
-CREATE USER 'nicolas' IDENTIFIED BY '1234';
+CREATE USER IF NOT EXISTS 'nicolas' IDENTIFIED BY '1234';
 
 GRANT SELECT ON TABLE `SimaplaDb`.* TO 'nicolas';
 GRANT SELECT, INSERT, TRIGGER ON TABLE `SimaplaDb`.* TO 'nicolas';
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE `SimaplaDb`.* TO 'nicolas';
 GRANT EXECUTE ON `SimaplaDb`.* TO 'nicolas';
-CREATE USER 'WebClient' IDENTIFIED BY 'wc*3';
+CREATE USER IF NOT EXISTS 'WebClient' IDENTIFIED BY 'wc*3';
 
 GRANT SELECT, INSERT, TRIGGER ON TABLE `SimaplaDb`.* TO 'WebClient';
 GRANT EXECUTE ON `SimaplaDb`.* TO 'WebClient';
 GRANT SELECT ON TABLE `SimaplaDb`.* TO 'WebClient';
-CREATE USER 'WebService' IDENTIFIED BY 'ws*3';
+CREATE USER IF NOT EXISTS 'WebService' IDENTIFIED BY 'ws*3';
 
 GRANT SELECT ON TABLE `SimaplaDb`.* TO 'WebService';
 GRANT SELECT, INSERT, TRIGGER ON TABLE `SimaplaDb`.* TO 'WebService';

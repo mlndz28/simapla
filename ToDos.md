@@ -37,15 +37,15 @@ Procure crear inserts para todas las acciones. No utilice "insert into" dentro d
 
 #### Vistas
 Las vistas son una manera estable de consultar siempre los mismos datos. Es similar a los procedimientos, pero estas no reciben parámetros y están optimizadas para SELECTs. Por lo tanto estas vistas son básicamente algunos SELECTs con joins de unas tablas o vistas con otras. Por ejemplo, para ver la información de los estudiantes, se debe hacer un join de la tabla Student y la vista de Personas. Además la vista de Personas es join entre las tablas de Persona, Email, Telefono y demás datos que pertenezcan a las personas.
-- Personas
-- Estudiantes
-- Profesores
-- Instrumentos
-- Administrativos
-- Integrantes de una agrupación
-- Eventos
-- Grupos (info general)
-- Distritos (y respectivos cantones, provincias y pais)
+- V_ Personas
+- V_ Estudiantes
+- V_ Profesores
+- V* Instrumentos
+- V_ Administrativos
+- V_ Integrantes de una agrupación
+- V_ Eventos
+- V_ Grupos (info general)
+- V_ Distritos (y respectivos cantones, provincias y pais)
 
 
 
