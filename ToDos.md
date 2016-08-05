@@ -50,5 +50,4 @@ Las vistas son una manera estable de consultar siempre los mismos datos. Es simi
 
 
 
-
 [1]: http://daringfireball.net/projects/markdown/syntax "DaringFireball"
