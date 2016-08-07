@@ -124,7 +124,6 @@ CREATE TABLE IF NOT EXISTS `SimaplaDb`.`Person` (
   `lastname` VARCHAR(20) NOT NULL,
   `birthdate` DATE NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `idSpecificAddress` INT NOT NULL,
   `dateJoinedProgram` DATE NOT NULL,
   `salt` TINYINT(4) NULL DEFAULT 0 COMMENT 'Salt level of someone. 0-9999',
   `SpecificAddress_idSpecificAddress` INT NOT NULL,
