@@ -37,6 +37,9 @@ Procure crear inserts para todas las acciones. No utilice "insert into" dentro d
 
 #### Vistas
 Las vistas son una manera estable de consultar siempre los mismos datos. Es similar a los procedimientos, pero estas no reciben parámetros y están optimizadas para SELECTs. Por lo tanto estas vistas son básicamente algunos SELECTs con joins de unas tablas o vistas con otras. Por ejemplo, para ver la información de los estudiantes, se debe hacer un join de la tabla Student y la vista de Personas. Además la vista de Personas es join entre las tablas de Persona, Email, Telefono y demás datos que pertenezcan a las personas.
+
+Las vistas proporcionan seguridad a la hora de realizar las consultas y previenen de alguna manera los sqlInjections(que en todo caso no deberían suceder), por ejemplo, una tabla de usuarios puede tener la contraseña(aunque sea hasheada), pero si queremos listar los usuarios, la contraseña se puede omitir, y utilizar una vista que tenga, digamos, nombre, ubicación e instrumento(no se, es un ejemplo), va a evitar que un sqlInjection provea la contraseña, aún asi un sqlInjection se la podría ingeniar para conseguir la contraseña, esto se evitaría dandole a un usuario la posibilidad de únicamente solicitar vistas.
+
 - V_ Personas
 - V_ Estudiantes
 - V_ Profesores
