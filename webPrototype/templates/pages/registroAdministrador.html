@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Simapla</a>
+                <a class="navbar-brand" href="index.html">Administrador</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -88,17 +88,22 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+
                         <li>
-                            <a href="inicio.html"><i class="fa fa-home fa-fw"></i> Inicio</a>
+                            <a href="crearAgrupacion.html"><i class="fa fa-list-alt fa-fw"></i> Crear Agrupación</a>
                         </li>
                         <li>
-                            <a href="registro.html"><i class="fa fa-edit fa-fw"></i> Registro</a>
+                            <a href="crearEvento.html"><i class="fa fa-bell fa-fw"></i> Crear Evento</a>
+                        </li>
+                        
+                        <li>
+                            <a href="editarAgrupacion.html"><i class="fa fa-group fa-fw"></i> Editar Agrupación</a>
                         </li>
                         <li>
-                            <a href="acercaDe.html"><i class="fa fa-info fa-fw"></i> Acerca de</a>
+                            <a href="registroAdministrador.html"><i class="fa fa-edit fa-fw"></i> Registro de administradores</a>
                         </li>
                         <li>
-                            <a href="contacto.html"><i class="fa fa-envelope-o fa-fw"></i> Contacto</a>
+                            <a href="tablero.html"><i class="fa fa-th fa-fw"></i> Tablero Administrativo</a>
                         </li>
 
                     </ul>
@@ -118,8 +123,6 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Información Personal
@@ -127,8 +130,14 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-
                                     <form role="form">
+                                        <div class="form-group">
+                                            <label>Registro de:</label>
+                                            <select class="form-control">
+                                                <option>Administrador</option>
+                                                <option>Profesor</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <label>Nombre:</label>
                                             <input class="form-control">
@@ -168,10 +177,6 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Ubicación exacta</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Contraseña:</label>
                                             <input class="form-control">
                                         </div>
@@ -185,36 +190,15 @@
                                                 <option>Arpa</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Laterlalidad:</label>
-                                            <select class="form-control">
-                                                <option>Diestro</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Adecuación:</label>
-                                            <select class="form-control">
-                                                <option>Si</option>
-                                                <option>No</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Padecimientos:</label>
-                                            <input class="form-control" placeholder="Ejemplos de padecimientos...">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Medicamientos:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Enviar Registro</button>
+                                        <button type="submit" class="btn btn-default">Registrar</button>
                                     </form>
-
-
                                 </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
                         </div>
+                        <!-- /.panel-body -->
                     </div>
-
-
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
