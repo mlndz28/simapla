@@ -92,7 +92,15 @@
                         <li>
                             <a href="registro.html"><i class="fa fa-edit fa-fw"></i> Registro</a>
                         </li>
-
+                        <li>
+                            <a href="crearEvento.html"><i class="fa fa-bell fa-fw"></i> Crear Evento</a>
+                        </li>
+                        <li>
+                            <a href="crearAgrupacion.html"><i class="fa fa-list-alt fa-fw"></i> Crear Agrupación</a>
+                        </li>
+                        <li>
+                            <a href="crearAgrupacion.html"><i class="fa fa-group fa-fw"></i> Editar Agrupación</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -103,7 +111,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Registro</h1>
+                    <h1 class="page-header">Crear agrupación</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -112,81 +120,51 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Información Personal
+                            Información
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form">
                                         <div class="form-group">
-                                            <label>Registro de:</label>
+                                            <label>Nombre:</label>
+                                            <input class="form-control" value="Agrupación de marzo">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipo de agrupación:</label>
                                             <select class="form-control">
-                                                <option>Administrador</option>
-                                                <option>Profesor</option>
-                                            </select>
+                                            <option>Coreografía</option>
+                                        </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripción:</label>
+                                            <textarea class="form-control" rows="3"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Nombre:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Apellidos:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha de nacimiento:</label>
-                                            <input class="form-control" placeholder="dd/mm/aaaa">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Cédula:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Teléfono:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Correo electrónico:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Domicilio:</label>
-                                            <br>
-                                            <select class="panel-body">
-                                                <option>San José</option>
-                                                <option>Alajuela</option>
-                                            </select>
-                                            <select class="panel-body">
-                                                <option>Goico:</option>
-                                            </select>
-                                            <select class="panel-body">
-                                                <option>Mata de plátano</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Contraseña:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Repita la contraseña:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Instrumento:</label>
                                             <select class="form-control">
-                                                <option>Arpa</option>
+                                                <option>Freddie Mercury</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-default">Registrar</button>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-success">Agregar</button>
+                                            <button type="button" class="btn btn-danger">Eliminar</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Participantes</label>
+                                            <select multiple class="form-control">
+                                                <option>Bob Dylan</option>
+                                                <option>Jhonny Cash</option>
+                                                <option>Axl Rose</option>
+                                            </select>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-default">Crear</button>
                                     </form>
                                 </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
+                            </div> 
                         </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
