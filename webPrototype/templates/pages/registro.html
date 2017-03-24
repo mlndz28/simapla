@@ -29,6 +29,12 @@
     <link href="../css/bootstrap-select.css" rel="stylesheet">
     <script src="../js/bootstrap-select.js"></script>
 
+    <!-- Datepicker  -->
+    <link href="../css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <script src="../js/bootstrap-datepicker.min.js"></script>
+    <script src="../js/bootstrap-datepicker.es.min.js"></script>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -171,9 +177,21 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
+
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input class="form-control" placeholder="dd/mm/aaaa">
+                                            <div class="input-group" id="nacim">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" editable="false">
+                                            </div>
+                                            <script>
+                                                $('#nacim input').datepicker({
+                                                    format: "dd/M/yyyy", /*mm for number month*/
+                                                    startView: 3,
+                                                    language: "es",
+                                                    autoclose: true
+                                                });
+                                            </script>
                                         </div>
                                         <div class="form-group">
                                             <label>Domicilio:</label>
@@ -182,10 +200,10 @@
                                                 <option>San José</option>
                                                 <option>Alajuela</option>
                                             </select>
-                                            <select class="selectpicker" data-width="32%">
+                                            <select class="selectpicker" data-width="33%">
                                                 <option>Goicoechea</option>
                                             </select>
-                                            <select class="selectpicker" data-width="32%">
+                                            <select class="selectpicker" data-width="33%">
                                                 <option>Mata de plátano</option>
                                             </select>
                                         </div>
@@ -212,7 +230,7 @@
                                             <textarea class="form-control" rows="1"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label>Medicamientos:</label>
+                                            <label>Medicamentos:</label>
                                             <textarea class="form-control" rows="1"></textarea>
                                         </div>
 
