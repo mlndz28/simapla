@@ -1,27 +1,3 @@
-extends layout
-
-block content
-  div.container
-    h1= title
-    hr
-    div.row
-      form
-        div.col-sm-4.col-sm-offset-4
-          h2.text-center= 'Ingreso a la plataforma'
-          hr
-          div.form-group
-            label(for='user')= 'Usuario:'
-            input#user.form-control(type='text')
-          div.form-group
-            label(for='pass') Contraseña:
-            input#pass.form-control(type='password')
-          div.checkbox
-            label
-              input#recordarme(type='checkbox')
-              | Recordarme
-          a#solicitar-usuario.text-small(href='signup') Solicitar usuario
-          | &nbsp;|&nbsp;
-          a#restablecer-contrasena.text-small(href='#restablecer-contrasena') Olvedé mi usuario/contraseña
-          hr
-          button.btn.btn-block.btn-lg.btn-primary(type='submit')= 'Ingresar'
-    hr
+include ../../webPrototype/templates/pages/login.html
+script
+   | console.log(locals)
