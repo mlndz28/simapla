@@ -61,7 +61,6 @@ module.exports.http = {
       'poweredBy',
       '$custom',
       'router',
-      'www',
       'favicon',
       '404',
       '500'
@@ -74,15 +73,9 @@ module.exports.http = {
   ****************************************************************************/
 
     myRequestLogger: function (req, res, next) {
-        // console.log("Requested :: ", req.method, req.url);
+        console.log("Requested :: ", req.method, req.url);
         return next();
     },
-
-    www: (function() {
-      let path = require('path').join(__dirname, '../../webPrototype/templates')
-      let flatFileMiddleware = require('serve-static')(path);
-      return flatFileMiddleware;
-    })(),
   /***************************************************************************
   *                                                                          *
   * The body parser that will handle incoming multipart HTTP requests. By    *

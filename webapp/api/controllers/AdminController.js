@@ -7,11 +7,6 @@
 
 module.exports = {
 	show: (req, res) => {
-		console.log(req.session);
-		if (req.session.logged) {
-			return res.view('admin');
-		} else {
-			return res.redirect('login');
-		}
+		return res.view('admin');
 	}
 };
