@@ -42,8 +42,12 @@ module.exports.routes = {
 
   '/logout': 'LoginController.logout',
 
-  'GET /admin': 'AdminController.show',
+  'GET /ws/user/:username': 'Ws/UserController.get',
+  'POST /ws/user': 'Ws/UserController.post',
+  'PUT /ws/user': 'Ws/UserController.put',
+  'DELETE /ws/user': 'Ws/UserController.delete',
 
-  'GET /:folder/*': 'FlatController.serve'
+  'GET /:folder/*': 'FlatController.serve',
+
 
 };
