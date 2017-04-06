@@ -1,0 +1,173 @@
+{
+	"variables": [],
+	"info": {
+		"name": "simapla",
+		"_postman_id": "c8c2fc49-7c1c-2cc0-4ab0-741d2aba27af",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /ws/user/aaa",
+			"request": {
+				"url": "localhost:1337/ws/user/aaa",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "carnet",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "cedula",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "name",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "birthdate",
+							"value": "2012-12-12",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "dateJoinedProgram",
+							"value": "2012-12-12",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "salt",
+							"value": "22",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SpecificAddress_idSpecificAddress",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Email_idEmail",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Phone_idPhone",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /ws/user/",
+			"request": {
+				"url": "localhost:1337/ws/user/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "carnet",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "cedula",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "name",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "birthdate",
+							"value": "2012-12-12",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "aaa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "dateJoinedProgram",
+							"value": "2012-12-12",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "salt",
+							"value": "22",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "SpecificAddress_idSpecificAddress",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Email_idEmail",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "Phone_idPhone",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
