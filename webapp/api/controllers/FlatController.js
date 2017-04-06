@@ -7,10 +7,11 @@
 const path = require('path');
 
 module.exports = {
-  serve: (req, res) => {
-    if (req.params.folder.match(/css|data|dist|font-awesome|fonts|img|js|vendor/)) {
+  serve: (req, res, next) => {
+    let re = /css|data|dist|font-awesome|fonts|img|js|vendor/;
+    if (req.params.folder.match(re)) {
       return res.sendfile(`templates/${req.path}`);
     }
-    return res.redirect('/');
+    return next();
   }
 };
