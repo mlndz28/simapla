@@ -40,6 +40,8 @@ module.exports.routes = {
   'POST /login': 'LoginController.login',
   '/logout': 'LoginController.logout',
 
+  'GET /registro': 'SignupController.show',
+
   'GET /admin': 'AdminController.show',
 
   'GET /ws/user/:username': 'Ws/PersonController.get',
