@@ -44,7 +44,7 @@ module.exports.routes = {
 
   'GET /admin': 'AdminController.show',
 
-  'GET /ws/user/:username': 'Ws/PersonController.get',
+  'GET /ws/user/:carnet': 'Ws/PersonController.get',
   'POST /ws/user': 'Ws/PersonController.post',
   'PUT /ws/user': 'Ws/PersonController.put',
   'DELETE /ws/user': 'Ws/PersonController.delete',

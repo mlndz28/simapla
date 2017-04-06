@@ -11,7 +11,23 @@ module.exports = {
   // connection: DbConnectionService.getConnection(),
 
   get: function(req, res) {
-    res.send({username:req.params.username});
+    let columns = [
+      'idPerson',
+      'carnet',
+      'cedula',
+      'name',
+      'lastname',
+      'birthdate',
+      'dateJoinedProgram',
+      'salt',
+      'SpecificAddress_idSpecificAddress',
+      'Email_idEmail',
+      'Phone_idPhone'
+    ].join(', ');
+    let query = `SELECT ${columns}
+    FROM \`Person\`
+    WHERE carnet='${req.params.carnet}';`;
+    connection.query(query, {}, res);
   },
 
   post: function(req, res) {
