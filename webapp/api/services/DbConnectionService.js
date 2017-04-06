@@ -20,6 +20,9 @@ exports.createPool = dbConnection;
  * @param res - Express response
  */
 exports.query = function(statement, body, res) { //;
+  this.pool = mysql.createPool(conf); //create new connection pool
+  //adds formatting to prepared statements
+  this.pool.config.connectionConfig.queryFormat = parseQuery;
   this.pool.getConnection(function(err, connection) {
     if (err) { //if can't connect to DB
       onError(err, res);
@@ -136,20 +139,17 @@ function parseQuery(statement, values) {
  */
 function onConnect(statement, body, connection, res) {
   connection.query(statement, body, function(err, results) {
-    console.log("in = " + JSON.stringify(body));
     //as it's not being used anymore
     connection.release();
     if (!err) {
       var resObject = new Object();
       resObject["error"] = "none";
       resObject["data"] = results;
-      console.log("out = " + JSON.stringify(resObject));
-      res.json(resObject);
+      res.send(resObject);
     } else {
       //if query can't be executed
       onError(err, res);
     }
-    return resObject;
   });
 }
 /**
@@ -159,8 +159,7 @@ function onConnect(statement, body, connection, res) {
  * @param {Object} values - Express response
  */
 function onError(err, res) {
-  console.error("out =" + err);
-  res.json({
+  res.send({
     error: err
   });
 }

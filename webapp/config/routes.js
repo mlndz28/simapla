@@ -37,15 +37,15 @@ module.exports.routes = {
   },
 
   'GET /login': 'LoginController.show',
-
   'POST /login': 'LoginController.login',
-
   '/logout': 'LoginController.logout',
 
-  'GET /ws/user/:username': 'Ws/UserController.get',
-  'POST /ws/user': 'Ws/UserController.post',
-  'PUT /ws/user': 'Ws/UserController.put',
-  'DELETE /ws/user': 'Ws/UserController.delete',
+  'GET /admin': 'AdminController.show',
+
+  'GET /ws/user/:username': 'Ws/PersonController.get',
+  'POST /ws/user': 'Ws/PersonController.post',
+  'PUT /ws/user': 'Ws/PersonController.put',
+  'DELETE /ws/user': 'Ws/PersonController.delete',
 
   'GET /:folder/*': 'FlatController.serve',
 
