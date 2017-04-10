@@ -44,6 +44,10 @@ module.exports.routes = {
 
   'GET /admin': 'AdminController.show',
 
+  'GET /agrupaciones': 'AgrupacionesController.show',
+  'GET /agrupaciones/crear': 'AgrupacionesController.create',
+  'GET /agrupaciones/editar': 'AgrupacionesController.edit',
+
   'GET /ws/user/:carnet': 'Ws/PersonController.get',
   'POST /ws/user': 'Ws/PersonController.post',
   'PUT /ws/user': 'Ws/PersonController.put',
