@@ -1,0 +1,23 @@
+nav(class="navbar navbar-default navbar-fixed-top topnav", role="navigation")
+  div(class="container topnav")
+    div(class="navbar-header")
+      button(type="button", class="navbar-toggle", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1")
+        span(class="sr-only") Toggle navigation
+        span(class="icon-bar")
+        span(class="icon-bar")
+        span(class="icon-bar")
+      a(class="navbar-brand topnav", href="/")  Simapla Digital
+    div(class="collapse navbar-collapse", id="bs-example-navbar-collapse-1")
+      ul(class="nav navbar-nav navbar-right")
+        li
+          if locals.logged
+            a(href="admin") Administración
+          else
+            a(href="login") Iniciar Sesión
+        li
+          a(href="#agrupaciones") Agrupaciones
+        li
+          a(href="#contacto") Contacto
+        if locals.logged
+          li
+            a(href="logout") Cerrar Sesión
