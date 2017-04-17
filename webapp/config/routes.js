@@ -32,9 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
+  '/': 'homepageController.show',
 
   'GET /login': 'LoginController.show',
   'POST /login': 'LoginController.login',
@@ -43,6 +41,10 @@ module.exports.routes = {
   'GET /registro': 'SignupController.show',
 
   'GET /admin': 'AdminController.show',
+
+  'GET /agrupaciones': 'AgrupacionesController.show',
+  'GET /agrupaciones/crear': 'AgrupacionesController.create',
+  'GET /agrupaciones/editar': 'AgrupacionesController.edit',
 
   'GET /ws/user/:carnet': 'Ws/PersonController.get',
   'POST /ws/user': 'Ws/PersonController.post',

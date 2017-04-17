@@ -9,7 +9,8 @@ const path = require('path');
 
 module.exports = {
   show: (req, res) => {
-    return res.view('login', {});
+    if (req.session.logged) return res.redirect('/admin');
+    return res.view('login', {title:'Simapla Digital - Iniciar Sesión'});
   },
   login: (req, res) => {
 		if (req.session.logged) return res.redirect('admin');
@@ -17,7 +18,10 @@ module.exports = {
 			req.session.logged = true;
       return res.redirect('admin');
     } else {
-			res.view('login', {'error': 'Datos Incorrectos'});
+      return res.view('login', {
+        title:'Simapla Digital - Iniciar Sesión',
+        error: 'Datos Incorrectos'
+      });
     }
   },
 	logout: (req, res) => {

@@ -167,7 +167,7 @@
                                                     $('#fecEvento').datepicker({
                                                         todayHighlight: true,
                                                         format: "dd/M/yyyy", /*mm for number month*/
-                                                        startView: 3,
+                                                        startView: 2,
                                                         language: "es",
                                                         autoclose: true
                                                     });
@@ -193,25 +193,15 @@
                                         <textarea class="form-control" rows="3"></textarea>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Nombre:</label>
-                                        <select class="selectpicker form-control">
-                                            <option>Freddie Mercury</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-success">Agregar</button>
-                                        <button type="button" class="btn btn-danger">Eliminar</button>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Participantes</label>
+                                    <div class="form-group col-lg-12">
+                                        <label>Agrupaciones</label>
                                         <select multiple class="selectpicker form-control">
-                                            <option>Bob Dylan</option>
-                                            <option>Jhonny Cash</option>
-                                            <option>Axl Rose</option>
+                                            <option>Orquesta Pilar Jiménez</option>
+                                            <option>Camerata</option>
+                                            <option>Banda</option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-default">Registrar Evento</button>
+                                    <button type="submit" class="btn btn-success btn-block">Registrar Evento</button>
                                 </form>
                             </div>
                         </div>
@@ -224,14 +214,14 @@
                             <div class="panel-body">
                                 <form role="form">
                                     <div class="form-group">
-                                            <div id="crop-avatar">
-                                                <!-- Current avatar -->
-                                                <img class="img-responsive avatar-view" src="../img/event.jpg" alt="Avatar" title="Change the avatar">
-                                            </div>
+                                        <div id="crop-avatar">
+                                            <!-- Current avatar -->
+                                            <img class="img-responsive avatar-view" src="../img/event.jpg" alt="Avatar" title="Change the avatar">
                                         </div>
-                                        <div class="form-group">
-                                                <a class="btn btn-block btn-info"><i class="fa fa-camera-retro m-right-xs"></i> Editar foto</a>
-                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                            <a class="btn btn-block btn-info"><i class="fa fa-camera-retro m-right-xs"></i> Editar foto</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>
