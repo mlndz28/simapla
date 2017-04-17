@@ -12,7 +12,8 @@ exports.router = function (connection) {
 
 	var get = express.Router();
 	get.post("/get", function (req, res) {
-		connection.query("SHOW PROCEDURE STATUS WHERE Db = " + conf.database + ";", {}, getProcedureNames(connection, res));
+		//connection.query("SHOW PROCEDURE STATUS WHERE Db = " + conf.database + ";", {}, getProcedureNames(connection, res));
+		connection.query("SHOW PROCEDURE STATUS;", {}, getProcedureNames(connection, res));
 
 	});
 	router.use("/procedures", get);
@@ -30,6 +31,14 @@ var getProcedureNames = function (connection, res) {
 
 	return {
 		json: function (obj) {
+			//
+			res.json(obj);
+			return
+			//
+			if(obj.error){
+				res.json({data: [], error: obj.error, updated: 0});
+				return;
+			}
 			var procedures = [];
 			var tempObject = {
 				procedures: procedures,
