@@ -34,7 +34,7 @@ app
         return set;
     }
 }])
-.controller('cursosDataCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('profileCtrl', ['$scope', '$http', function($scope, $http) {
 
     $scope.cursos = [];
     $scope.txtBtnEdit = 'Editar';
@@ -43,13 +43,15 @@ app
     $scope.obj.editando = false;
 
     $scope.loadData = function() {
-        var url = 'php/post.php';
+        var url = '/ws/me';
         var params = {
             'action':'getCursos'
         }
         // Simple GET request example:
         $http.get(url).then(function successCallback(response) {
-            $scope.me = data;
+
+            $scope.me = response;
+            console.log($scope.me);
             // this callback will be called asynchronously
             // when the response is available
           }, function errorCallback(response) {
