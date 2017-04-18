@@ -75,3 +75,31 @@ BEGIN
     INSERT INTO `SimaplaDb`.`Administrator`(`Person_idPerson`,`ManagementPosition_idManagementPosition`)
 	VALUES(@idPer,pIdManagementPosition);
 END
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createGroup`(
+	in `pName` varchar(45),
+    in `description` varchar(100),
+    in `pGroupType` int(11),
+    in `pIdEncargado` int (11)
+)
+BEGIN
+INSERT INTO `SimaplaDb`.`Group`(`name`,`description`,`GroupType_idGroupType`,`Person_idPerson`)
+VALUES(pName, pDescription, pGroupType, pIdEncargado);
+
+END
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createEvent`(
+	in `pName` varchar(45),
+	in `pDate` date,
+	in `pLocation` varchar(99),
+	in `pCoordX` decimal(11,7),
+	in `pCoordY` decimal(11,7),
+	in `pEventType_idEventType` int(11)
+)
+BEGIN
+	INSERT INTO `SimaplaDb`.`Event`(`name`,`date`,`location`,`CoordX`,`CoordY`,`EventType_idEventType`)
+	VALUES(pName, pDate, pLocation,pCoordX,pCoordY,pEventType_idEventType);
+
+END
