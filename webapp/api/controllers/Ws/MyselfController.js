@@ -13,7 +13,7 @@ module.exports = {
       return res.view('perfil')
   },
   get: function(req, res) {
-    res.json({name: req.session.me.name});
+    res.json(req.session.me);
   }
 
 };

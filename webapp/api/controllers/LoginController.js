@@ -20,8 +20,7 @@ module.exports = {
       let data = resObject.data;
       if (typeof data[0] != 'undefined'){
         req.session.logged = true;
-        req.session.me = {};
-        req.session.me.name = resObject.data[0].name;
+        req.session.me = resObject.data[0];
         res.redirect('/admin');
       } else {
         res.redirect('/login');
