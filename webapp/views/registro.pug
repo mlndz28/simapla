@@ -1,0 +1,20 @@
+extends ./adminLayout.pug
+
+block styles
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+  link(href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js")
+
+  link(href="/css/bootstrap-datepicker.min.css")
+  script(src="/js/bootstrap-datepicker.min.js")
+  script(src="/js/bootstrap-datepicker.es.min.js")
+
+block body
+  include ../templates/pages/registro.html
+
+block scripts
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+  script(src="/dist/js/sb-admin-2.js")
+  script(src="/vendor/metisMenu/metisMenu.min.js")
+  script(src="/js/app/app.js")
+  script(src="/js/app/controllers.js")
