@@ -46,7 +46,12 @@ module.exports.routes = {
   'GET /agrupaciones/crear': 'AgrupacionesController.create',
   'GET /agrupaciones/editar': 'AgrupacionesController.edit',
 
-  'GET /ws/Administrator': 'Ws/AdministratorController.get',
+  'GET /ws/administrator': 'Ws/AdministratorController.get',
+
+  'GET /ws/countries': 'Ws/DistrictController.getCountries',
+  'GET /ws/provinces/:countryId': 'Ws/DistrictController.getProvinces',
+  'GET /ws/cantons/:provinceId': 'Ws/DistrictController.getCantons',
+  'GET /ws/districts/:cantonId': 'Ws/DistrictController.getDisctricts',
 
   'GET /ws/me': 'Ws/MyselfController.get',
 
