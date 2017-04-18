@@ -17,7 +17,10 @@ nav(class="navbar navbar-default navbar-fixed-top topnav", role="navigation")
         li
           a(href="#agrupaciones") Agrupaciones
         li
-          a(href="#contacto") Contacto
+          a(href="#contacto") Contacto #{locals.logged}
         if locals.logged
           li
             a(href="logout") Cerrar Sesión
+        if !locals.logged
+          li
+            a(href="registro") Registro
