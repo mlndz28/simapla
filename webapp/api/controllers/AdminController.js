@@ -7,6 +7,6 @@
 
 module.exports = {
 	show: (req, res) => {
-		return res.view('admin');
+		return res.view('admin',{name:req.session.name});
 	}
 };
