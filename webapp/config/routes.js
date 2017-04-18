@@ -46,7 +46,7 @@ module.exports.routes = {
   'GET /agrupaciones/crear': 'AgrupacionesController.create',
   'GET /agrupaciones/editar': 'AgrupacionesController.edit',
 
-    'GET /ws/Administrator': 'Ws/AdministratorController.get',
+  'GET /ws/Administrator': 'Ws/AdministratorController.get',
 
   'GET /ws/me': 'Ws/MyselfController.get',
 

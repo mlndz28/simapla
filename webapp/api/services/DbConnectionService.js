@@ -28,10 +28,10 @@ exports.createPool = dbConnection;
        onError(err, res);
      } else {
        if (typeof callback !== 'undefined') {
-         onConnect(statement, body, connection, res);
+         onConnect(statement, body, connection, res, callback);
        }
        else {
-         onConnect(statement, body, connection, res, callback);
+         onConnect(statement, body, connection, res);
        }
      }
    });
@@ -131,7 +131,6 @@ function parseQuery(statement, values) {
     }
     return parsed.slice(0, parsed.length - 2);
   }.bind(this));
-  console.log("query1 = " + temp);
   return temp;
 }
 /**
@@ -151,7 +150,7 @@ function parseQuery(statement, values) {
        resObject["error"] = "none";
        resObject["data"] = results;
        if (typeof callback !== 'undefined') {
-         callback(results, res);
+         callback(resObject, res);
        } else {
          res.send(resObject);
        }
