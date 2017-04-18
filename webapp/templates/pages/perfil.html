@@ -130,8 +130,8 @@
                     <br />
 
                 </div>
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                    <h3>José Pablo Lopez Ramírez</h3>
+                <div class="col-md-9 col-sm-9 col-xs-12" ng-controller="profileCtrl">
+                    <h3 ng-model="me.name"></h3>
 
                     <ul class="list-unstyled user_data">
                         <li><i class="fa fa-calendar-o"></i> Edad: 14 años (16-abr-2002)</li>
@@ -161,7 +161,7 @@
 
     </div>
     <!-- /#wrapper -->
-    
+
     <!-- Bootstrap Core JavaScript -->
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
