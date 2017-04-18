@@ -9,7 +9,9 @@ let connection = DbConnectionService;
 module.exports = {
 
   // connection: DbConnectionService.getConnection(),
-
+  show: function(req, res){
+      return res.view('perfil')
+  },
   get: function(req, res) {
       res.send(req.session.me.name)
   }
