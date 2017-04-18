@@ -11,7 +11,7 @@ module.exports = {
   // connection: DbConnectionService.getConnection(),
 
   get: function(req, res) {
-      res.send(req.session.me.name)
+    res.json({name: req.session.me.name});
   }
 
 };

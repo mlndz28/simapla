@@ -1,1 +1,8 @@
-include ../templates/pages/tablero.html
+extends ./adminLayout
+
+block body
+  include ../templates/pages/perfil.html
+
+block scripts
+  script(src="/js/app/app.js")
+  script(src="/js/app/controllers.js")
