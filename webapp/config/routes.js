@@ -39,6 +39,8 @@ module.exports.routes = {
   '/logout': 'LoginController.logout',
 
   'GET /registro': 'SignupController.show',
+  'POST /registro/student': 'SignupController.signupStudent',
+  'POST /registro/administrator': 'SignupController.signupAdministrator',
 
   'GET /admin': 'AdminController.show',
 
