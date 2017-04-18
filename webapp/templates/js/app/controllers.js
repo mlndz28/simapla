@@ -50,7 +50,7 @@ app
         // Simple GET request example:
         $http.get(url).then(function successCallback(response) {
 
-            $scope.me = response;
+            $scope.me = response.data;
             console.log($scope.me);
             // this callback will be called asynchronously
             // when the response is available
