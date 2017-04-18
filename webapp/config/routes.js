@@ -53,6 +53,8 @@ module.exports.routes = {
   'GET /ws/cantons/:provinceId': 'Ws/DistrictController.getCantons',
   'GET /ws/districts/:cantonId': 'Ws/DistrictController.getDisctricts',
 
+  'GET /ws/instruments': 'Ws/InstrumentController.getInstruments',
+
   'GET /ws/me': 'Ws/MyselfController.get',
 
   'GET /ws/user/:carnet': 'Ws/PersonController.get',
