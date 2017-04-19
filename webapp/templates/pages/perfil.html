@@ -92,22 +92,28 @@
 
                 </div>
                 <div class="col-md-9 col-sm-9 col-xs-12" ng-controller="profileCtrl">
-                    <h3 ng-bind="me.name"></h3>
-
+                    <h3>{{me.name}} {{me.lastname}}</h3>
+                    <p></p>
                     <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-calendar-o"></i> Edad: 14 años (16-abr-2002)</li>
-                        <li><i class="fa fa-home"></i> Dirección: San José, Goicoechea, Mozotal</li>
-                        <li><i class="fa fa-map-marker"></i> De la iglesia de ladrillo, 800m Este. Casa de verjas azules.</li>
-                        <li><i class="fa fa-phone"></i> Teléfono: 8346-2359</li>
-                        <li><i class="fa fa-envelope-o"></i> Correo: jopalora@dominio.com</li>
-                        <li><i class="fa fa-ra"></i> Instrumento: Corno francés</li>
-                        <li><i class="fa fa-clock-o"></i> Horarios:
+                        <li><i class="fa fa-calendar-o"></i> Cedula: {{me.carnet}}</li>
+                        <li><i class="fa fa-calendar-o"></i> Carnet: {{me.cedula}}</li>
+                        <li><i class="fa fa-calendar-o"></i> Edad: {{me.age}} años</li>
+                        <li><i class="fa fa-home"></i> Distrito: {{me.district}}</li>
+                        <!--<li><i class="fa fa-map-marker"></i> De la iglesia de ladrillo, 800m Este. Casa de verjas azules.</li>-->
+                        <li><i class="fa fa-home"></i> {{me.lefty}} es zurd@.</li>
+                        <li><i class="fa fa-home"></i> {{me.adecuacy}} cuenta con adecuación.</li>
+                        <li><i class="fa fa-home"></i> Medicamentos: {{me.medication}}</li>
+                        <li><i class="fa fa-home"></i> Condición especial: {{me.condition}}</li>
+                        <li><i class="fa fa-phone"></i> Teléfono: {{me.phone}}</li>
+                        <li><i class="fa fa-envelope-o"></i> Correo: {{me.mail}}</li>
+                        <li><i class="fa fa-ra"></i> Instrumento: {{me.instrument}}</li>
+                        <!--<li><i class="fa fa-clock-o"></i> Horarios:
                             <ul class="list-unstyled user_data">
-                                <li>----Solfeo: k17:30-18:30</li>
-                                <li>----Orquesta: m-v18:00-20:00</li>
-                                <li>----Instrumento: k17:00-17:30</li>
+                                <li>    Solfeo: k17:30-18:30</li>
+                                <li>    Orquesta: m-v18:00-20:00</li>
+                                <li>    Instrumento: k17:00-17:30</li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                     <div>
                         <!-- /.col-lg-12 -->

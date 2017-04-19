@@ -33,7 +33,7 @@ module.exports = {
     connection.query(query, {}, res);
   },
 
-  signupAdmin: (req, res) => {
+  signupAdministrator: (req, res) => {
     let values = [
       req.param('pcarnet'),
       req.param('pcedula'),

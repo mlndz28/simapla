@@ -57,7 +57,8 @@ module.exports.routes = {
 
   'GET /ws/instruments': 'Ws/InstrumentController.getInstruments',
 
-  'GET /ws/me': 'Ws/MyselfController.get',
+  'GET /perfil': 'Ws/MyselfController.get',
+  'GET /ws/infoStudent': 'Ws/MyselfController.getInfo',
 
   'GET /ws/user/:carnet': 'Ws/PersonController.get',
   'POST /ws/user': 'Ws/PersonController.post',
@@ -65,6 +66,4 @@ module.exports.routes = {
   'DELETE /ws/user': 'Ws/PersonController.delete',
 
   'GET /:folder/*': 'FlatController.serve',
-
-
 };
