@@ -10,21 +10,23 @@ let connection = DbConnectionService;
 
 module.exports = {
     show: (req, res) => {
-        if (req.session.logged) return res.redirect('/admin');
+        if (req.session.logged) return res.redirect('/perfil');
         return res.view('login', {title:'Simapla Digital - Iniciar Sesión'});
     },
     login: (req, res) => {
-        let query = `select p.carnet from Person p where carnet = '` + req.param('carne') + `' and password = '` + req.param('password') + `'`;
+        let query = `select p.cedula from Person p where carnet = '` + req.param('carne') + `' and password = '` + req.param('password') + `'`;
+        console.log("LOG LoginController query: "+query);
         connection.query(query, {}, res, (resObject, res) => {
             if (resObject.error == 'none') {
                 let data = resObject.data;
                 if (typeof data[0] != 'undefined'){
                     req.session.logged = true;
                     req.session.me = {};
-                    console.log("LOG LoginController resObject: "+resObject.data[0]);
-                    req.session.me.carnet = resObject.data[0].carnet;
+                    console.log("LOG LoginController resObject: "+JSON.stringify(resObject.data));
+                    req.session.me.cedula = resObject.data[0].cedula;
                     res.redirect('/perfil');
                 } else {
+                    console.log("LOG LoginController resObject: "+JSON.stringify(resObject));
                     res.redirect('/login');
                 }
             }

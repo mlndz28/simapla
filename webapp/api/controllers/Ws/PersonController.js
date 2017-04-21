@@ -26,7 +26,7 @@ module.exports = {
     ].join(', ');
     let query = `SELECT ${columns}
     FROM \`Person\`
-    WHERE carnet='${req.params.carnet}';`;
+    WHERE cedula='${req.params.cedula}';`;
     connection.query(query, {}, res);
   },
 

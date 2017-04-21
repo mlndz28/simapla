@@ -15,7 +15,7 @@ app
         // Simple GET request example:
         $http.get(url).then(function successCallback(response) {
             $scope.me = response.data[0];
-            //console.log("this:"+JSON.stringify($scope.me));
+            console.log("LOG controllers.js:"+JSON.stringify($scope.me));
         }, function errorCallback(response) {
             console.log("LOG controllers.js: Error.");
         });
