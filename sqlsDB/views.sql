@@ -26,23 +26,19 @@ Create or replace view Persons as
 			) a on a.idSpecificAddress = p.SpecificAddress_idSpecificAddress
 	order by p.lastname;
 
-
-Create or replace view Students as
+Create or Replace VIEW Students AS
 	-- Created by Marcello Avila
-    -- 7-ago-16
-	Select
-		p.name, p.lastname, p.carnet, n.instrument, p.cedula, p.age, p.mail, p.phone, p.district,
-		s.isLefty as 'lefty', s.hasAdequacy as 'adecuacy', s.specialCondition as 'condition', s.medication
-	From
-		Student s
-		inner join Persons p on s.Person_idPerson = p.idPerson
-		inner join
-			(
-				Select i.name as 'instrument', Student_Person_idPerson as 'idPerson'
-				from Instruments i inner join InstrumentXStudent ixs
-					on ixs.Instrument_idInstrument = i.idInstrument
-			) n on n.idPerson = p.idPerson
-	order by p.lastname;
+    -- 21-abr-17
+    Select
+        p.name AS name, p.lastname AS lastname,p.carnet AS carnet, p.cedula AS cedula,
+        p.age AS age, p.mail AS mail,
+        p.phone AS phone, p.district AS district,
+        IF((s.isLefty = 1), 'Si', 'No') AS lefty, IF((s.hasAdequacy = 1), 'Si', 'No') AS adecuacy,
+        s.specialCondition AS condition, s.medication AS medication
+    FROM
+        SimaplaDb.Student s
+        JOIN SimaplaDb.Persons p ON s.Person_idPerson = p.idPerson
+    ORDER BY p.lastname
 
 
 Create or replace view Teachers as
