@@ -11,17 +11,9 @@ module.exports = {
 		res.view('registro');
 	},
 
-  generateCarnet: () => {
-    let abc = 'abcdefghijklmnopqrstuv'.split('');
-    let str = '';
-    for (var i = 0; i < 6; i++)
-      str += abc[Math.floor(Math.random()*abc.lenght)];
-    return str;
-  }
-
   signupStudent: (req, res) => {
     let values = [
-      generateCarnet(), // req.param('pcarnet'),
+      `'`+generateCarnet()+`'`,//generateCarnet(), // req.param('pcarnet'),
       `'${req.param('pcedula')}'`,
       `'${req.param('pname')}'`,
       `'${req.param('plastname')}'`,
@@ -39,10 +31,23 @@ module.exports = {
     ].join(', ');
     let query = `call SimaplaDb.registerStudent(${values})`;
     console.log(query);
-    connection.query(query, {}, res);
+    connection.query(query, {}, res, (resObject, res) => {
+        if (resObject.error == 'none') {
+            let data = resObject.data;
+            if (typeof data[4] != 'undefined'){
+                req.session.logged = true;
+                req.session.me = {};
+                console.log("LOG SignupController resObject: "+JSON.stringify(resObject.data[4][0].cedula));
+                req.session.me.cedula = resObject.data[4][0].cedula;
+                res.redirect('/perfil');
+            } else {
+                res.redirect('/registro');
+            }
+        }
+    });
   },
 
-  signupAdmin: (req, res) => {
+  signupAdministrator: (req, res) => {
     let values = [
       req.param('pcarnet'),
       req.param('pcedula'),
@@ -61,3 +66,12 @@ module.exports = {
     connection.query(query, {}, res);
   }
 };
+
+
+function generateCarnet(){
+let abc = 'abcdefghijklmnopqrstuv'.split('');
+let str = '';
+for (var i = 0; i < 3; i++)
+  str += abc[Math.floor(Math.random()*abc.length)];
+return "mdp" + str;
+}

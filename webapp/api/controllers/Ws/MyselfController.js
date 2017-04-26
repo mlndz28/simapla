@@ -1,19 +1,33 @@
 /**
- * Ws/PersonController
- *
- * @description :: Server-side logic for managing ws/users
- * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
- */
+* Ws/MyselfController
+*
+* @description :: Server-side logic for managing ws/users
+* @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
+*/
 
 let connection = DbConnectionService;
 module.exports = {
 
-  // connection: DbConnectionService.getConnection(),
-  show: function(req, res){
-      return res.view('perfil')
-  },
-  get: function(req, res) {
-    res.json(req.session.me);
-  }
+    //connection: DbConnectionService.getConnection(),
+    get: function(req, res) {
+        res.view('perfil');
+    },
 
+    getInfo: function(req, res) {
+        // Pending to do with a procedure call.
+        //let query = `call SimaplaDb.getInfoStudent('` + req.param('carne') + `')`;
+        console.log("LOG MyselfController session.me:"+JSON.stringify(req.session.me));
+        let query = `select * from Students s where s.cedula = "`+req.session.me.cedula+`" limit 1;`;
+        connection.query(query, {}, res, (resObject, res) => {
+            if (resObject.error == 'none') {
+                let data = resObject.data;
+                if (typeof data[0] != 'undefined'){
+                    console.log("LOG MyselfController resObject.data: "+resObject.data);
+                    res.json(resObject.data);
+                } else {
+                    res.json({resObject});
+                }
+            }
+        });
+    }
 };
