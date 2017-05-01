@@ -13,7 +13,7 @@ module.exports = {
     let query = `SELECT * FROM Canton WHERE Province_idProvince=${req.params.provinceId}`;
     connection.query(query, {}, res);
   },
-  getDisctricts: (req, res) => {
+  getDistricts: (req, res) => {
     console.log(req.params);
     let query = `SELECT * FROM District WHERE canton_idCanton=${req.params.cantonId}`;
     connection.query(query, {}, res);

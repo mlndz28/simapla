@@ -2,15 +2,15 @@ extends ./adminLayout.pug
 
 block styles
   script(src="/js/jquery.js")
-  link(href='/css/bootstrap-select.css', type='text/css')
-  script(src="/js/bootstrap-select.js")
+  link(href="/css/bootstrap-select.min.css")
+  script(src="/js/bootstrap-select.min.js")
 
-  link(href="/css/bootstrap-datepicker.min.css", type='text/css')
+  link(href="/css/bootstrap-datepicker.min.css")
   script(src="/js/bootstrap-datepicker.min.js")
   script(src="/js/bootstrap-datepicker.es.min.js")
 
 block body
-  include ../templates/pages/registro.html
+  include ../templates/pages/registroAdministrador.html
 
 block scripts
   script(src="/dist/js/sb-admin-2.js")

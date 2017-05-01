@@ -22,8 +22,10 @@ module.exports = {
                 if (typeof data[0] != 'undefined'){
                     req.session.logged = true;
                     req.session.me = {};
+                    req.session.me.role = 1; // TODO: Obtener el rol con un procedimiento desde la base
                     console.log("LOG LoginController resObject: "+JSON.stringify(resObject.data));
                     req.session.me.cedula = resObject.data[0].cedula;
+                    console.log("LOG LoginController req.session.me: "+JSON.stringify(req.session.me));
                     res.redirect('/perfil');
                 } else {
                     console.log("LOG LoginController resObject: "+JSON.stringify(resObject));
@@ -33,7 +35,10 @@ module.exports = {
         });
     },
     logout: (req, res) => {
+        if(typeof req.session.me != 'undefined')
+            console.log("LOG LoginController Logged out user: "+JSON.stringify(req.session.me.cedula));
         req.session.logged = false;
+        req.session.me = undefined;
         return res.redirect('/');
     }
 

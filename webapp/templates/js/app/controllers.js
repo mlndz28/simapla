@@ -33,6 +33,21 @@ $scope.loadData();
   $scope.cantons = [];
   $scope.districts = [];
   $scope.instruments = [];
+  $scope.managementPositions = [];
+
+  $scope.entidades = [{
+    value: 0,
+    label: 'Estudiante'
+  },{
+    value: 1,
+    label: 'Administrador'
+  },{
+    value: 2,
+    label: 'Profesor EN DESARROLLO'
+  },{
+    value: 3,
+    label: 'Responsable EN DESARROLLO'
+}]; /*TODO: Procedimientos de registro de profesor y responsable*/
 
   $scope.loadCountries = function() {
     var url = '/ws/countries';
@@ -69,6 +84,14 @@ $scope.loadData();
     }, function errorCallback(response) {});
   };
 
+  $scope.loadManagementPositions = function() {
+    var url = '/ws/managementPositions/';
+    $http.get(url).then(function successCallback(response) {
+      $scope.managementPositions = response.data.data;
+    }, function errorCallback(response) {});
+  };
+
+  $scope.loadManagementPositions();
   $scope.loadInstruments();
   $scope.loadProvinces();
 }]);

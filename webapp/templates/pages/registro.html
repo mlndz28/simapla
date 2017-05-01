@@ -121,12 +121,6 @@
                     <label>Repita la contraseña:</label>
                     <input type="password" class="form-control" name="ppasswordcheck">
                   </div>
-                  <div class="form-group">
-                    <label>Instrumento:</label>
-                    <select class="form-control">
-                      <option ng-repeat="instrument in instruments" ng-bind="instrument.name" nv-value="instrument.idInstrumentName" name="pinstrument"></option>
-                    </select>
-                  </div>
                 </div>
                 <div class="col-lg-6">
 
@@ -137,13 +131,13 @@
                       <input type="text" class="form-control" editable="false" name="pbirthdate">
                     </div>
                     <script>
-                      $('#nacim input').datepicker({
+                    $('#nacim input').datepicker({
                         format: "yyyymmdd",
                         /*mm for number month*/
                         startView: 2,
                         language: "es",
                         autoclose: true
-                      });
+                    });
                     </script>
                   </div>
                   <div class="form-group">
@@ -169,7 +163,7 @@
                   </div>
                   <div class="form-group">
                     <label>Ubicación exacta</label>
-                    <textarea class="form-control" rows="3" name="pSpecificAddress"></textarea>
+                    <textarea class="form-control" rows="3" name="pSpecificAddress" style="resize: vertical;"></textarea>
                   </div>
                   <div class="form-group">
                     <label>Lateralidad:</label>

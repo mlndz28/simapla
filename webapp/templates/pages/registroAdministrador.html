@@ -1,228 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
+<div id="wrapper" ng-app="simapla">
 
-<head>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../index.html">Simapla Digital</a>
+        </div>
+        <!-- /.navbar-header -->
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Leer todas las solicitudes</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="/admin"><i class="fa fa-user fa-fw"></i> Perfil de Usuario</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
 
-    <title>Simapla Digital - Registro Administrador</title>
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="/"><i class="fa fa-home fa-fw"></i> Inicio</a>
+                    </li>
+                    <li>
+                        <a href="/registro"><i class="fa fa-edit fa-fw"></i> Registro</a>
+                    </li>
+                    <li>
+                        <a href="acercaDe.html"><i class="fa fa-info fa-fw"></i> Acerca de</a>
+                    </li>
+                    <li>
+                        <a href="contacto.html"><i class="fa fa-envelope-o fa-fw"></i> Contacto</a>
+                    </li>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap-select  -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <link href="../css/bootstrap-select.css" rel="stylesheet">
-    <script src="../js/bootstrap-select.js"></script>
-
-    <!-- Datepicker  -->
-    <link href="../css/bootstrap-datepicker.min.css" rel="stylesheet">
-    <script src="../js/bootstrap-datepicker.min.js"></script>
-    <script src="../js/bootstrap-datepicker.es.min.js"></script>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="../index.html">Administrador</a>
+                </ul>
             </div>
-            <!-- /.navbar-header -->
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Leer todas las solicitudes</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil de Usuario</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-
-                        <li>
-                            <a href="crearAgrupacion.html"><i class="fa fa-list-alt fa-fw"></i> Crear Agrupación</a>
-                        </li>
-                        <li>
-                            <a href="crearEvento.html"><i class="fa fa-bell fa-fw"></i> Crear Evento</a>
-                        </li>
-
-                        <li>
-                            <a href="editarAgrupacion.html"><i class="fa fa-group fa-fw"></i> Editar Agrupación</a>
-                        </li>
-                        <li>
-                            <a href="registroAdministrador.html"><i class="fa fa-edit fa-fw"></i> Registro de administradores</a>
-                        </li>
-                        <li>
-                            <a href="tablero.html"><i class="fa fa-th fa-fw"></i> Tablero Administrativo</a>
-                        </li>
-
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Registro</h1>
             </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Registro</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Información Personal
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form">
-                                        <div class="form-group">
-                                            <label>Registro de:</label>
-                                            <select class="selectpicker form-control">
-                                                <option>Administrador</option>
-                                                <option>Profesor</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nombre:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Apellidos:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Fecha de nacimiento:</label>
-                                            <div class="input-group" id="nacim">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                <input type="text" class="form-control" editable="false">
-                                            </div>
-                                            <script>
-                                                $('#nacim input').datepicker({
-                                                    format: "dd/M/yyyy", /*mm for number month*/
-                                                    startView: 3,
-                                                    language: "es",
-                                                    autoclose: true
-                                                });
-                                            </script>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Cédula:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Teléfono:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Correo electrónico:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Domicilio:</label>
-                                            <br>
-                                            <select class="selectpicker panel-body">
-                                                <option>San José</option>
-                                                <option>Alajuela</option>
-                                            </select>
-                                            <select class="selectpicker panel-body">
-                                                <option>Goico:</option>
-                                            </select>
-                                            <select class="selectpicker panel-body">
-                                                <option>Mata de plátano</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Contraseña:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Repita la contraseña:</label>
-                                            <input class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Instrumento:</label>
-                                            <select class="selectpicker form-control">
-                                                <option>Arpa</option>
-                                            </select>
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Registrar</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
+
+                <div class="panel panel-default" ng-controller="SignupCtrl">
+                    <div class="panel-heading">
+                        <select class="form-control" ng-model="entidad">
+                            <option ng-repeat="entidad in entidades" ng-bind="entidad.label" ng-value="entidad.value"></option>
+                        </select>
                     </div>
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <form role="form" method="POST" action="/registroMultiple">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Nombre:</label>
+                                        <input class="form-control" name="pname" value="Nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Apellidos:</label>
+                                        <input class="form-control" name="plastname" value="Apellido">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cédula:</label>
+                                        <input class="form-control" name="pcedula" value="123123123">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Teléfono:</label>
+                                        <input class="form-control" name="pPhone" value="123123123123">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Correo electrónico:</label>
+                                        <input type="email" class="form-control" name="pEmail" value="mail@mail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contraseña:</label>
+                                        <input type="password" class="form-control" name="ppassword" value="pass">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Repita la contraseña:</label>
+                                        <input type="password" class="form-control" name="ppasswordcheck" value="pass">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label>Fecha de nacimiento:</label>
+                                        <div class="input-group" id="nacim">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" class="form-control" editable="false" name="pbirthdate">
+                                        </div>
+                                        <script>
+                                        $('#nacim input').datepicker({
+                                            format: "yyyymmdd",
+                                            /*mm for number month*/
+                                            startView: 2,
+                                            language: "es",
+                                            autoclose: true
+                                        });
+                                        </script>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Domicilio:</label>
+                                        <br>
+                                        <div class="form-horizontal">
+                                            <div class="col-md-4">
+                                                <select class="form-control" data-width="40%" ng-model="provincePicker" ng-change="loadCantons()">
+                                                    <option ng-repeat="province in provinces" ng-value="province.idProvince" ng-bind='province.name'></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-control" data-width="33%" ng-model='cantonPicker' ng-change="loadDistricts()">
+                                                    <option ng-repeat="canton in cantons" ng-value="canton.idCanton" ng-bind='canton.name'></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-control" data-width="33%" name="pIdDistrict">
+                                                    <option ng-repeat="district in districts" ng-value="district.idDistrict" ng-bind='district.name'></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ubicación exacta</label>
+                                        <textarea class="form-control" rows="3" name="pSpecificAddress" style="resize: vertical;"></textarea>
+                                    </div>
+                                    <div class="form-group" ng-disabled="entidad!=0" ng-hide="entidad!=0">
+                                        <label>Lateralidad:</label>
+                                        <select class="form-control" name="pIsLefty">
+                                            <option value="0" default>Diestro</option>
+                                            <option value="1">Zurdo</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" ng-disabled="entidad!=0" ng-hide="entidad!=0">
+                                        <label>Adecuación:</label>
+                                        <select class="form-control" name="pHasAdequacy">
+                                            <option value="1" default>Si</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" ng-hide="entidad!=0">
+                                        <label>Padecimientos:</label>
+                                        <textarea class="form-control" ng-disabled="entidad!=0" rows="1" name="pSpecialCondition" value="condicion"></textarea>
+                                    </div>
+                                    <div class="form-group" ng-hide="entidad!=0">
+                                        <label>Medicamentos:</label>
+                                        <textarea class="form-control" ng-disabled="entidad!=0" rows="1" name="pMedication" value="medicacion"></textarea>
+                                    </div>
+                                    <div class="form-group" ng-hide="entidad!=2">
+                                        <label>Instrumento:</label>
+                                        <select class="form-control" ng-disabled="entidad!=2" name="pinstrument">
+                                            <option ng-repeat="instrument in instruments" ng-bind="instrument.name" ng-value="instrument.idInstrumentName"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" ng-hide="entidad!=1">
+                                        <label>Posición administrativa:</label>
+                                        <select class="form-control" ng-disabled="entidad!=1" name="pposition">
+                                            <option ng-repeat="mgtPosition in managementPositions" ng-bind="mgtPosition.name" ng-value="mgtPosition.idManagementPosition"></option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <input type="text" editable="false" value="{{entidad}}" hidden name="role">
+                                <button type="submit" class="btn btn-block btn-primary">Enviar Registro</button>
+                            </form>
+                        </div>
+                    </div>
+
+
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
@@ -233,16 +220,3 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-</body>
-
-</html>

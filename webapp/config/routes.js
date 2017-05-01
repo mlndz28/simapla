@@ -40,6 +40,7 @@ module.exports.routes = {
 
   'GET /registro': 'SignupController.show',
   'POST /registro': 'SignupController.signupStudent',
+  'POST /registroMultiple': 'SignupController.signupMultiple',
 
   'GET /admin': 'AdminController.show',
 
@@ -52,9 +53,11 @@ module.exports.routes = {
   'GET /ws/countries': 'Ws/DistrictController.getCountries',
   'GET /ws/provinces/:countryId': 'Ws/DistrictController.getProvinces',
   'GET /ws/cantons/:provinceId': 'Ws/DistrictController.getCantons',
-  'GET /ws/districts/:cantonId': 'Ws/DistrictController.getDisctricts',
+  'GET /ws/districts/:cantonId': 'Ws/DistrictController.getDistricts',
 
   'GET /ws/instruments': 'Ws/InstrumentController.getInstruments',
+
+  'GET /ws/managementPositions': 'Ws/ManagementPositionsController.getPositions',
 
   'GET /perfil': 'Ws/MyselfController.get',
   'GET /ws/infoStudent': 'Ws/MyselfController.getInfo',
