@@ -6,14 +6,22 @@
 */
 
 const path = require('path');
+
+/*
+ * $ export DEBUG="LoginController"
+ * $ nodemon app.js
+ */
+const debug = require('debug')('LoginController');
 let connection = DbConnectionService;
 
 module.exports = {
     show: (req, res) => {
+        debug('LoginController.show');
         if (req.session.logged) return res.redirect('/perfil');
         return res.view('login', {title:'Simapla Digital - Iniciar Sesión'});
     },
     login: (req, res) => {
+        debug('LoginController.login');
         let query = `select p.cedula from Person p where carnet = '` + req.param('carne') + `' and password = '` + req.param('password') + `'`;
         console.log("LOG LoginController query: "+query);
         connection.query(query, {}, res, (resObject, res) => {
@@ -35,6 +43,7 @@ module.exports = {
         });
     },
     logout: (req, res) => {
+      debug('LoginController.logout');
         if(typeof req.session.me != 'undefined')
             console.log("LOG LoginController Logged out user: "+JSON.stringify(req.session.me.cedula));
         req.session.logged = false;

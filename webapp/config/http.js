@@ -9,6 +9,9 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.http.html
  */
 
+const debug = require('debug')('http config');
+
+
 module.exports.http = {
 
   /****************************************************************************
@@ -73,7 +76,7 @@ module.exports.http = {
   ****************************************************************************/
 
     myRequestLogger: function (req, res, next) {
-        console.log("Requested :: ", req.method, req.url);
+        debug("Requested :: ", req.method, req.url);
         return next();
     },
   /***************************************************************************
