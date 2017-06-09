@@ -39,6 +39,8 @@ module.exports.routes = {
   '/logout': 'LoginController.logout',
 
   'GET /registro': 'SignupController.show',
+  'POST /registro': 'SignupController.signupStudent',
+  'POST /registroMultiple': 'SignupController.signupMultiple',
 
   'GET /admin': 'AdminController.show',
 
@@ -46,12 +48,24 @@ module.exports.routes = {
   'GET /agrupaciones/crear': 'AgrupacionesController.create',
   'GET /agrupaciones/editar': 'AgrupacionesController.edit',
 
-  'GET /ws/user/:carnet': 'Ws/PersonController.get',
+  'GET /ws/administrator': 'Ws/AdministratorController.get',
+
+  'GET /ws/countries': 'Ws/DistrictController.getCountries',
+  'GET /ws/provinces/:countryId': 'Ws/DistrictController.getProvinces',
+  'GET /ws/cantons/:provinceId': 'Ws/DistrictController.getCantons',
+  'GET /ws/districts/:cantonId': 'Ws/DistrictController.getDistricts',
+
+  'GET /ws/instruments': 'Ws/InstrumentController.getInstruments',
+
+  'GET /ws/managementPositions': 'Ws/ManagementPositionsController.getPositions',
+
+  'GET /perfil': 'Ws/MyselfController.get',
+  'GET /ws/infoStudent': 'Ws/MyselfController.getInfo',
+
+  'GET /ws/user/:cedula': 'Ws/PersonController.get',
   'POST /ws/user': 'Ws/PersonController.post',
   'PUT /ws/user': 'Ws/PersonController.put',
   'DELETE /ws/user': 'Ws/PersonController.delete',
 
   'GET /:folder/*': 'FlatController.serve',
-
-
 };

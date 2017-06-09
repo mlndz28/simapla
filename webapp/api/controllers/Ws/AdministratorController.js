@@ -12,21 +12,9 @@ module.exports = {
 
   get: function(req, res) {
     let columns = [
-      'idPerson',
-      'carnet',
-      'cedula',
-      'name',
-      'lastname',
-      'birthdate',
-      'dateJoinedProgram',
-      'salt',
-      'SpecificAddress_idSpecificAddress',
-      'Email_idEmail',
-      'Phone_idPhone'
+      '*'
     ].join(', ');
-    let query = `SELECT ${columns}
-    FROM \`Person\`
-    WHERE cedula='${req.params.cedula}';`;
+    let query = `select p.name from Person p where carnet = 'mdp16003' and password = 'pw3'`;
     connection.query(query, {}, res);
   },
 

@@ -19,18 +19,23 @@ exports.createPool = dbConnection;
  * @param {Object} body - Input data
  * @param res - Express response
  */
-exports.query = function(statement, body, res) { //;
-  this.pool = mysql.createPool(conf); //create new connection pool
-  //adds formatting to prepared statements
-  this.pool.config.connectionConfig.queryFormat = parseQuery;
-  this.pool.getConnection(function(err, connection) {
-    if (err) { //if can't connect to DB
-      onError(err, res);
-    } else {
-      onConnect(statement, body, connection, res);
-    }
-  });
-}
+ exports.query = function(statement, body, res, callback) { //;
+   this.pool = mysql.createPool(conf); //create new connection pool
+   //adds formatting to prepared statements
+   this.pool.config.connectionConfig.queryFormat = parseQuery;
+   this.pool.getConnection(function(err, connection) {
+     if (err) { //if can't connect to DB
+       onError(err, res);
+     } else {
+       if (typeof callback !== 'undefined') {
+         onConnect(statement, body, connection, res, callback);
+       }
+       else {
+         onConnect(statement, body, connection, res);
+       }
+     }
+   });
+ }
 /**
  * New format for prepared statements, new standards:
  * <pre>
@@ -126,7 +131,6 @@ function parseQuery(statement, values) {
     }
     return parsed.slice(0, parsed.length - 2);
   }.bind(this));
-  console.log("query1 = " + temp);
   return temp;
 }
 /**
@@ -137,21 +141,24 @@ function parseQuery(statement, values) {
  * @param connection - From pool
  * @param res - Express response
  */
-function onConnect(statement, body, connection, res) {
-  connection.query(statement, body, function(err, results) {
-    //as it's not being used anymore
-    connection.release();
-    if (!err) {
-      var resObject = new Object();
-      resObject["error"] = "none";
-      resObject["data"] = results;
-      res.send(resObject);
-    } else {
-      //if query can't be executed
-      onError(err, res);
-    }
-  });
-}
+ function onConnect(statement, body, connection, res, callback) {
+   connection.query(statement, body, function(err, results) {
+     //as it's not being used anymore
+     connection.release();
+     if (!err) {
+       var resObject = new Object();
+       resObject["error"] = "none";
+       resObject["data"] = results;
+       if (typeof callback !== 'undefined') {
+         callback(resObject, res);
+       } else {
+         res.send(resObject);
+       }
+     } else {
+       //if query can't be executed
+       onError(err, res);
+     }
+ });};
 /**
  * Error handling.
  * @memberof dbConnection

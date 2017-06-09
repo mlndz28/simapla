@@ -28,9 +28,13 @@ module.exports.policies = {
 
   // '*': true,
 
-  AdminController: {
-    '*': 'sessionAuth'
-  }
+    AdminController: {
+        '*': 'sessionAuth'
+    },
+
+    MyselfController: {
+        '*': 'sessionAuth'
+    }
 
   /***************************************************************************
   *                                                                          *

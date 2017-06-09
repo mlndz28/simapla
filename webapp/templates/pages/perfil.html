@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Simapla Digital - Registro</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-    <div id="wrapper">
+    <div id="wrapper" ng-app="simapla">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -79,7 +40,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuración</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../../index.html"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -130,23 +91,29 @@
                     <br />
 
                 </div>
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                    <h3>José Pablo Lopez Ramírez</h3>
-
+                <div class="col-md-9 col-sm-9 col-xs-12" ng-controller="profileCtrl">
+                    <h3>{{me.name}} {{me.lastname}}</h3>
+                    <p></p>
                     <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-calendar-o"></i> Edad: 14 años (16-abr-2002)</li>
-                        <li><i class="fa fa-home"></i> Dirección: San José, Goicoechea, Mozotal</li>
-                        <li><i class="fa fa-map-marker"></i> De la iglesia de ladrillo, 800m Este. Casa de verjas azules.</li>
-                        <li><i class="fa fa-phone"></i> Teléfono: 8346-2359</li>
-                        <li><i class="fa fa-envelope-o"></i> Correo: jopalora@dominio.com</li>
-                        <li><i class="fa fa-ra"></i> Instrumento: Corno francés</li>
-                        <li><i class="fa fa-clock-o"></i> Horarios:
+                        <li><i class="fa fa-calendar-o"></i> Carnet: {{me.carnet}}</li>
+                        <li><i class="fa fa-calendar-o"></i> Cédula: {{me.cedula}}</li>
+                        <li><i class="fa fa-calendar-o"></i> Edad: {{me.age}} años</li>
+                        <li><i class="fa fa-home"></i> Distrito: {{me.district}}</li>
+                        <!--<li><i class="fa fa-map-marker"></i> De la iglesia de ladrillo, 800m Este. Casa de verjas azules.</li>-->
+                        <li><i class="fa fa-home"></i> {{me.lefty}} es zurd@.</li>
+                        <li><i class="fa fa-home"></i> {{me.adecuacy}} cuenta con adecuación.</li>
+                        <li><i class="fa fa-home"></i> Medicamentos: {{me.medication}}</li>
+                        <li><i class="fa fa-home"></i> Condición especial: {{me.condition}}</li>
+                        <li><i class="fa fa-phone"></i> Teléfono: {{me.phone}}</li>
+                        <li><i class="fa fa-envelope-o"></i> Correo: {{me.mail}}</li>
+                        <li><i class="fa fa-ra"></i> Instrumento: {{me.instrument}}</li>
+                        <!--<li><i class="fa fa-clock-o"></i> Horarios:
                             <ul class="list-unstyled user_data">
-                                <li>----Solfeo: k17:30-18:30</li>
-                                <li>----Orquesta: m-v18:00-20:00</li>
-                                <li>----Instrumento: k17:00-17:30</li>
+                                <li>    Solfeo: k17:30-18:30</li>
+                                <li>    Orquesta: m-v18:00-20:00</li>
+                                <li>    Instrumento: k17:00-17:30</li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                     <div>
                         <!-- /.col-lg-12 -->
@@ -161,16 +128,3 @@
 
     </div>
     <!-- /#wrapper -->
-    
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-
-</body>
-
-</html>

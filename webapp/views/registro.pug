@@ -1,0 +1,19 @@
+extends ./adminLayout.pug
+
+block styles
+  script(src="/js/jquery.js")
+  link(href='/css/bootstrap-select.css', type='text/css')
+  script(src="/js/bootstrap-select.js")
+
+  link(href="/css/bootstrap-datepicker.min.css", type='text/css')
+  script(src="/js/bootstrap-datepicker.min.js")
+  script(src="/js/bootstrap-datepicker.es.min.js")
+
+block body
+  include ../templates/pages/registro.html
+
+block scripts
+  script(src="/dist/js/sb-admin-2.js")
+  script(src="/vendor/metisMenu/metisMenu.min.js")
+  script(src="/js/app/app.js")
+  script(src="/js/app/controllers.js")
