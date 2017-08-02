@@ -44,7 +44,8 @@ module.exports = {
                   req.session.logged = true;
                   req.session.me = {};
                   req.session.me.role = 0;
-                  console.log("LOG SignupController resObject: "+JSON.stringify(resObject.data[4][0].cedula));
+                  console.log("resObject.data: " + JSON.stringify(resObject.data))
+                  console.log("LOG SignupController resObject: " + JSON.stringify(resObject.data[4][0].cedula));
                   req.session.me.cedula = resObject.data[4][0].cedula;
                   mailSrv.simpleMail(
                       "Simapla Digital <info@simapladigital.org>",

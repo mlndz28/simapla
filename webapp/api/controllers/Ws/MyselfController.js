@@ -25,7 +25,7 @@ module.exports = {
             if (resObject.error == 'none') {
                 let data = resObject.data;
                 if (typeof data[0] != 'undefined'){
-                    //console.log("LOG MyselfController resObject.data: "+resObject.data);
+                    console.log("LOG MyselfController resObject.data: "+resObject.data);
                     res.json(resObject.data);
                 } else {
                     res.json({resObject});
