@@ -34,7 +34,7 @@ Create or Replace VIEW Students AS
         p.age AS age, p.mail AS mail,
         p.phone AS phone, p.district AS district,
         IF((s.isLefty = 1), 'Si', 'No') AS lefty, IF((s.hasAdequacy = 1), 'Si', 'No') AS adecuacy,
-        s.specialCondition AS condition, s.medication AS medication
+        s.specialCondition AS 'condition', s.medication AS medication
     FROM
         SimaplaDb.Student s
         JOIN SimaplaDb.Persons p ON s.Person_idPerson = p.idPerson

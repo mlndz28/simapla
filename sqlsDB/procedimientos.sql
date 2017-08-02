@@ -1,12 +1,16 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in c varchar(12))
+DCREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in c varchar(12))
 BEGIN
 	select * from Students s where s.cedula = c limit 1;
 END
+
+Delimiter \\
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in pCedula varchar(12))
 BEGIN
 	select * from Persons p where cedula = pCedula;
 END
+
+Delimiter &&
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registerStudent`(
 	in `pcarnet` varchar(10),
@@ -43,6 +47,7 @@ BEGIN
 	VALUES(@idPer,pIsLefty, pHasAdequacy,pSpecialCondition,pMedication);
 END
 
+Delimiter \\
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registerAdministrator`(
 	in `pcarnet` varchar(10),
@@ -76,6 +81,8 @@ BEGIN
 	VALUES(@idPer,pIdManagementPosition);
 END
 
+Delimiter &&
+
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `createGroup`(
 	in `pName` varchar(45),
@@ -89,6 +96,7 @@ VALUES(pName, pDescription, pGroupType, pIdEncargado);
 
 END
 
+Delimiter \\
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `createEvent`(
 	in `pName` varchar(45),
