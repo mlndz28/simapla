@@ -14,7 +14,7 @@ module.exports = {
         return res.view('login', {title:'Simapla Digital - Iniciar Sesión'});
     },
     login: (req, res) => {
-        let query = `select p.cedula from Person p where carnet = '` + req.param('carne') + `' and password = '` + req.param('password') + `'`;
+        let query = `call SimaplaDb.login('` + req.param('carne') + `','` + req.param('password') + `');`;
         console.log("LOG LoginController query: "+query);
         connection.query(query, {}, res, (resObject, res) => {
             if (resObject.error == 'none') {
@@ -22,9 +22,9 @@ module.exports = {
                 if (typeof data[0] != 'undefined'){
                     req.session.logged = true;
                     req.session.me = {};
-                    req.session.me.role = 1; // TODO: Obtener el rol con un procedimiento desde la base
-                    console.log("LOG LoginController resObject: "+JSON.stringify(resObject.data));
-                    req.session.me.cedula = resObject.data[0].cedula;
+                    console.log("LOG LoginController resObject.data[0][0]: "+JSON.stringify(resObject.data[0][0]));
+                    req.session.me.role = resObject.data[0][0].role;
+                    req.session.me.carnet = resObject.data[0][0].carnet;
                     console.log("LOG LoginController req.session.me: "+JSON.stringify(req.session.me));
                     res.redirect('/perfil');
                 } else {
@@ -36,7 +36,7 @@ module.exports = {
     },
     logout: (req, res) => {
         if(typeof req.session.me != 'undefined')
-            console.log("LOG LoginController Logged out user: "+JSON.stringify(req.session.me.cedula));
+            console.log("LOG LoginController Logged out user: "+JSON.stringify(req.session.me.carnet));
         req.session.logged = false;
         req.session.me = undefined;
         return res.redirect('/');
