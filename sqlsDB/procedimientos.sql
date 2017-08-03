@@ -41,10 +41,13 @@ BEGIN
 
     INSERT INTO `SimaplaDb`.`Person`(`carnet`,`cedula`,`name`,`lastname`,`birthdate`,`password`,`dateJoinedProgram`,`SpecificAddress_idSpecificAddress`,`Email_idEmail`,`Phone_idPhone`)
 	VALUES(pCarnet,pcedula,pname,plastname,pbirthdate,ppassword,pdateJoinedProgram,@addr,@mai,@pho);
-    select @idPer := idPerson from Person where carnet = pCarnet and Email_idEmail = @mai;
+    select @idPer := idPerson, @carnet := carnet as 'carnet' from Person where carnet = pCarnet and Email_idEmail = @mai;
 
     INSERT INTO `SimaplaDb`.`Student`(`Person_idPerson`,`isLefty`,`hasAdequacy`,`specialCondition`,`medication`)
 	VALUES(@idPer,pIsLefty, pHasAdequacy,pSpecialCondition,pMedication);
+
+    INSERT INTO `SimaplaDb`.`UserRoles`(`idPerson`,`role`)
+    VALUES(@idPer,0);
 END
 
 Delimiter \\
@@ -75,10 +78,13 @@ BEGIN
 
     INSERT INTO `SimaplaDb`.`Person`(`carnet`,`cedula`,`name`,`lastname`,`birthdate`,`password`,`dateJoinedProgram`,`SpecificAddress_idSpecificAddress`,`Email_idEmail`,`Phone_idPhone`)
 	VALUES(pCarnet,pcedula,pname,plastname,pbirthdate,ppassword,pdateJoinedProgram,@addr,@mai,@pho);
-    select @idPer := idPerson from Person where carnet = pCarnet and Email_idEmail = @mai;
+    select @idPer := idPerson, @carnet := carnet as 'carnet' from Person where carnet = pCarnet and Email_idEmail = @mai;
 
     INSERT INTO `SimaplaDb`.`Administrator`(`Person_idPerson`,`ManagementPosition_idManagementPosition`)
 	VALUES(@idPer,pIdManagementPosition);
+
+    INSERT INTO `SimaplaDb`.`UserRoles`(`idPerson`,`role`)
+    VALUES(@idPer,1);
 END
 
 Delimiter &&

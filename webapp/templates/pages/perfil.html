@@ -100,13 +100,14 @@
                         <li><i class="fa fa-calendar-o"></i> Edad: {{me.age}} años</li>
                         <li><i class="fa fa-home"></i> Distrito: {{me.district}}</li>
                         <!--<li><i class="fa fa-map-marker"></i> De la iglesia de ladrillo, 800m Este. Casa de verjas azules.</li>-->
-                        <li><i class="fa fa-home"></i> {{me.lefty}} es zurd@.</li>
-                        <li><i class="fa fa-home"></i> {{me.adecuacy}} cuenta con adecuación.</li>
-                        <li><i class="fa fa-home"></i> Medicamentos: {{me.medication}}</li>
-                        <li><i class="fa fa-home"></i> Condición especial: {{me.condition}}</li>
+                        <li ng-hide="me.lefty == null"><i class="fa fa-home"></i> {{me.lefty}} es zurd@.</li>
+                        <li ng-hide="me.adecuacy == null"><i class="fa fa-home"></i> {{me.adecuacy}} cuenta con adecuación.</li>
+                        <li ng-hide="me.medication == null"><i class="fa fa-home"></i> Medicamentos: {{me.medication}}</li>
+                        <li ng-hide="me.condition == null"><i class="fa fa-home"></i> Condición especial: {{me.condition}}</li>
                         <li><i class="fa fa-phone"></i> Teléfono: {{me.phone}}</li>
                         <li><i class="fa fa-envelope-o"></i> Correo: {{me.mail}}</li>
                         <li><i class="fa fa-ra"></i> Instrumento: {{me.instrument}}</li>
+                        <li ng-hide="me.position == null"><i class="fa fa-home"></i> Posición administrativa: {{me.position}}</li>
                         <!--<li><i class="fa fa-clock-o"></i> Horarios:
                             <ul class="list-unstyled user_data">
                                 <li>    Solfeo: k17:30-18:30</li>
