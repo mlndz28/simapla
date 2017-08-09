@@ -556,6 +556,23 @@ CREATE TABLE IF NOT EXISTS `SimaplaDb`.`Teacher` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
+-- -----------------------------------------------------
+-- Table `SimaplaDb`.`UserRoles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SimaplaDb`.`UserRoles` (
+  `idPerson` int(11) NOT NULL,
+  `role` int(11) NOT NULL,
+  PRIMARY KEY (`idPerson`),
+  CONSTRAINT `fk_UserRoles_1`
+    FOREIGN KEY (`idPerson`)
+    REFERENCES `Person` (`idPerson`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=latin1;
+
+
 USE `SimaplaDb` ;
 
 -- -----------------------------------------------------

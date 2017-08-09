@@ -177,6 +177,25 @@ INSERT INTO `SimaplaDb`.`Student`(`Person_idPerson`,`isLefty`,`hasAdequacy`,`spe
     ('14',0,0,'Condición especial 14','Medicación 14'),
     ('15',0,1,'Condición especial 15','Medicación 15');
 
+-- Roles
+INSERT INTO `SimaplaDb`.`UserRoles`(`idPerson`,`role`)VALUES
+    ('1',2),
+    ('2',2),
+    ('3',1),
+    ('4',3),
+    ('5',0),
+    ('6',0),
+    ('7',0),
+    ('8',0),
+    ('9',0),
+    ('10',0),
+    ('11',0),
+    ('12',0),
+    ('13',0),
+    ('14',0),
+    ('15',0);
+
+
 -- InstrumentXStudent
 INSERT INTO `SimaplaDb`.`InstrumentXStudent`(`Instrument_idInstrument`,`Student_Person_idPerson`)VALUES
     ('1','5'),

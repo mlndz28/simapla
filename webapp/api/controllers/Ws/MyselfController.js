@@ -20,12 +20,28 @@ module.exports = {
         // Pending to do with a procedure call.
         //let query = `call SimaplaDb.getInfoStudent('` + req.param('carne') + `')`;
         console.log("LOG MyselfController session.me: "+JSON.stringify(req.session.me));
-        let query = `select * from Students s where s.cedula = "`+req.session.me.cedula+`" limit 1;`;
+        switch (req.session.me.role) {
+            case 0:
+                view = "Students"
+                break;
+            case 1:
+                view = "Administrators"
+                break;
+            case 2:
+                view = "Teachers"
+                break;
+            case 3:
+                view = "Responsibles"
+                break;
+            default:
+                view = "Persons";
+        }
+        let query = `select * from ` + view + ` v where v.carnet = "`+req.session.me.carnet+`" limit 1;`;
         connection.query(query, {}, res, (resObject, res) => {
             if (resObject.error == 'none') {
                 let data = resObject.data;
+                console.log("LOG MyselfController resObject.data: "+JSON.stringify(resObject.data));
                 if (typeof data[0] != 'undefined'){
-                    //console.log("LOG MyselfController resObject.data: "+resObject.data);
                     res.json(resObject.data);
                 } else {
                     res.json({resObject});
