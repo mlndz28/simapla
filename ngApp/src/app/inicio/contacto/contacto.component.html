@@ -1,0 +1,33 @@
+<a name="contacto"></a>
+<div class="banner">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-4">
+        <h2>Contáctenos:</h2>
+      </div>
+      <div class="col-lg-8">
+        <form role="form">
+          <div class="form-group">
+            <label>Nombre y apellidos:</label>
+            <input [(ngModel)]="nombre" name="nombre" class="form-control" placeholder="Andrés González">
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico (para respuesta):</label>
+            <input [(ngModel)]="email" name="email" class="form-control" placeholder="nombre@dominio.com">
+          </div>
+          <div class="form-group">
+            <label>Mensaje:</label>
+            <textarea [(ngModel)]="mensaje" name="mensaje" class="form-control" rows="3"></textarea>
+          </div>
+          <button (click)="enviar()" type="submit" class="btn btn-block btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+</div>
+<!-- /.banner -->
