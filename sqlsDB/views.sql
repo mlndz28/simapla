@@ -38,7 +38,7 @@ Create or Replace VIEW Students AS
     FROM
         SimaplaDb.Student s
         JOIN SimaplaDb.Persons p ON s.Person_idPerson = p.idPerson
-    ORDER BY p.lastname
+    ORDER BY p.lastname;
 
 
 Create or replace view Teachers as
@@ -72,7 +72,7 @@ Create or replace view Events as
 		e.name as Nombre, e.date as Fecha, e.location as Dirección, e.CoordX, e.CoordY, et.name as Tipo
 	From
 		Event e
-        inner join EventType et on et.idEventType = e.EventType_idEventType
+        inner join EventType et on et.idEventType = e.EventType_idEventType;
 
 
 Create or replace view Groups as
