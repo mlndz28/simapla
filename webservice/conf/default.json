@@ -22,7 +22,17 @@
 				"method": "POST"
 			},
 			"exceptions": [],
-			"routesDir": "../api/routes/gen"
+			"routesDir": "../api/routes/gen/crud"
+		},
+		"procedures": {
+			"request": {
+				"host": "localhost",
+				"port": 2828,
+				"path": "/procedures/get",
+				"method": "POST"
+			},
+			"exceptions": [],
+			"routesDir": "../api/routes/gen/procedures"
 		}
 	}
 }
