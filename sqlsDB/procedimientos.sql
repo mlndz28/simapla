@@ -1,17 +1,12 @@
-DCREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in c varchar(12))
-BEGIN
-	select * from Students s where s.cedula = c limit 1;
-END
-
-Delimiter \\
-
+Delimiter //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in pCedula varchar(12))
 BEGIN
 	select * from Persons p where cedula = pCedula;
 END
+//
+Delimiter ;
 
-Delimiter &&
-
+Delimiter //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registerStudent`(
 	in `pcarnet` varchar(10),
 	in `pcedula` varchar(12),
@@ -49,9 +44,10 @@ BEGIN
     INSERT INTO `SimaplaDb`.`UserRoles`(`idPerson`,`role`)
     VALUES(@idPer,0);
 END
+//
+Delimiter ;
 
-Delimiter \\
-
+Delimiter //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registerAdministrator`(
 	in `pcarnet` varchar(10),
 	in `pcedula` varchar(12),
@@ -86,9 +82,10 @@ BEGIN
     INSERT INTO `SimaplaDb`.`UserRoles`(`idPerson`,`role`)
     VALUES(@idPer,1);
 END
+//
+Delimiter ;
 
 Delimiter //
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registerResponsible`(
 	in `pcarnet` varchar(10),
 	in `pcedula` varchar(12),
@@ -122,10 +119,10 @@ BEGIN
     INSERT INTO `SimaplaDb`.`UserRoles`(`idPerson`,`role`)
     VALUES(@idPer,3);
 END
+//
+Delimiter ;
 
-Delimiter &&
-
-
+Delimiter //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `createGroup`(
 	in `pName` varchar(45),
     in `description` varchar(100),
@@ -133,13 +130,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `createGroup`(
     in `pIdEncargado` int (11)
 )
 BEGIN
-INSERT INTO `SimaplaDb`.`Group`(`name`,`description`,`GroupType_idGroupType`,`Person_idPerson`)
-VALUES(pName, pDescription, pGroupType, pIdEncargado);
-
+	INSERT INTO `SimaplaDb`.`Group`(`name`,`description`,`GroupType_idGroupType`,`Person_idPerson`)
+	VALUES(pName, pDescription, pGroupType, pIdEncargado);
 END
+//
+Delimiter ;
 
-Delimiter \\
-
+Delimiter //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `createEvent`(
 	in `pName` varchar(45),
 	in `pDate` date,
@@ -153,3 +150,5 @@ BEGIN
 	VALUES(pName, pDate, pLocation,pCoordX,pCoordY,pEventType_idEventType);
 
 END
+//
+Delimiter ;
