@@ -152,13 +152,14 @@ function parseQuery(statement, values) {
        if (typeof callback !== 'undefined') {
          callback(resObject, res);
        } else {
-         res.send(resObject);
+         res.json(resObject);
        }
      } else {
        //if query can't be executed
        onError(err, res);
      }
  });};
+
 /**
  * Error handling.
  * @memberof dbConnection

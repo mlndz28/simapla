@@ -49,7 +49,6 @@ module.exports.routes = {
   'GET /agrupaciones/editar': 'AgrupacionesController.edit',
 
   'GET /ws/administrator': 'Ws/AdministratorController.get',
-
   'GET /ws/countries': 'Ws/DistrictController.getCountries',
   'GET /ws/provinces/:countryId': 'Ws/DistrictController.getProvinces',
   'GET /ws/cantons/:provinceId': 'Ws/DistrictController.getCantons',
@@ -61,8 +60,8 @@ module.exports.routes = {
 
   'GET /perfil': 'Ws/MyselfController.get',
   'GET /ws/infoStudent': 'Ws/MyselfController.getInfo',
-
   'GET /ws/user/:carnet': 'Ws/PersonController.get',
+
   'POST /ws/user': 'Ws/PersonController.post',
   'PUT /ws/user': 'Ws/PersonController.put',
   'DELETE /ws/user': 'Ws/PersonController.delete',
