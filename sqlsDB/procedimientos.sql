@@ -1,5 +1,5 @@
 Delimiter //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(in pCedula varchar(12))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `loginGet`(in pCedula varchar(12))
 BEGIN
 	select * from Persons p where cedula = pCedula;
 END
@@ -7,7 +7,7 @@ END
 Delimiter ;
 
 Delimiter //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registerStudent`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studentInsert`(
 	in `pcarnet` varchar(10),
 	in `pcedula` varchar(12),
 	in `pname` varchar(20),
@@ -48,7 +48,7 @@ END
 Delimiter ;
 
 Delimiter //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registerAdministrator`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `administratorInsert`(
 	in `pcarnet` varchar(10),
 	in `pcedula` varchar(12),
 	in `pname` varchar(20),
@@ -86,7 +86,7 @@ END
 Delimiter ;
 
 Delimiter //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registerResponsible`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `responsibleInsert`(
 	in `pcarnet` varchar(10),
 	in `pcedula` varchar(12),
 	in `pname` varchar(20),
@@ -123,7 +123,7 @@ END
 Delimiter ;
 
 Delimiter //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `createGroup`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `groupInsert`(
 	in `pName` varchar(45),
     in `description` varchar(100),
     in `pGroupType` int(11),
@@ -137,7 +137,7 @@ END
 Delimiter ;
 
 Delimiter //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `createEvent`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eventInsert`(
 	in `pName` varchar(45),
 	in `pDate` date,
 	in `pLocation` varchar(99),

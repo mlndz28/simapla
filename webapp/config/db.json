@@ -6,5 +6,18 @@
 		"user": "root",
 		"password": "123456",
 		"database": "SimaplaDb"
+	},
+
+	"generator": {
+		"procedures": {
+			"request": {
+				"host": "localhost",
+				"port": 1337,
+				"path": "/ws/procedures",
+				"method": "GET"
+			},
+			"exceptions": [],
+			"routesDir": "../../webapp/api/controllers/Ws/gen/procedures"
+		}
 	}
 }
