@@ -167,7 +167,7 @@ function parseQuery(statement, values) {
  * @param {Object} values - Express response
  */
 function onError(err, res) {
-  res.send({
+  res.json({
     error: err
   });
 }
