@@ -14,7 +14,7 @@ module.exports = {
         return res.view('login', {title:'Simapla Digital - Iniciar Sesión'});
     },
     login: (req, res) => {
-        let query = `call SimaplaDb.login('` + req.param('carne') + `','` + req.param('password') + `');`;
+        let query = `call SimaplaDb.loginGet('` + req.param('carne') + `','` + req.param('password') + `');`;
         console.log("LOG LoginController query: "+query);
         connection.query(query, {}, res, (resObject, res) => {
             if (resObject.error == 'none') {
