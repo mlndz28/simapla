@@ -37,6 +37,8 @@ module.exports.routes = {
   'GET /login': 'LoginController.show',
   'POST /login': 'LoginController.login',
   '/logout': 'LoginController.logout',
+  
+  'GET /perfil': 'Ws/MyselfController.get',
 
   'GET /registro': 'SignupController.show',
   'POST /registro': 'SignupController.signupStudent',
@@ -58,7 +60,6 @@ module.exports.routes = {
 
   'GET /ws/managementPositions': 'Ws/ManagementPositionsController.getPositions',
 
-  'GET /perfil': 'Ws/MyselfController.get',
   'GET /ws/infoStudent': 'Ws/MyselfController.getInfo',
   'GET /ws/user/:carnet': 'Ws/PersonController.get',
 

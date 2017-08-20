@@ -6,6 +6,8 @@
 */
 
 const path = require('path');
+const debug = require('debug')('simapla:LoginController');
+
 let connection = DbConnectionService;
 
 module.exports = {
@@ -13,27 +15,42 @@ module.exports = {
         if (req.session.logged) return res.redirect('/perfil');
         return res.view('login', {title:'Simapla Digital - Iniciar Sesión'});
     },
+
     login: (req, res) => {
-        let query = `call SimaplaDb.loginGet('` + req.param('carne') + `','` + req.param('password') + `');`;
-        console.log("LOG LoginController query: "+query);
-        connection.query(query, {}, res, (resObject, res) => {
-            if (resObject.error == 'none') {
-                let data = resObject.data;
-                if (typeof data[0] != 'undefined'){
-                    req.session.logged = true;
-                    req.session.me = {};
-                    console.log("LOG LoginController resObject.data[0][0]: "+JSON.stringify(resObject.data[0][0]));
-                    req.session.me.role = resObject.data[0][0].role;
-                    req.session.me.carnet = resObject.data[0][0].carnet;
-                    console.log("LOG LoginController req.session.me: "+JSON.stringify(req.session.me));
-                    res.redirect('/perfil');
-                } else {
-                    console.log("LOG LoginController resObject: "+JSON.stringify(resObject));
-                    res.redirect('/login');
-                }
+        let query = `call SimaplaDb.loginGet('${req.param('carne')}', '${req.param('password')}')`;
+
+        debug(`login query: ${query}`);
+
+        connection.query(query, {}, res, (mysqlResponse, res) => {
+
+            debug(`mysqlResponse:`);
+            debug(mysqlResponse);
+
+            if (mysqlResponse.error !== 'none') {
+              debug("Error: ");
+              debug(mysqlResponse.error);
+              res.redirect('/login');
+            }
+
+            let data = mysqlResponse.data;
+
+            if (typeof data[0] == 'undefined' || data[0].length == 0) {
+              res.redirect('/login');
+            }
+            if (data[0].length > 0) {
+              req.session.me = {};
+              req.session.logged = true;
+              req.session.me.role = data[0].role;
+              req.session.me.carnet = data[0].carnet;
+
+              debug("req.session.me:");
+              debug(req.session.me);
+
+              res.redirect('/perfil');
             }
         });
     },
+
     logout: (req, res) => {
         if(typeof req.session.me != 'undefined')
             console.log("LOG LoginController Logged out user: "+JSON.stringify(req.session.me.carnet));
