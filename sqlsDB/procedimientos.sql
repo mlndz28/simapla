@@ -1,12 +1,4 @@
 Delimiter //
-CREATE DEFINER=`root`@`localhost` PROCEDURE `loginGet`(in pCedula varchar(12))
-BEGIN
-	select * from Persons p where cedula = pCedula;
-END
-//
-Delimiter ;
-
-Delimiter //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `studentInsert`(
 	in `pcarnet` varchar(10),
 	in `pcedula` varchar(12),
@@ -149,6 +141,17 @@ BEGIN
 	INSERT INTO `SimaplaDb`.`Event`(`name`,`date`,`location`,`CoordX`,`CoordY`,`EventType_idEventType`)
 	VALUES(pName, pDate, pLocation,pCoordX,pCoordY,pEventType_idEventType);
 
+END
+//
+Delimiter ;
+
+Delimiter //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `loginGet`(
+	in pCarnet varchar(12),
+	in pPwd varchar(45)
+)
+BEGIN
+	select * from Person p where carnet = pCarnet and pPwd = p.password;
 END
 //
 Delimiter ;

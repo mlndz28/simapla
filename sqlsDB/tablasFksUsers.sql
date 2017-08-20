@@ -572,6 +572,21 @@ CREATE TABLE IF NOT EXISTS `SimaplaDb`.`UserRoles` (
 ENGINE=InnoDB
 DEFAULT CHARSET=latin1;
 
+-- -----------------------------------------------------
+-- Table `SimaplaDb`.`ContactMails`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SimaplaDb`.`ContactMails` (
+  `idContactMails` INT NOT NULL,
+  `name` VARCHAR(60) NULL,
+  `mail` VARCHAR(60) NULL,
+  `message` VARCHAR(1000) NULL,
+  PRIMARY KEY (`idContactMails`)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=latin1;
+
+
+
 
 USE `SimaplaDb` ;
 
