@@ -38,6 +38,7 @@
   "author": "dvl",
   "license": "",
   "devDependencies": {
+    "debug": "^3.0.0",
     "nodemon": "^1.11.0"
   }
 }
