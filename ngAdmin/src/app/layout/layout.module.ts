@@ -8,16 +8,16 @@ import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        NgbModule.forRoot(),
-        LayoutRoutingModule,
-        TranslateModule
-    ],
-    declarations: [
-        LayoutComponent,
-        HeaderComponent,
-        SidebarComponent,
-    ]
+  imports: [
+    CommonModule,
+    NgbModule.forRoot(),
+    LayoutRoutingModule,
+    TranslateModule
+  ],
+  declarations: [
+    LayoutComponent,
+    HeaderComponent,
+    SidebarComponent,
+  ]
 })
 export class LayoutModule { }
