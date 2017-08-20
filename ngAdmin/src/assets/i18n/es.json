@@ -1,5 +1,11 @@
 {
     "dashboard": "Principal",
+    "registro": "Registro",
+    "estudiante": "Estudiante",
+    "profesor": "Profesor",
+    "administrativo": "Administrativo",
+    "agrupaciones": "Agrupaciones",
+    "eventos": "Eventos",
     "charts": "Caracteres",
     "tables": "Tablas",
     "forms": "Formularios",
