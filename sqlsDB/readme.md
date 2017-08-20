@@ -21,10 +21,9 @@ Se corren todos los scripts en un wrapper ```source.sql```.
 ### sin datos de prueba)
 ```mysql
 > drop schema SimaplaDb;
-> source tablasFksUsers.sql;
+> source tablesFksUsers.sql;
 > source views.sql
-> source procedimientos.sql;
-> source populatedb.sql;
+> source procedures.sql;
 ```
 
 ## Base de Datos
@@ -32,10 +31,10 @@ La base de datos ```SimaplaDb``` se compone de una serie de tablas, vistas,
 procedimientos y datos de prueba.
 
 ### Tablas
-Las tablas de la base de datos se encuentran en el script ```tablasFksUsers.sql```, cuenta además con las relaciones(foreign keys) entre las tablas.
+Las tablas de la base de datos se encuentran en el script ```tablesFksUsers.sql```, cuenta además con las relaciones(foreign keys) entre las tablas.
 
 ### Vistas
-Las vistas se encuentran en el script ```procedimientos.sql```.
+Las vistas se encuentran en el script ```views.sql```.
 
 ### Procedimientos
-Los procedimientos se encuentran en el script ```views.sql```.
+Los procedimientos se encuentran en el script ```procedures.sql```.
