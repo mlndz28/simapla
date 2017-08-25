@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { ManejoGruposComponent } from './manejo-grupos.component';
+
+const routes: Routes = [
+  { path: '', component: ManejoGruposComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
