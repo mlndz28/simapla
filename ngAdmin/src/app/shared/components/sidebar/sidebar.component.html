@@ -3,6 +3,20 @@
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'dashboard' | translate }}
         </a>
+
+        <div class="nested-menu">
+          <a class="list-group-item" (click)="addExpandClass('grupos')">
+              <span><i class="fa fa-plus"></i>&nbsp; {{ 'grupos' | translate }}</span>
+          </a>
+          <li class="nested" [class.expand]="showMenu === 'grupos'">
+            <ul class="submenu">
+              <li>
+                <a [routerLink]="['/grupos/manejo']" [routerLinkActive]="['router-link-active']"><span>{{ 'manejo' | translate }}</span></a>
+              </li>
+            </ul>
+          </li>
+        </div>
+
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('registro')">
                 <span><i class="fa fa-plus"></i>&nbsp; {{ 'registro' | translate }}</span>
