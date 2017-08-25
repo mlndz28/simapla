@@ -1,6 +1,8 @@
 {
     "dashboard": "Principal",
     "registro": "Registro",
+    "manejo": "Manejo",
+    "grupos": "Grupos",
     "estudiante": "Estudiante",
     "profesor": "Profesor",
     "administrativo": "Administrativo",
