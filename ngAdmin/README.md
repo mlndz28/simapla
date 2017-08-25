@@ -1,3 +1,38 @@
+# Agregando una Página al Dashboard
+
+## 0 Iniciando
+Primero se abre una terminal en esta carpeta.
+```npm install``` y ```npm install -g @angular/cli``` si no se ha hecho.
+
+## 1 Generando plantillas con ```ng generate```
+Ahora se genera un módulo, en este caso se crea el módulo ```layout/grupos/manejo-grupos```:
+```
+ng generate module layout/grupos/manejo-grupos --spec false --routing true
+```
+
+Ahora se genera un componente para el módulo:
+```
+ng generate component layout/grupos/manejo-grupos --spec false
+```
+
+Se han creado los archivos
+```
+- src/app/layout/grupos/manejo-grupos
+  - manejo-grupos.routing.module.ts
+  - manejo-grupos.component.html
+  - manejo-grupos.component.scss
+  - manejo-grupos.component.ts
+  - manejo-grupos.module.ts
+```
+
+## 2 Haciendo el Módulo Accesible
+
+### 2.1 Dependencias, Interconecciones, etc
+Ver 998f5c6db2c5e422c7b1015e880c825d0d4caa46
+
+### 2.2 Mostrar en el Sidebar
+Ver 7d3f259b815eb1ded4c1c632f91f57454a16fe5b
+
 # SB Admin rewritten in Angular4 and Bootstrap 4
 
 Simple Dashboard Admin App built using Angular 4 and Bootstrap 4
