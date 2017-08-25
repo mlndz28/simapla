@@ -28,10 +28,10 @@ Se han creado los archivos
 ## 2 Haciendo el Módulo Accesible
 
 ### 2.1 Dependencias, Interconecciones, etc
-Ver 998f5c6db2c5e422c7b1015e880c825d0d4caa46
+Ver [98f5c6d](https://github.com/mlndz28/simapla/commit/998f5c6db2c5e422c7b1015e880c825d0d4caa46)
 
 ### 2.2 Mostrar en el Sidebar
-Ver 7d3f259b815eb1ded4c1c632f91f57454a16fe5b
+Ver [7d3f259](https://github.com/mlndz28/simapla/commit/7d3f259b815eb1ded4c1c632f91f57454a16fe5b)
 
 # SB Admin rewritten in Angular4 and Bootstrap 4
 
