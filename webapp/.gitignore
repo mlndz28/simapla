@@ -97,7 +97,7 @@ lib-cov
 *.out
 *.pid
 npm-debug.log
-#api/controllers/Ws/gen
+api/controllers/Ws/gen
 
 
 
