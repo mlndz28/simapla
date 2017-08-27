@@ -11,52 +11,39 @@ const debug = require('debug')('simapla:LoginController');
 let connection = DbConnectionService;
 
 module.exports = {
-    show: (req, res) => {
-        if (req.session.logged) return res.redirect('/perfil');
-        return res.view('login', {title:'Simapla Digital - Iniciar Sesión'});
-    },
 
     login: (req, res) => {
-        let query = `call SimaplaDb.loginGet('${req.param('carne')}', '${req.param('password')}')`;
+      if (!req.param('carnet') || !req.param('password')) {
+        return res.json(401, {error: 'Carnet y password necesarios.'});
+      }
 
-        debug(`login query: ${query}`);
+      let carnet = req.param('carnet');
+      let password = req.param('password');
 
-        connection.query(query, {}, res, (mysqlResponse, res) => {
+      let query = `call SimaplaDb.loginGet('${carnet}', '${password}')`;
+      debug(`login query: ${query}`);
 
-            debug(`mysqlResponse:`);
-            debug(mysqlResponse);
+      connection.query(query, {}, res, (mysqlResponse, res) => {
+        debug(`mysqlResponse:`);
+        debug(mysqlResponse);
 
-            if (mysqlResponse.error !== 'none') {
-              debug("Error: ");
-              debug(mysqlResponse.error);
-              res.redirect('/login');
-            }
+        if (mysqlResponse.error !== 'none') {
+          debug("Error: ");
+          debug(mysqlResponse.error);
+          return res.json({error: mysqlResponse.error});
+        }
 
-            let data = mysqlResponse.data;
+        let data = mysqlResponse.data;
 
-            if (typeof data[0] == 'undefined' || data[0].length == 0) {
-              res.redirect('/login');
-            }
-            if (data[0].length > 0) {
-              req.session.me = {};
-              req.session.logged = true;
-              req.session.me.role = data[0].role;
-              req.session.me.carnet = data[0].carnet;
+        if (typeof data[0] == 'undefined' || data[0].length == 0) {
+          return res.json({error: "Los credenciales no son correctos."});
+        }
 
-              debug("req.session.me:");
-              debug(req.session.me);
-
-              res.redirect('/perfil');
-            }
-        });
-    },
-
-    logout: (req, res) => {
-        if(typeof req.session.me != 'undefined')
-            console.log("LOG LoginController Logged out user: "+JSON.stringify(req.session.me.carnet));
-        req.session.logged = false;
-        req.session.me = undefined;
-        return res.redirect('/');
+        if (data[0].length > 0) {
+          return res.json({error:false, token:jwtService.issue({carne: data[0].carnet, role: data[0].role})});
+        }
+        return res.json({error: "Error desconocido"});
+      });
     }
 
 };
