@@ -52,7 +52,14 @@ INSERT INTO `SimaplaDb`.`Email`(`idEmail`,`mail`)VALUES
     ('5','email5@example.com'),
     ('6','email6@example.com'),
     ('7','email7@example.com'),
-    ('8','email8@example.com');
+    ('8','email8@example.com'),
+    ('9','email9@example.com'),
+    ('10','email10@example.com'),
+    ('11','email11@example.com'),
+    ('12','email12@example.com'),
+    ('13','email13@example.com'),
+    ('14','email14@example.com'),
+    ('15','email15@example.com');
 
 -- Phone
 INSERT INTO `SimaplaDb`.`Phone`(`idPhone`,`number`)VALUES
@@ -63,7 +70,14 @@ INSERT INTO `SimaplaDb`.`Phone`(`idPhone`,`number`)VALUES
     ('5','8585-5858'),
     ('6','8686-6868'),
     ('7','8787-7878'),
-    ('8','8888-8888');
+    ('8','8888-8888'),
+    ('9','8989-2929'),
+    ('10','8313-3838'),
+    ('11','8414-4848'),
+    ('12','8515-5858'),
+    ('13','8616-6868'),
+    ('14','8717-7878'),
+    ('15','8818-8888');
 
 -- Patrimony
 INSERT INTO `SimaplaDb`.`Patrimony`(`idPatrimony`,`name`)VALUES
@@ -135,20 +149,20 @@ INSERT INTO `SimaplaDb`.`Event`(`idEvent`,`name`,`date`,`location`,`CoordX`,`Coo
 -- Person
 INSERT INTO `SimaplaDb`.`Person`(`idPerson`,`carnet`,`cedula`,`name`,`lastname`,`birthdate`,`password`,`dateJoinedProgram`,`SpecificAddress_idSpecificAddress`,`Email_idEmail`,`Phone_idPhone`)VALUES
     ('1','mdp16001','1-1965-1234','nombre1','apellido1','19830206','pwd1','20161125','1','7','1'),
-    ('2','mdp16002','1-1965-1234','nombre2','apellido2','19820205','pwd2','20161125','2','6','2'),
-    ('3','mdp16003','1-1965-1234','nombre3','apellido3','19810204','pwd3','20161125','3','5','3'),
-    ('4','mdp17001','1-1965-1234','nombre4','apellido4','19750203','pwd1','20171125','4','4','4'),
-    ('5','mdp17002','1-1965-1234','nombre5','apellido5','19980202','pwd2','20171125','5','3','5'),
-    ('6','mdp17003','1-1965-1234','nombre6','apellido6','20010504','pwd3','20171125','6','2','6'),
-    ('7','mdp17004','1-1965-1234','nombre7','apellido7','20020503','pwd4','20171125','7','1','7'),
-    ('8','mdp13001','1-1965-1234','nombre8','apellido8','20030502','pwd1','20131125','8','8','8'),
-    ('9','mdp13002','1-1965-1234','nombre9','apellido9','20040501','pwd2','20131125','9','7','1'),
-    ('10','mdp13003','1-1965-1234','nombre10','apellido10','20050811','pwd3','20131125','10','6','2'),
-    ('11','mdp13004','1-1965-1234','nombre11','apellido11','20060812','pwd4','20131125','11','5','3'),
-    ('12','mdp11001','1-1965-1234','nombre12','apellido12','20070813','pwd1','20111125','12','4','4'),
-    ('13','mdp11002','1-1965-1234','nombre13','apellido13','20080814','pwd2','20111125','13','3','5'),
-    ('14','mdp11003','1-1965-1234','nombre14','apellido14','20090815','pwd3','20111125','14','2','6'),
-    ('15','mdp11004','1-1965-1234','nombre15','apellido15','20060816','pwd4','20111125','15','1','7');
+    ('2','mdp16002','1-1965-1235','nombre2','apellido2','19820205','pwd2','20161125','2','6','2'),
+    ('3','mdp16003','1-1965-1236','nombre3','apellido3','19810204','pwd3','20161125','3','5','3'),
+    ('4','mdp17001','1-1965-1237','nombre4','apellido4','19750203','pwd1','20171125','4','4','4'),
+    ('5','mdp17002','1-1965-1238','nombre5','apellido5','19980202','pwd2','20171125','5','3','5'),
+    ('6','mdp17003','1-1965-1239','nombre6','apellido6','20010504','pwd3','20171125','6','2','6'),
+    ('7','mdp17004','1-1965-1230','nombre7','apellido7','20020503','pwd4','20171125','7','1','7'),
+    ('8','mdp13001','1-1965-1231','nombre8','apellido8','20030502','pwd1','20131125','8','8','8'),
+    ('9','mdp13002','1-1965-1232','nombre9','apellido9','20040501','pwd2','20131125','9','9','9'),
+    ('10','mdp13003','1-1965-1233','nombre10','apellido10','20050811','pwd3','20131125','10','10','10'),
+    ('11','mdp13004','1-1965-1213','nombre11','apellido11','20060812','pwd4','20131125','11','11','11'),
+    ('12','mdp11001','1-1965-1214','nombre12','apellido12','20070813','pwd1','20111125','12','12','12'),
+    ('13','mdp11002','1-1965-1215','nombre13','apellido13','20080814','pwd2','20111125','13','13','13'),
+    ('14','mdp11003','1-1965-1216','nombre14','apellido14','20090815','pwd3','20111125','14','14','14'),
+    ('15','mdp11004','1-1965-1217','nombre15','apellido15','20060816','pwd4','20111125','15','15','15');
 
 -- Teacher
 INSERT INTO `SimaplaDb`.`Teacher`(`Person_idPerson`,`InstrumentName_idInstrumentName`)VALUES
@@ -177,24 +191,36 @@ INSERT INTO `SimaplaDb`.`Student`(`Person_idPerson`,`isLefty`,`hasAdequacy`,`spe
     ('14',0,0,'Condición especial 14','Medicación 14'),
     ('15',0,1,'Condición especial 15','Medicación 15');
 
--- Roles
-INSERT INTO `SimaplaDb`.`UserRoles`(`idPerson`,`role`)VALUES
-    ('1',2),
-    ('2',2),
-    ('3',1),
-    ('4',3),
-    ('5',0),
-    ('6',0),
-    ('7',0),
-    ('8',0),
-    ('9',0),
-    ('10',0),
-    ('11',0),
-    ('12',0),
-    ('13',0),
-    ('14',0),
-    ('15',0);
+-- Role
+INSERT INTO `SimaplaDb`.`Role`(`idRole`,`name`)VALUES
+    (1,'Student'),
+    (2,'Administrator'),
+    (3,'Teacher'),
+    (4,'Responsible');
 
+
+-- PersonXRole
+INSERT INTO `SimaplaDb`.`PersonXRole`(`Person_idPerson`,`Role_idRole`)VALUES
+    ('1',3),
+    ('2',3),
+    ('3',2),
+    ('4',4),
+    ('5',1),
+    ('6',1),
+    ('7',1),
+    ('8',1),
+    ('9',1),
+    ('10',1),
+    ('11',1),
+    ('12',1),
+    ('13',1),
+    ('14',1),
+    ('15',1);
+
+-- StudentXResponsible
+INSERT INTO `SimaplaDb`.`StudentXResponsible`(`Student_Person_idPerson`,`Responsible_Person_idPerson`)VALUES
+(5,4),
+(8,4);
 
 -- InstrumentXStudent
 INSERT INTO `SimaplaDb`.`InstrumentXStudent`(`Instrument_idInstrument`,`Student_Person_idPerson`)VALUES
@@ -223,9 +249,9 @@ INSERT INTO `SimaplaDb`.`Group`(`idGroup`,`name`,`description`,`GroupType_idGrou
     ('1','Pilar Jiménez','Orquesta completa del sinem de mata de plátano','1','1'),
     ('2','La Libertad','Conjunto de cuerdas con música de cámara','2','1'),
     ('3','Banda','Agrupación de bronces y maderas','5','2'),
-    ('4','Solfeo','Curso de solfeo','4','2'),
-    ('5','Solfeo','Curso de solfeo','4','2'),
-    ('6','Solfeo','Curso de solfeo','4','1'),
+    ('4','Solfeo1','Curso de solfeo','4','2'),
+    ('5','Solfeo2','Curso de solfeo','4','2'),
+    ('6','Solfeo3','Curso de solfeo','4','1'),
     ('7','Acosimapla','Asociacion de padres del sinem de mata de plátano','3','3');
 
 -- GroupXPerson
