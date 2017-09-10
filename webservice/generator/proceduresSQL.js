@@ -22,20 +22,32 @@ http.request(options, function (res) {
 	});
 }).end();
 
+// Basic console input
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 // Main function
 function generate(tables) {
 
+	let fileName = "generated";
+	rl.question('Generated file name: ', (answer) => {	//callback
+  		fileName = answer;
+		rl.close();
 
+		for (i1 = 0; i1 < tables.length; i1++) {
+			it: {
+				var table = tables[i1];
+				if(!table.fields) break it;
+				var name = table.name;
 
-	for (i1 = 0; i1 < tables.length; i1++) {
-		it: {
-			var table = tables[i1];
-			if(!table.fields) break it;
-			var name = table.name;
-
-			saveToFile(routeCode(table), "generated", i1>0);
+				saveToFile(routeCode(table), fileName, i1>0);
+			}
 		}
-	}
+	});
+
+
 }
 
 var sql = "";
@@ -46,13 +58,13 @@ function add(line) {
 
 /* Create statements */
 
-// Return the select statement
+// Return a 'get' procedure
 function select(name) {
 }
 
-// Return the insert statement
+// Return an 'insert' procedure
 function insert(name, fields) {
-	sql = "";
+	sql = "-- " + name + "Insert\n";
 
 	let paramsDeclaration = "";
 	let columns = "";
@@ -98,11 +110,11 @@ function insert(name, fields) {
 
 }
 
-// Return the delete statement
-function deleteSt(name) {
+// Return a 'delete' procedure
+function deletePr(name) {
 }
 
-// Return the update statement
+// Return an 'update' procedure
 function update(name, fields) {
 }
 
@@ -114,7 +126,6 @@ function routeCode(table) {
 
 	let sql = "DELIMITER //\n";
 
-	sql += "-- " + table.name + "Insert\n";
 	sql += insert(table.name, table.fields);
 
 	sql += "DELIMITER ;\n\n";
