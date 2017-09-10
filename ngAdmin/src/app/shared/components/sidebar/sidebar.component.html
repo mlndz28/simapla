@@ -1,0 +1,45 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ul class="list-group">
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'dashboard' | translate }}
+        </a>
+
+        <div class="nested-menu">
+          <a class="list-group-item" (click)="addExpandClass('grupos')">
+              <span><i class="fa fa-plus"></i>&nbsp; {{ 'grupos' | translate }}</span>
+          </a>
+          <li class="nested" [class.expand]="showMenu === 'grupos'">
+            <ul class="submenu">
+              <li>
+                <a [routerLink]="['/grupos/manejo']" [routerLinkActive]="['router-link-active']"><span>{{ 'manejo' | translate }}</span></a>
+              </li>
+            </ul>
+          </li>
+        </div>
+
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('registro')">
+                <span><i class="fa fa-plus"></i>&nbsp; {{ 'registro' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'registro'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/registro/estudiante']" [routerLinkActive]="['router-link-active']"><span>{{ 'estudiante' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/registro/profesor']" [routerLinkActive]="['router-link-active']"><span>{{ 'profesor' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/registro/administrativo']" [routerLinkActive]="['router-link-active']"><span>{{ 'administrativo' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/registro/agrupaciones']" [routerLinkActive]="['router-link-active']"><span>{{ 'agrupaciones' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/registro/eventos']" [routerLinkActive]="['router-link-active']"><span>{{ 'eventos' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+    </ul>
+</nav>

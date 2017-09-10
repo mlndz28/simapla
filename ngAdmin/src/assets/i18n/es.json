@@ -1,0 +1,23 @@
+{
+    "dashboard": "Principal",
+    "registro": "Registro",
+    "manejo": "Manejo",
+    "grupos": "Grupos",
+    "estudiante": "Estudiante",
+    "profesor": "Profesor",
+    "administrativo": "Administrativo",
+    "agrupaciones": "Agrupaciones",
+    "eventos": "Eventos",
+    "charts": "Caracteres",
+    "tables": "Tablas",
+    "forms": "Formularios",
+    "boostrapElement": "Elementos Boostrap",
+    "boostrapGrid": "Rejilla Boostrap",
+    "component": "Componentes",
+    "menu": "Menú",
+    "submenu": "Submenú",
+    "blankpage": "Página en Blanco",
+    "moretheme": "Más temas",
+    "downloadNow": "Descarga Ahora",
+    "language": "Lenguaje"
+}

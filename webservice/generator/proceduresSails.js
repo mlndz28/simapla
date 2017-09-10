@@ -12,8 +12,7 @@ var dir = config.routesDir;
 // Request to api/routes/tables (service must be up)
 http.request(options, function(res) {
     if (res.statusCode != 200) {
-        console.log("Error retrieving data");
-        console.log(res);
+        console.log("Error retrieving data. Response status: " + res.statusCode);
     }
     var whole = "";
     res.on('data', function(chunk) {
@@ -21,7 +20,11 @@ http.request(options, function(res) {
 
     });
     res.on('end', function() {
-        generate(JSON.parse(whole).data);
+		let response = JSON.parse(whole);
+		if(response.data.length == 0){
+			console.log("ERROR " + response.error.errno + " (" +  response.error.code + "): " + response.error.sqlMessage);
+		}
+        generate(response.data);
     });
 }).end();
 
@@ -35,7 +38,7 @@ function generate(procedures) {
         let wholeName = procedures[i1].name.split(/(?=[A-Z])/); // split by caps
         let method = wholeName[wholeName.length - 1];
         wholeName.pop();
-        let name = wholeName.join();
+        let name = wholeName.join('');
         let temp = {
             name: method,
             parameters: procedures[i1].parameters
@@ -87,7 +90,6 @@ function query(name, fields) {
 
 // Generate javascript code for routes
 function routeCode(procedure) {
-    console.log("Generating route for", procedure.name);
     let controllerName = procedure.name.charAt(0).toUpperCase() + procedure.name.slice(1);
 
     var js = "";
@@ -114,28 +116,30 @@ function routeCode(procedure) {
         }
 		addFunction(" */\n");
 
+		let url = procedure.name.split(/(?=[A-Z])/).join("/").toLowerCase();
+
         switch (method.name) {
             case "Get":
-                add("sails.config.routes['GET /ws/" + procedure.name + "'] = 'Ws/gen/procedures/" + controllerName + ".get';");
+			add("sails.config.routes['GET /ws/" + url + "'] = 'Ws/gen/procedures/" + controllerName + ".get';");
 				addFunction("get: (req, res) => {");
 				addFunction("\tconnection.query(\"" + query(procedure.name + method.name , method.parameters) + "\", req.query, res);");
 				break;
             case "Insert":
-                add("sails.config.routes['POST /ws/" + procedure.name + "'] = 'Ws/gen/procedures/" + controllerName + ".insert';");
+                add("sails.config.routes['POST /ws/" + url + "'] = 'Ws/gen/procedures/" + controllerName + ".insert';");
 				addFunction("insert: (req, res) => {");
 				addFunction("\tconnection.query(\"" + query(procedure.name + method.name, method.parameters) + "\", req.body, res);");
 				break;
             case "Update":
-                add("sails.config.routes['PUT /ws/" + procedure.name + "'] = 'Ws/gen/procedures/" + controllerName + ".update';");
+                add("sails.config.routes['PUT /ws/" + url + "'] = 'Ws/gen/procedures/" + controllerName + ".update';");
 				addFunction("update: (req, res) => {");
 				addFunction("\tconnection.query(\"" + query(procedure.name + method.name, method.parameters) + "\", req.body, res);");
             case "Delete":
-                add("sails.config.routes['DELETE /ws/" + procedure.name + "'] = 'Ws/gen/procedures/" + controllerName + ".delete';");
+                add("sails.config.routes['DELETE /ws/" + url + "'] = 'Ws/gen/procedures/" + controllerName + ".delete';");
 				addFunction("delete: (req, res) => {");
 				addFunction("\tconnection.query(\"" + query(procedure.name + method.name, method.parameters) + "\", req.body, res);");
 				break;
 			default:
-				add("sails.config.routes['POST /ws/" + procedure.name + "/" + method + "'] = 'Ws/gen/procedures/" + controllerName + "." + method + "';");
+				add("sails.config.routes['POST /ws/" + url + "/" + method + "'] = 'Ws/gen/procedures/" + controllerName + "." + method + "';");
 				addFunction( method.name + ": (req, res) => {");
 				addFunction("\tconnection.query(\"" + query(procedure.name + method.name, method.parameters) + "\", req.body, res);");
         }
