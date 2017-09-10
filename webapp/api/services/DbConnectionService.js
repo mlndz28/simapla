@@ -145,9 +145,11 @@ function parseQuery(statement, values) {
    connection.query(statement, body, function(err, results) {
      //as it's not being used anymore
      connection.release();
+
      if (!err) {
        var resObject = new Object();
        resObject["error"] = "none";
+       resObject["isError"] = false;
        resObject["data"] = results;
        if (typeof callback !== 'undefined') {
          callback(resObject, res);
@@ -156,6 +158,10 @@ function parseQuery(statement, values) {
        }
      } else {
        //if query can't be executed
+       if (callback.length == 3) {
+        resObject["isError"] = true;
+        callback(resObject, res, err);
+       }
        onError(err, res);
      }
  });};

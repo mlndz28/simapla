@@ -23,7 +23,8 @@
                         >
                     </div>
                 </div>
-                <input class="btn rounded-btn" type="submit" name="login" value="Ingresar">
+                <input *ngIf="!isRequestingLogin" class="btn rounded-btn" type="submit" name="login" value="Ingresar">
+                <fa *ngIf="isRequestingLogin" name="cog" animation="spin"></fa>
                 <br>
                 <a href="#">Recuperar Contraseña</a>
             </form>

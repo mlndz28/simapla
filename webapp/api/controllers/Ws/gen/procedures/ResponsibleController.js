@@ -1,8 +1,9 @@
+const debug = require('debug')("simapla:RespoinsibleController");
 let connection = DbConnectionService;
 
 sails.config.routes['POST /ws/responsible'] = 'Ws/gen/procedures/Responsible.insert';
 module.exports = {
-	
+
 	/**
 	 * @function Insert
 	 * @memberOf responsible
@@ -20,6 +21,7 @@ module.exports = {
 	 */
 
 	insert: (req, res) => {
+		debug(req.body);
 		connection.query("CALL responsibleInsert( :V_pcarnet, :V_pcedula, :V_pname, :V_plastname, :V_pbirthdate, :V_ppassword, :V_pdateJoinedProgram, :V_pSpecificAddress, :V_pEmail, :V_pPhone, :V_pIdDistrict );", req.body, res);
 		}
 
