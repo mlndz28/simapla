@@ -217,6 +217,10 @@ INSERT INTO `SimaplaDb`.`PersonXRole`(`Person_idPerson`,`Role_idRole`)VALUES
     ('14',1),
     ('15',1);
 
+-- StudentXResponsible
+INSERT INTO `SimaplaDb`.`StudentXResponsible`(`Student_Person_idPerson`,`Responsible_Person_idPerson`)VALUES
+(5,4),
+(8,4);
 
 -- InstrumentXStudent
 INSERT INTO `SimaplaDb`.`InstrumentXStudent`(`Instrument_idInstrument`,`Student_Person_idPerson`)VALUES
