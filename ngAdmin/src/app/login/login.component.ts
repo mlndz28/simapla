@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   carnet = "";
   password = "";
+  isRequestingLogin = false;
 
     constructor(public router: Router, private http: HttpClient) {
     }
@@ -21,9 +22,11 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-      let url = 'http://localhost:1337/login'
+      let url = 'http://localhost:1337/login';
       let body = this.toQueryString(this.getFormData());
       console.log(body);
+
+      this.isRequestingLogin = true;
 
       this.http.post(
         url,
@@ -37,12 +40,12 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', data.token);
             this.router.navigateByUrl('/dashboard');
           }
-        err => {console.log(err)}
+          this.isRequestingLogin = false;
+        err => {
+          this.isRequestingLogin = false;
+          console.log(err)
+        }
       });
-    }
-
-    onLoggedin() {
-        localStorage.setItem('isLoggedin', 'true');
     }
 
     private getFormData() {
@@ -51,7 +54,7 @@ export class LoginComponent implements OnInit {
         password: this.password
       };
     };
-    
+
     private clearFormData() {
       this.carnet = "";
       this.password = "";

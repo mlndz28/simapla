@@ -35,6 +35,7 @@ module.exports.routes = {
   '/': 'homepageController.show',
 
   'POST /login': 'LoginController.login',
+  'POST /signup': 'SignupController.signup',
 
   'GET /perfil': 'Ws/MyselfController.get',
 
