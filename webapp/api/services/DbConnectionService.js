@@ -7,9 +7,9 @@ let pool;
  * @constructor
  */
 function dbConnection() {
-  this.pool = mysql.createPool(conf); //create new connection pool
-  //adds formatting to prepared statements
-  this.pool.config.connectionConfig.queryFormat = parseQuery;
+	this.pool = mysql.createPool(conf); //create new connection pool
+	//adds formatting to prepared statements
+	this.pool.config.connectionConfig.queryFormat = parseQuery;
 }
 exports.createPool = dbConnection;
 /**
@@ -20,20 +20,20 @@ exports.createPool = dbConnection;
  * @param res - Express response
  */
 exports.query = function(statement, body, res, callback) { //;
-  this.pool = mysql.createPool(conf); //create new connection pool
-  //adds formatting to prepared statements
-  this.pool.config.connectionConfig.queryFormat = parseQuery;
-  this.pool.getConnection(function(err, connection) {
-    if (err) { //if can't connect to DB
-      onError(err, res);
-    } else {
-      if (typeof callback !== 'undefined') {
-        onConnect(statement, body, connection, res, callback);
-      } else {
-        onConnect(statement, body, connection, res);
-      }
-    }
-  });
+	this.pool = mysql.createPool(conf); //create new connection pool
+	//adds formatting to prepared statements
+	this.pool.config.connectionConfig.queryFormat = parseQuery;
+	this.pool.getConnection(function(err, connection) {
+		if (err) { //if can't connect to DB
+			onError(err, res);
+		} else {
+			if (typeof callback !== 'undefined') {
+				onConnect(statement, body, connection, res, callback);
+			} else {
+				onConnect(statement, body, connection, res);
+			}
+		}
+	});
 }
 /**
  * New format for prepared statements, new standards:
@@ -51,86 +51,86 @@ exports.query = function(statement, body, res, callback) { //;
  * @param {Object} values - Values to be inserted on the statement
  */
 function parseQuery(statement, values) {
-  //console.log("query0 = " + statement);
-  if (!values) return statement;
-  var temp = statement.replace(/\:V_(\w+)/g, function(txt, key) {
-    if (values.hasOwnProperty(key)) {
-      if (values[key] == "") {
-        return "' '";
-      }
-      if (values[key] == 1 || values[key] == 0) {
-        return values[key];
-      }
-      return this.escape(values[key]);
-    } else {
-      return 'NULL';
-    }
-    return txt;
-  }.bind(this));
-  temp = temp.replace(/\:C/g, function(txt, key) {
-    var parsed = "";
-    if (values.hasOwnProperty("columns")) {
-      var columns = values.columns.split(",");
-      delete values.columns;
-      for (i = 0; i < columns.length; i++) {
-        parsed += '`' + columns[i].replace('`', '') + '`';
-        if (i != columns.length - 1) {
-          parsed += ','
-        }
-      }
-      return parsed;
-    } else {
-      return '*';
-    }
-  }.bind(this));
-  temp = temp.replace(/\:OF/g, function(txt, key) {
-    var parsed = "";
-    for (var param in values) {
-      if (param.slice(0, 2) == "f_" && values.hasOwnProperty(param)) {
-        parsed += '`' + param.replace(/`|f_/g, '') + "` = '";
-        if (values[param] == 1 || values[param] == 0) {
-          parsed += values[param] + "' AND ";
-        } else {
-          parsed += values[param].replace("'", '') + "' AND ";
-        }
-      }
-    }
-    return parsed.slice(0, parsed.length - 4);
-  }.bind(this));
-  temp = temp.replace(/\:OU/g, function(txt, key) {
-    var parsed = "";
-    for (var param in values) {
-      if (values.hasOwnProperty(param)) {
-        parsed += '`' + param.replace('`', '') + "` = '" + values[param].replace("'", '') + "' ";
-        parsed += 'AND ';
-      }
-    }
-    if (parsed == "") {
-      return "1";
-    }
-    return parsed.slice(0, parsed.length - 4);
-  }.bind(this));
-  temp = temp.replace(/\:OR/g, function(txt, key) {
-    var parsed = "";
-    for (var param in values) {
-      if (values.hasOwnProperty(param)) {
-        parsed += '`' + param.replace('`', '') + "` = '" + values[param].replace("'", '') + "' ";
-        parsed += 'AND ';
-      }
-    }
-    return parsed.slice(0, parsed.length - 4);
-  }.bind(this));
-  temp = temp.replace(/\:OC/g, function(txt, key) {
-    var parsed = "";
-    for (var param in values) {
-      if (param.slice(0, 2) != "f_" && values.hasOwnProperty(param)) {
-        parsed += '`' + param.replace('`', '') + "` = '" + values[param].replace("'", '') + "' ";
-        parsed += ', ';
-      }
-    }
-    return parsed.slice(0, parsed.length - 2);
-  }.bind(this));
-  return temp;
+	//console.log("query0 = " + statement);
+	if (!values) return statement;
+	var temp = statement.replace(/\:V_(\w+)/g, function(txt, key) {
+		if (values.hasOwnProperty(key)) {
+			if (values[key] == "") {
+				return "' '";
+			}
+			if (values[key] == 1 || values[key] == 0) {
+				return values[key];
+			}
+			return this.escape(values[key]);
+		} else {
+			return 'NULL';
+		}
+		return txt;
+	}.bind(this));
+	temp = temp.replace(/\:C/g, function(txt, key) {
+		var parsed = "";
+		if (values.hasOwnProperty("columns")) {
+			var columns = values.columns.split(",");
+			delete values.columns;
+			for (i = 0; i < columns.length; i++) {
+				parsed += '`' + columns[i].replace('`', '') + '`';
+				if (i != columns.length - 1) {
+					parsed += ','
+				}
+			}
+			return parsed;
+		} else {
+			return '*';
+		}
+	}.bind(this));
+	temp = temp.replace(/\:OF/g, function(txt, key) {
+		var parsed = "";
+		for (var param in values) {
+			if (param.slice(0, 2) == "f_" && values.hasOwnProperty(param)) {
+				parsed += '`' + param.replace(/`|f_/g, '') + "` = '";
+				if (values[param] == 1 || values[param] == 0) {
+					parsed += values[param] + "' AND ";
+				} else {
+					parsed += values[param].replace("'", '') + "' AND ";
+				}
+			}
+		}
+		return parsed.slice(0, parsed.length - 4);
+	}.bind(this));
+	temp = temp.replace(/\:OU/g, function(txt, key) {
+		var parsed = "";
+		for (var param in values) {
+			if (values.hasOwnProperty(param)) {
+				parsed += '`' + param.replace('`', '') + "` = '" + values[param].replace("'", '') + "' ";
+				parsed += 'AND ';
+			}
+		}
+		if (parsed == "") {
+			return "1";
+		}
+		return parsed.slice(0, parsed.length - 4);
+	}.bind(this));
+	temp = temp.replace(/\:OR/g, function(txt, key) {
+		var parsed = "";
+		for (var param in values) {
+			if (values.hasOwnProperty(param)) {
+				parsed += '`' + param.replace('`', '') + "` = '" + values[param].replace("'", '') + "' ";
+				parsed += 'AND ';
+			}
+		}
+		return parsed.slice(0, parsed.length - 4);
+	}.bind(this));
+	temp = temp.replace(/\:OC/g, function(txt, key) {
+		var parsed = "";
+		for (var param in values) {
+			if (param.slice(0, 2) != "f_" && values.hasOwnProperty(param)) {
+				parsed += '`' + param.replace('`', '') + "` = '" + values[param].replace("'", '') + "' ";
+				parsed += ', ';
+			}
+		}
+		return parsed.slice(0, parsed.length - 2);
+	}.bind(this));
+	return temp;
 }
 /**
  * Make request to DB.
@@ -141,30 +141,30 @@ function parseQuery(statement, values) {
  * @param res - Express response
  */
 function onConnect(statement, body, connection, res, callback) {
-  connection.query(statement, body, function(err, results) {
-    //as it's not being used anymore
-    connection.release();
+	connection.query(statement, body, function(err, results) {
+		//as it's not being used anymore
+		connection.release();
 
-    if (!err) {
-      var resObject = new Object();
-      resObject["error"] = "none";
-      resObject["isError"] = false;
-      resObject["data"] = results;
-      if (typeof callback !== 'undefined') {
-        callback(resObject, res);
-      } else {
-        res.json(resObject);
-      }
-    } else {
-      //if query can't be executed
-      if (!callback) {
-        onError(err, res);
-      } else if (callback.length == 3) {
-        resObject["isError"] = true;
-        callback(resObject, res, err);
-      }
-    }
-  });
+		if (!err) {
+			var resObject = new Object();
+			resObject["error"] = "none";
+			resObject["isError"] = false;
+			resObject["data"] = results;
+			if (typeof callback !== 'undefined') {
+				callback(resObject, res);
+			} else {
+				res.json(resObject);
+			}
+		} else {
+			//if query can't be executed
+			if (!callback) {
+				onError(err, res);
+			} else if (callback.length == 3) {
+				resObject["isError"] = true;
+				callback(resObject, res, err);
+			}
+		}
+	});
 };
 
 /**
@@ -174,7 +174,7 @@ function onConnect(statement, body, connection, res, callback) {
  * @param {Object} values - Express response
  */
 function onError(err, res) {
-  res.json({
-    error: err
-  });
+	res.json({
+		error: err
+	});
 }
