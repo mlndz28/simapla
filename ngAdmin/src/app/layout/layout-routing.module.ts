@@ -30,6 +30,10 @@ const routes: Routes = [
               path: 'registro/eventos',
               loadChildren: './registro/eventos/eventos.module#EventosModule'
             },
+			{
+              path: 'registro/instrumentos',
+              loadChildren: './registro/instrumentos/instrumentos.module#InstrumentosModule'
+            },
             {
               path: 'grupos/manejo',
               loadChildren: './grupos/manejo-grupos/manejo-grupos.module#ManejoGruposModule'
