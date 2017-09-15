@@ -4,6 +4,7 @@
 * @description :: Server-side logic for managing ws/users
 * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
 */
+const debug = require('debug')('simapla:MyselfController');
 
 let connection = DbConnectionService;
 module.exports = {
@@ -14,6 +15,12 @@ module.exports = {
             return res.redirect('/');
         }
         res.view('perfil');
+    },
+
+    personInfo: function(req, res) {
+      let query = `CALL personInfoGet(${req.params.idPerson});`;
+      connection.query(query, {}, res);
+
     },
 
     getInfo: function(req, res) {

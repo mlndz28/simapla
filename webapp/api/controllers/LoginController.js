@@ -40,7 +40,16 @@ module.exports = {
         }
 
         if (data[0].length > 0) {
-          return res.json({error:false, token:jwtService.issue({carne: data[0].carnet, role: data[0].role})});
+          debug(data[0][0]);
+          let idPerson = data[0][0].idPerson;
+          let role = data[0][0].role;
+          return res.json({
+            error:false,
+            token:jwtService.issue({uid: idPerson, carnet: carnet, role: role}),
+            uid: idPerson,
+            carnet: carnet,
+            role: role
+          });
         }
         return res.json({error: "Error desconocido"});
       });

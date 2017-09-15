@@ -51,6 +51,7 @@ module.exports.routes = {
   'GET /ws/managementPositions': 'Ws/ManagementPositionsController.getPositions',
 
   'GET /ws/infoStudent': 'Ws/MyselfController.getInfo',
+  'GET /ws/personInfo/:idPerson': 'Ws/MyselfController.personInfo',
 
   'GET /ws/user/:carnet': 'Ws/PersonController.get',
   'POST /ws/user': 'Ws/PersonController.post',
