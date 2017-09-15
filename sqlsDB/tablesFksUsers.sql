@@ -813,9 +813,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `loginGet`(
 	in pPwd varchar(45)
 )
 BEGIN
-	select p.idPerson, ur.role from
-	Person p inner join UserRoles ur
-	on p.idPerson = ur.idPerson
+	select p.idPerson, ur.Role_idRole from
+	Person p inner join PersonXRole ur
+	on p.idPerson = ur.Person_idPerson
 	where p.carnet = pCarnet and pPwd = p.password;
 END$$
 
