@@ -158,7 +158,7 @@ function parseQuery(statement, values) {
        }
      } else {
        //if query can't be executed
-       if (callback.length == 3) {
+       if (callback && callback.length == 3) {
         resObject["isError"] = true;
         callback(resObject, res, err);
        }
