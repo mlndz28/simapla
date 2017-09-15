@@ -1,35 +1,33 @@
-Guia de uso
+Simple MySQL api
 ============
 
-Los pedidos tienen codificación x-www-formurlencoded, y todos son tipo POST.
-las rutas son \<nombre de base de datos\>:
+The request are x-www-formurlencoded, and all of them are POST.
+For the services generated with the crud generator the paths are \<database name\>:
 
 /add
 -----
 
-Se deben especificar los valores que se deseen insertar para un registro nuevo.
+The values to be inserted should go in the form (the columns name must match in order to be included in the query).
 
 /get
 -----
 
-Se especifican los valores para los filtros del query (WHERE), estos valores deben venir con la etiqueta igual al nombre de columna.
-En caso de que no se especifiquen valores se retorna toda la tabla.
+The values in the form are the filters (WHERE) of a select statement. Only matching column names are accepted. In case of not specifying any value in the form, the whole table is returned.
 
 /update
 -----
 
-Se deben especificar los valores para los filtros del query (WHERE), las etiquetas para filtrar el UPDATE deben tener el formato f_nombreDeColumna.
-Los valores que se quieren actualizar vienen sin f_ como prefijo.
+The form should come with two type of values, the filters and the values that are going to be updated. The filters have the prefix 'f_', while the updated values don't.
 
 /delete
 -----
 
-Se deben especificar los valores para los filtros del query (WHERE), las etiquetas para filtrar el DELETE deben de ser los nombres de las columnas.
+The values in the form are the filters (WHERE) of a delete statement
 
-Generación de servicios
+Service generation
 =======================
 
-La API debe estar corriendo.
+The api must be running.
 ~~~bash
 	cd generator && node crud.js
 ~~~
@@ -37,7 +35,7 @@ La API debe estar corriendo.
  Generación de documentación
 =======================
 
-Requiere jsdoc.
+Requires jsdoc.
 ~~~bash
 	./docs.sh
 ~~~
