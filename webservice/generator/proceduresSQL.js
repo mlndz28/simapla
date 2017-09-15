@@ -70,18 +70,16 @@ function insert(name, fields) {
 	let columns = "";
 	let values = "";
 	let verifications = "";
-	let selects = "";
 	for( i = 0; i < fields.length; i++ ){
 		if(fields[i].Extra != "auto_increment"){
 			if(fields[i].ForeignKey){
-				verifications += "\tIF NOT EXISTS(select "+ fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " from " + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " where <<name in table>> = " + fields[i].ForeignKey.REFERENCED_COLUMN_NAME.replace("id","") + "\n";
+				verifications += "\tIF NOT EXISTS (select "+ fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " from " + fields[i].ForeignKey.REFERENCED_TABLE_NAME + " where " + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " = " + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + ")\n";
 				verifications += "\t\tTHEN\n";
 				verifications += "\t\t\tSIGNAL SQLSTATE '45000'\n";
-				verifications += "\t\t\t\tSET MESSAGE_TEXT = '" + fields[i].ForeignKey.REFERENCED_COLUMN_NAME.replace("id","") + " does not exist';\n";
+				verifications += "\t\t\t\tSET MESSAGE_TEXT = '" + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " does not exist on " + fields[i].ForeignKey.REFERENCED_TABLE_NAME + "';\n";
 				verifications += "\tEND IF;\n";
-				selects += "\tselect @" + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " := " + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " from " + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + " where <<name in table>> = " + fields[i].ForeignKey.REFERENCED_COLUMN_NAME.replace("id","") + ";\n";
-				paramsDeclaration += "\tin `" + fields[i].ForeignKey.REFERENCED_COLUMN_NAME.replace("id","") + "` "  +  "<<type>>" + (i == fields.length - 1 ? "" : ",\n");
-				values += "\t\t@" + fields[i].ForeignKey.REFERENCED_COLUMN_NAME  + (i == fields.length - 1 ? "" : ",\n");
+				paramsDeclaration += "\tin `" + fields[i].ForeignKey.REFERENCED_COLUMN_NAME + "` "  +  fields[i].Type + (i == fields.length - 1 ? "" : ",\n");
+				values += "\t\t" + fields[i].ForeignKey.REFERENCED_COLUMN_NAME  + (i == fields.length - 1 ? "" : ",\n");
 			}else{
 				paramsDeclaration += "\tin " + "`" + fields[i].Field + "` " +  fields[i].Type + (i == fields.length - 1 ? "" : ",\n");
 				values += "\t\t" + fields[i].Field  + (i == fields.length - 1 ? "" : ",\n");
@@ -97,7 +95,6 @@ function insert(name, fields) {
 	add(")");
 	add("BEGIN");
 	if(verifications) add(verifications);
-	if(selects) add(selects);
 	add("\tINSERT INTO " + config.mysql.database + "." + name + "(");
 	add(columns)
 	add("\t)VALUES(");

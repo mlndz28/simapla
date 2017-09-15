@@ -3,23 +3,21 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.UserRolesInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UserRolesInsert`(
-	in `Person` <<type>>,
+	in `idPerson` int(11),
 	in `role` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
 	END IF;
-
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
 
 	INSERT INTO SimaplaDb.UserRoles(
 		`idPerson`,
 		`role`
 	)VALUES(
-		@idPerson,
+		idPerson,
 		role
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
@@ -32,30 +30,27 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.AdministratorInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AdministratorInsert`(
-	in `Person` <<type>>,
-	in `ManagementPosition` <<type>>
+	in `idPerson` int(11),
+	in `idManagementPosition` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
 	END IF;
-	IF NOT EXISTS(select idManagementPosition from idManagementPosition where <<name in table>> = ManagementPosition
+	IF NOT EXISTS (select idManagementPosition from ManagementPosition where idManagementPosition = idManagementPosition)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'ManagementPosition does not exist';
+				SET MESSAGE_TEXT = 'idManagementPosition does not exist on ManagementPosition';
 	END IF;
-
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
-	select @idManagementPosition := idManagementPosition from idManagementPosition where <<name in table>> = ManagementPosition;
 
 	INSERT INTO SimaplaDb.Administrator(
 		`Person_idPerson`,
 		`ManagementPosition_idManagementPosition`
 	)VALUES(
-		@idPerson,
-		@idManagementPosition
+		idPerson,
+		idManagementPosition
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -109,33 +104,29 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.AttendanceInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AttendanceInsert`(
-	in `Person` <<type>>,
+	in `idPerson` int(11),
 	in `Session_idSession` int(11),
-	in `AttendanceType` <<type>>,
+	in `idAttendanceType` int(11),
 	in `numSession` int(11),
 	in `dateSession` date,
-	in `ScheduleXGroup` <<type>>
+	in `idScheduleXGroup` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
 	END IF;
-	IF NOT EXISTS(select idAttendanceType from idAttendanceType where <<name in table>> = AttendanceType
+	IF NOT EXISTS (select idAttendanceType from AttendanceType where idAttendanceType = idAttendanceType)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'AttendanceType does not exist';
+				SET MESSAGE_TEXT = 'idAttendanceType does not exist on AttendanceType';
 	END IF;
-	IF NOT EXISTS(select idScheduleXGroup from idScheduleXGroup where <<name in table>> = ScheduleXGroup
+	IF NOT EXISTS (select idScheduleXGroup from ScheduleXGroup where idScheduleXGroup = idScheduleXGroup)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'ScheduleXGroup does not exist';
+				SET MESSAGE_TEXT = 'idScheduleXGroup does not exist on ScheduleXGroup';
 	END IF;
-
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
-	select @idAttendanceType := idAttendanceType from idAttendanceType where <<name in table>> = AttendanceType;
-	select @idScheduleXGroup := idScheduleXGroup from idScheduleXGroup where <<name in table>> = ScheduleXGroup;
 
 	INSERT INTO SimaplaDb.Attendance(
 		`idPerson`,
@@ -145,12 +136,12 @@ BEGIN
 		`dateSession`,
 		`ScheduleXGroup_idScheduleXGroup`
 	)VALUES(
-		@idPerson,
+		idPerson,
 		Session_idSession,
-		@idAttendanceType,
+		idAttendanceType,
 		numSession,
 		dateSession,
-		@idScheduleXGroup
+		idScheduleXGroup
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -181,23 +172,21 @@ DROP PROCEDURE IF EXISTS SimaplaDb.CantonInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CantonInsert`(
 	in `name` varchar(45),
-	in `Province` <<type>>
+	in `idProvince` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idProvince from idProvince where <<name in table>> = Province
+	IF NOT EXISTS (select idProvince from Province where idProvince = idProvince)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Province does not exist';
+				SET MESSAGE_TEXT = 'idProvince does not exist on Province';
 	END IF;
-
-	select @idProvince := idProvince from idProvince where <<name in table>> = Province;
 
 	INSERT INTO SimaplaDb.Canton(
 		`name`,
 		`Province_idProvince`
 	)VALUES(
 		name,
-		@idProvince
+		idProvince
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -213,16 +202,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `CarnetInsert`(
 	in `yearEntrance` tinyint(4),
 	in `consecutive` tinyint(4),
 	in `locationInitials` varchar(6),
-	in `Person` <<type>>
+	in `idPerson` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
 	END IF;
-
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
 
 	INSERT INTO SimaplaDb.Carnet(
 		`idCarnet`,
@@ -235,7 +222,7 @@ BEGIN
 		yearEntrance,
 		consecutive,
 		locationInitials,
-		@idPerson
+		idPerson
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -293,23 +280,21 @@ DROP PROCEDURE IF EXISTS SimaplaDb.DistrictInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `DistrictInsert`(
 	in `name` varchar(45),
-	in `Canton` <<type>>
+	in `idCanton` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idCanton from idCanton where <<name in table>> = Canton
+	IF NOT EXISTS (select idCanton from Canton where idCanton = idCanton)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Canton does not exist';
+				SET MESSAGE_TEXT = 'idCanton does not exist on Canton';
 	END IF;
-
-	select @idCanton := idCanton from idCanton where <<name in table>> = Canton;
 
 	INSERT INTO SimaplaDb.District(
 		`name`,
 		`Canton_idCanton`
 	)VALUES(
 		name,
-		@idCanton
+		idCanton
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -344,16 +329,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `EventInsert`(
 	in `location` varchar(255),
 	in `CoordX` decimal(11,7),
 	in `CoordY` decimal(11,7),
-	in `EventType` <<type>>
+	in `idEventType` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idEventType from idEventType where <<name in table>> = EventType
+	IF NOT EXISTS (select idEventType from EventType where idEventType = idEventType)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'EventType does not exist';
+				SET MESSAGE_TEXT = 'idEventType does not exist on EventType';
 	END IF;
-
-	select @idEventType := idEventType from idEventType where <<name in table>> = EventType;
 
 	INSERT INTO SimaplaDb.Event(
 		`name`,
@@ -368,7 +351,7 @@ BEGIN
 		location,
 		CoordX,
 		CoordY,
-		@idEventType
+		idEventType
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -452,30 +435,27 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.GroupXEventInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GroupXEventInsert`(
-	in `Group` <<type>>,
-	in `Event` <<type>>
+	in `idGroup` int(11),
+	in `idEvent` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idGroup from idGroup where <<name in table>> = Group
+	IF NOT EXISTS (select idGroup from Group where idGroup = idGroup)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Group does not exist';
+				SET MESSAGE_TEXT = 'idGroup does not exist on Group';
 	END IF;
-	IF NOT EXISTS(select idEvent from idEvent where <<name in table>> = Event
+	IF NOT EXISTS (select idEvent from Event where idEvent = idEvent)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Event does not exist';
+				SET MESSAGE_TEXT = 'idEvent does not exist on Event';
 	END IF;
-
-	select @idGroup := idGroup from idGroup where <<name in table>> = Group;
-	select @idEvent := idEvent from idEvent where <<name in table>> = Event;
 
 	INSERT INTO SimaplaDb.GroupXEvent(
 		`Group_idGroup`,
 		`Event_idEvent`
 	)VALUES(
-		@idGroup,
-		@idEvent
+		idGroup,
+		idEvent
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -487,30 +467,27 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.GroupXPersonInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `GroupXPersonInsert`(
-	in `Group` <<type>>,
-	in `Person` <<type>>
+	in `idGroup` int(11),
+	in `idPerson` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idGroup from idGroup where <<name in table>> = Group
+	IF NOT EXISTS (select idGroup from Group where idGroup = idGroup)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Group does not exist';
+				SET MESSAGE_TEXT = 'idGroup does not exist on Group';
 	END IF;
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
 	END IF;
-
-	select @idGroup := idGroup from idGroup where <<name in table>> = Group;
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
 
 	INSERT INTO SimaplaDb.GroupXPerson(
 		`Group_idGroup`,
 		`Person_idPerson`
 	)VALUES(
-		@idGroup,
-		@idPerson
+		idGroup,
+		idPerson
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -553,23 +530,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `InstrumentInsert`(
 	in `price` int(7),
 	in `color` varchar(10),
 	in `model` varchar(10),
-	in `InstrumentName` <<type>>,
-	in `Patrimony` <<type>>
+	in `idInstrumentName` int(11),
+	in `idPatrimony` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idInstrumentName from idInstrumentName where <<name in table>> = InstrumentName
+	IF NOT EXISTS (select idInstrumentName from InstrumentName where idInstrumentName = idInstrumentName)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'InstrumentName does not exist';
+				SET MESSAGE_TEXT = 'idInstrumentName does not exist on InstrumentName';
 	END IF;
-	IF NOT EXISTS(select idPatrimony from idPatrimony where <<name in table>> = Patrimony
+	IF NOT EXISTS (select idPatrimony from Patrimony where idPatrimony = idPatrimony)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Patrimony does not exist';
+				SET MESSAGE_TEXT = 'idPatrimony does not exist on Patrimony';
 	END IF;
-
-	select @idInstrumentName := idInstrumentName from idInstrumentName where <<name in table>> = InstrumentName;
-	select @idPatrimony := idPatrimony from idPatrimony where <<name in table>> = Patrimony;
 
 	INSERT INTO SimaplaDb.Instrument(
 		`serialNumber`,
@@ -583,8 +557,8 @@ BEGIN
 		price,
 		color,
 		model,
-		@idInstrumentName,
-		@idPatrimony
+		idInstrumentName,
+		idPatrimony
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -610,34 +584,49 @@ END
 DELIMITER ;
 
 DELIMITER //
+-- InstrumentNamesInsert
+DROP PROCEDURE IF EXISTS SimaplaDb.InstrumentNamesInsert;
+//
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InstrumentNamesInsert`(
+	in `name` varchar(45)
+)
+BEGIN
+	INSERT INTO SimaplaDb.InstrumentNames(
+		`name`
+	)VALUES(
+		name
+	);
+	SELECT LAST_INSERT_ID() AS `id`;
+END
+//
+DELIMITER ;
+
+DELIMITER //
 -- InstrumentXStudentInsert
 DROP PROCEDURE IF EXISTS SimaplaDb.InstrumentXStudentInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `InstrumentXStudentInsert`(
-	in `Instrument` <<type>>,
-	in `Person_Person` <<type>>
+	in `idInstrument` int(11),
+	in `Person_idPerson` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idInstrument from idInstrument where <<name in table>> = Instrument
+	IF NOT EXISTS (select idInstrument from Instrument where idInstrument = idInstrument)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Instrument does not exist';
+				SET MESSAGE_TEXT = 'idInstrument does not exist on Instrument';
 	END IF;
-	IF NOT EXISTS(select Person_idPerson from Person_idPerson where <<name in table>> = Person_Person
+	IF NOT EXISTS (select Person_idPerson from Student where Person_idPerson = Person_idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person_Person does not exist';
+				SET MESSAGE_TEXT = 'Person_idPerson does not exist on Student';
 	END IF;
-
-	select @idInstrument := idInstrument from idInstrument where <<name in table>> = Instrument;
-	select @Person_idPerson := Person_idPerson from Person_idPerson where <<name in table>> = Person_Person;
 
 	INSERT INTO SimaplaDb.InstrumentXStudent(
 		`Instrument_idInstrument`,
 		`Student_Person_idPerson`
 	)VALUES(
-		@idInstrument,
-		@Person_idPerson
+		idInstrument,
+		Person_idPerson
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -728,30 +717,26 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PersonInsert`(
 	in `birthdate` date,
 	in `password` varchar(45),
 	in `dateJoinedProgram` date,
-	in `SpecificAddress` <<type>>,
-	in `Email` <<type>>,
-	in `Phone` <<type>>
+	in `idSpecificAddress` int(11),
+	in `idEmail` int(11),
+	in `idPhone` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idSpecificAddress from idSpecificAddress where <<name in table>> = SpecificAddress
+	IF NOT EXISTS (select idSpecificAddress from SpecificAddress where idSpecificAddress = idSpecificAddress)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'SpecificAddress does not exist';
+				SET MESSAGE_TEXT = 'idSpecificAddress does not exist on SpecificAddress';
 	END IF;
-	IF NOT EXISTS(select idEmail from idEmail where <<name in table>> = Email
+	IF NOT EXISTS (select idEmail from Email where idEmail = idEmail)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Email does not exist';
+				SET MESSAGE_TEXT = 'idEmail does not exist on Email';
 	END IF;
-	IF NOT EXISTS(select idPhone from idPhone where <<name in table>> = Phone
+	IF NOT EXISTS (select idPhone from Phone where idPhone = idPhone)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Phone does not exist';
+				SET MESSAGE_TEXT = 'idPhone does not exist on Phone';
 	END IF;
-
-	select @idSpecificAddress := idSpecificAddress from idSpecificAddress where <<name in table>> = SpecificAddress;
-	select @idEmail := idEmail from idEmail where <<name in table>> = Email;
-	select @idPhone := idPhone from idPhone where <<name in table>> = Phone;
 
 	INSERT INTO SimaplaDb.Person(
 		`carnet`,
@@ -772,9 +757,9 @@ BEGIN
 		birthdate,
 		password,
 		dateJoinedProgram,
-		@idSpecificAddress,
-		@idEmail,
-		@idPhone
+		idSpecificAddress,
+		idEmail,
+		idPhone
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -850,23 +835,21 @@ DROP PROCEDURE IF EXISTS SimaplaDb.ProvinceInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ProvinceInsert`(
 	in `name` varchar(45),
-	in `Country` <<type>>
+	in `idCountry` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idCountry from idCountry where <<name in table>> = Country
+	IF NOT EXISTS (select idCountry from Country where idCountry = idCountry)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Country does not exist';
+				SET MESSAGE_TEXT = 'idCountry does not exist on Country';
 	END IF;
-
-	select @idCountry := idCountry from idCountry where <<name in table>> = Country;
 
 	INSERT INTO SimaplaDb.Province(
 		`name`,
 		`Country_idCountry`
 	)VALUES(
 		name,
-		@idCountry
+		idCountry
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -878,21 +861,19 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.ResponsibleInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ResponsibleInsert`(
-	in `Person` <<type>>
+	in `idPerson` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
 	END IF;
-
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
 
 	INSERT INTO SimaplaDb.Responsible(
 		`Person_idPerson`
 	)VALUES(
-		@idPerson
+		idPerson
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -931,30 +912,27 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.ScheduleXGroupInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ScheduleXGroupInsert`(
-	in `Schedule` <<type>>,
-	in `Group` <<type>>
+	in `idSchedule` int(11),
+	in `idGroup` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idSchedule from idSchedule where <<name in table>> = Schedule
+	IF NOT EXISTS (select idSchedule from Schedule where idSchedule = idSchedule)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Schedule does not exist';
+				SET MESSAGE_TEXT = 'idSchedule does not exist on Schedule';
 	END IF;
-	IF NOT EXISTS(select idGroup from idGroup where <<name in table>> = Group
+	IF NOT EXISTS (select idGroup from Group where idGroup = idGroup)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Group does not exist';
+				SET MESSAGE_TEXT = 'idGroup does not exist on Group';
 	END IF;
-
-	select @idSchedule := idSchedule from idSchedule where <<name in table>> = Schedule;
-	select @idGroup := idGroup from idGroup where <<name in table>> = Group;
 
 	INSERT INTO SimaplaDb.ScheduleXGroup(
 		`Schedule_idSchedule`,
 		`Group_idGroup`
 	)VALUES(
-		@idSchedule,
-		@idGroup
+		idSchedule,
+		idGroup
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -967,23 +945,21 @@ DROP PROCEDURE IF EXISTS SimaplaDb.SpecificAddressInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SpecificAddressInsert`(
 	in `address` varchar(80),
-	in `District` <<type>>
+	in `idDistrict` int(11)
 )
 BEGIN
-	IF NOT EXISTS(select idDistrict from idDistrict where <<name in table>> = District
+	IF NOT EXISTS (select idDistrict from District where idDistrict = idDistrict)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'District does not exist';
+				SET MESSAGE_TEXT = 'idDistrict does not exist on District';
 	END IF;
-
-	select @idDistrict := idDistrict from idDistrict where <<name in table>> = District;
 
 	INSERT INTO SimaplaDb.SpecificAddress(
 		`address`,
 		`District_idDistrict`
 	)VALUES(
 		address,
-		@idDistrict
+		idDistrict
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -995,20 +971,18 @@ DELIMITER //
 DROP PROCEDURE IF EXISTS SimaplaDb.StudentInsert;
 //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `StudentInsert`(
-	in `Person` <<type>>,
+	in `idPerson` int(11),
 	in `isLefty` bit(1),
 	in `hasAdequacy` bit(1),
 	in `specialCondition` varchar(60),
 	in `medication` varchar(60)
 )
 BEGIN
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
 		THEN
 			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
 	END IF;
-
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
 
 	INSERT INTO SimaplaDb.Student(
 		`Person_idPerson`,
@@ -1017,11 +991,43 @@ BEGIN
 		`specialCondition`,
 		`medication`
 	)VALUES(
-		@idPerson,
+		idPerson,
 		isLefty,
 		hasAdequacy,
 		specialCondition,
 		medication
+	);
+	SELECT LAST_INSERT_ID() AS `id`;
+END
+//
+DELIMITER ;
+
+DELIMITER //
+-- TeacherInsert
+DROP PROCEDURE IF EXISTS SimaplaDb.TeacherInsert;
+//
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TeacherInsert`(
+	in `idPerson` int(11),
+	in `idInstrumentName` int(11)
+)
+BEGIN
+	IF NOT EXISTS (select idPerson from Person where idPerson = idPerson)
+		THEN
+			SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = 'idPerson does not exist on Person';
+	END IF;
+	IF NOT EXISTS (select idInstrumentName from InstrumentName where idInstrumentName = idInstrumentName)
+		THEN
+			SIGNAL SQLSTATE '45000'
+				SET MESSAGE_TEXT = 'idInstrumentName does not exist on InstrumentName';
+	END IF;
+
+	INSERT INTO SimaplaDb.Teacher(
+		`Person_idPerson`,
+		`InstrumentName_idInstrumentName`
+	)VALUES(
+		idPerson,
+		idInstrumentName
 	);
 	SELECT LAST_INSERT_ID() AS `id`;
 END
@@ -1080,41 +1086,6 @@ END
 DELIMITER ;
 
 DELIMITER //
--- TeacherInsert
-DROP PROCEDURE IF EXISTS SimaplaDb.TeacherInsert;
-//
-CREATE DEFINER=`root`@`localhost` PROCEDURE `TeacherInsert`(
-	in `Person` <<type>>,
-	in `InstrumentName` <<type>>
-)
-BEGIN
-	IF NOT EXISTS(select idPerson from idPerson where <<name in table>> = Person
-		THEN
-			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'Person does not exist';
-	END IF;
-	IF NOT EXISTS(select idInstrumentName from idInstrumentName where <<name in table>> = InstrumentName
-		THEN
-			SIGNAL SQLSTATE '45000'
-				SET MESSAGE_TEXT = 'InstrumentName does not exist';
-	END IF;
-
-	select @idPerson := idPerson from idPerson where <<name in table>> = Person;
-	select @idInstrumentName := idInstrumentName from idInstrumentName where <<name in table>> = InstrumentName;
-
-	INSERT INTO SimaplaDb.Teacher(
-		`Person_idPerson`,
-		`InstrumentName_idInstrumentName`
-	)VALUES(
-		@idPerson,
-		@idInstrumentName
-	);
-	SELECT LAST_INSERT_ID() AS `id`;
-END
-//
-DELIMITER ;
-
-DELIMITER //
 -- TeachersInsert
 DROP PROCEDURE IF EXISTS SimaplaDb.TeachersInsert;
 //
@@ -1155,3 +1126,4 @@ BEGIN
 END
 //
 DELIMITER ;
+
