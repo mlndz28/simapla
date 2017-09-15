@@ -922,3 +922,16 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+Delimiter //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `personInfoGet`(
+	in idPerson int
+)
+BEGIN
+	SELECT carnet, cedula, name, lastname, birthdate, dateJoinedProgram
+	FROM `Person`
+	WHERE `Person`.`idPerson` = idPerson;
+END
+//
+Delimiter ;
