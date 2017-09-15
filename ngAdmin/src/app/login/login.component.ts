@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
           if (!data.error && data.token.length>0) {
             localStorage.setItem('isLoggedin', 'true');
             localStorage.setItem('token', data.token);
+            localStorage.setItem('uid', data.uid);
             this.router.navigateByUrl('/dashboard');
           }
           this.isRequestingLogin = false;

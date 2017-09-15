@@ -40,7 +40,11 @@ module.exports = {
         }
 
         if (data[0].length > 0) {
+          debug('data[0]');
           debug(data[0][0]);
+          debug(JSON.stringify(data[0][0]));
+          debug('data[0].idPerson: ' + data[0][0]['idPerson']);
+          debug('data[0].role: ' + data[0][0].role);
           let idPerson = data[0][0].idPerson;
           let role = data[0][0].role;
           return res.json({
