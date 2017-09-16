@@ -35,12 +35,25 @@ module.exports = {
 
         let data = mysqlResponse.data;
 
-        if (typeof data[0] == 'undefined' || data[0].length == 0) {
+        if (typeof data == 'undefined' || data.length == 0) {
           return res.json({error: "Los credenciales no son correctos."});
         }
 
-        if (data[0].length > 0) {
-          return res.json({error:false, token:jwtService.issue({carne: data[0].carnet, role: data[0].role})});
+        if (data.length > 0) {
+          debug('data');
+          debug(data);
+          debug(JSON.stringify(data));
+          debug('data.idPerson: ' + data['idPerson']);
+          debug('data.role: ' + data.role);
+          let idPerson = data.idPerson;
+          let role = data.role;
+          return res.json({
+            error:false,
+            token:jwtService.issue({uid: idPerson, carnet: carnet, role: role}),
+            uid: idPerson,
+            carnet: carnet,
+            role: role
+          });
         }
         return res.json({error: "Error desconocido"});
       });

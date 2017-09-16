@@ -11,6 +11,7 @@ var dir = config.routesDir;
 
 // Request to api/routes/tables (service must be up)
 http.request(options, function(res) {
+	console.log("Here");
     if (res.statusCode != 200) {
         console.log("Error retrieving data. Response status: " + res.statusCode);
     }
@@ -30,9 +31,8 @@ http.request(options, function(res) {
 
 // Main function
 function generate(procedures) {
-    mkdirp(dir);
-
-    // rearrange procedures accordying so several methods can be written in the same controller
+	mkdirp(dir);
+    // rearrange accordying procedures so several methods can be written in the same controller
     let tempProcedures = [];
     for (i1 = 0; i1 < procedures.length; i1++) {
         let wholeName = procedures[i1].name.split(/(?=[A-Z])/); // split by caps

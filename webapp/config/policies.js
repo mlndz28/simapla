@@ -28,12 +28,36 @@ module.exports.policies = {
 
   // '*': true,
 
-    AdminController: {
+    'AdminController': {
         '*': 'sessionAuth'
     },
-
-    MyselfController: {
+    'MyselfController': {
         '*': 'sessionAuth'
+    },
+    'SignupController': {
+      'signupStudent': 'jwtAuth',
+      'signupMultiple': 'jwtAuth'
+    },
+
+    // De momento todo el ws pasa por
+    // autenticación via jwt
+    'Ws/AdminController': {
+      '*': 'jwtAuth'
+    },
+    'Ws/DistrictController': {
+      '*': 'jwtAuth'
+    },
+    'Ws/InstrumentController': {
+      '*': 'jwtAuth'
+    },
+    'Ws/ManagementPositionsController': {
+      '*': 'jwtAuth'
+    },
+    'Ws/MyselfController': {
+      '*': 'jwtAuth'
+    },
+    'Ws/PersonController': {
+      '*': 'jwtAuth'
     }
 
   /***************************************************************************

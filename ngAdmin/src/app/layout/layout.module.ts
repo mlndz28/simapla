@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,6 +12,7 @@ import { HeaderComponent, SidebarComponent } from '../shared';
   imports: [
     CommonModule,
     NgbModule.forRoot(),
+    HttpClientModule,
     LayoutRoutingModule,
     TranslateModule
   ],
