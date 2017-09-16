@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     getUserInfo() {
       let url = `http://localhost:1337/ws/personInfo/${localStorage.getItem('uid')}`;
       let auth = 'Bearer ' + localStorage.getItem('token');
-      let headers = new HttpHeaders({'Authorization': auth});
+      let headers = new HttpHeaders().set('Authorization', auth);
 
       this.http.get(
         url,
