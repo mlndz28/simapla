@@ -5,11 +5,21 @@
         <div class="col-lg-6">
 
             <form role="form">
-                <fieldset class="form-group">
-                    <label>Text Input</label>
-                    <input class="form-control">
-                    <p class="help-block">Example block-level help text here.</p>
-                </fieldset>
+              <fieldset class="form-group">
+                <label>Text Input</label>
+                  <input class="form-control">
+                  <p class="help-block">Example block-level help text here.</p>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <label>Ng Select</label>
+                <ng-select
+                    [multiple]="false"
+                    name="mySelect"
+                    [options]="ngSelectOptions"
+                    [(ngModel)]="mySelectValue">
+                </ng-select>
+              </fieldset>
 
                 <fieldset class="form-group">
                     <label>Text Input with Placeholder</label>

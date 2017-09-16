@@ -9,7 +9,12 @@ import { routerTransition } from '../../../router.animations';
 })
 export class AgrupacionesComponent implements OnInit {
 
-  constructor() { }
+  mySelectValue = "";
+  ngSelectOptions;
+
+  constructor() {
+    this.ngSelectOptions = [{value:'A', label:'A'},{value:'C', label:'C'},{value:'B', label:'B'}];
+  }
 
   ngOnInit() {
   }
