@@ -17,21 +17,30 @@ header ```Authorization``` asignado a ```Bearer <token>```, se sustituye
 ̣̣ _** El login ya devuelve el token_
 
 ## Commits Relevantes
+_aka changelog_
  
- - init with jwt
-    
-    f780d83832da9107f3382e2b21033af5e7351db4
-
- - add jwtAuth
+ - init with jwt: 
  
-    e0e3b96ca139a8959d928645b09ca59c64630c0e
-
- - add jwt to policies and routes
+   [f780d8](../../../commit/f780d83832da9107f3382e2b21033af5e7351db4)
+   
+   ---
+   
+ - add jwtAuth: 
  
-    82da75890d6de191b6a16b7ed7d58607c7446a59
-    
- - enable authorization header on sails
+   [e0e3b9](../../../commit/e0e3b96ca139a8959d928645b09ca59c64630c0e)
+   
+   ---
+   
+ - add jwt to policies and routes: 
  
-    4a7358ef1972dca679dad10fa698b653d6d045fb
+   [82da75](../../../commit/82da75890d6de191b6a16b7ed7d58607c7446a59)
+   
+   ---
+   
+ - enable authorization header on sails: 
+ 
+   [4a7358](../../../commit/4a7358ef1972dca679dad10fa698b653d6d045fb)
+   
+   ---
     
  Talvez(muy probable) hay otros commits, creo que esos son los más importantes
