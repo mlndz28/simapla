@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //import { SelectModule } from 'ng2-select-compat';
 import { SelectModule } from 'angular2-select';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 
 import { InstrumentosRoutingModule } from './instrumentos-routing.module';
@@ -17,7 +18,8 @@ import { PageHeaderModule } from './../../../shared';
 	FormsModule,
 	HttpModule,
 	PageHeaderModule,
-	SelectModule
+	SelectModule,
+	ToastModule.forRoot()
   ],
   declarations: [InstrumentosComponent]
 })

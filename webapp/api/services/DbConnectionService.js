@@ -149,8 +149,12 @@ function onConnect(statement, body, connection, res, callback) {
 			var resObject = new Object();
 			resObject["error"] = "none";
 			resObject["isError"] = false;
-			resObject["data"] = results[0];
-			resObject["status"] = results[1];
+			if (results.length != 2) {
+				resObject["data"] = results;
+			} else {
+				resObject["data"] = results[0];
+				resObject["status"] = results[1];
+			}
 			if (typeof callback !== 'undefined') {
 				callback(resObject, res);
 			} else {

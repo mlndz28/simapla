@@ -169,3 +169,11 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+DROP procedure IF EXISTS `patrimonyGet`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `patrimonyGet`()
+BEGIN
+	SELECT idPatrimony as `id`, name FROM `SimaplaDb`.`Patrimony`;
+END$$
+DELIMITER ;
