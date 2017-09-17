@@ -27,7 +27,7 @@ module.exports = {
         debug(`mysqlResponse:`);
         debug(mysqlResponse);
 
-        if (mysqlResponse.error !== 'none') {
+        if (mysqlResponse.error) {
           debug("Error: ");
           debug(mysqlResponse.error);
           return res.json({error: mysqlResponse.error});

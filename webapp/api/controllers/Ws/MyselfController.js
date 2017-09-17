@@ -45,7 +45,7 @@ module.exports = {
         }
         let query = `select * from ` + view + ` v where v.carnet = "`+req.session.me.carnet+`" limit 1;`;
         connection.query(query, {}, res, (resObject, res) => {
-            if (resObject.error == 'none') {
+            if (!resObject.error) {
                 let data = resObject.data;
                 console.log("LOG MyselfController resObject.data: "+JSON.stringify(resObject.data));
                 if (typeof data[0] != 'undefined'){

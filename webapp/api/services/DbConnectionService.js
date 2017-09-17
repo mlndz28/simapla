@@ -147,13 +147,12 @@ function onConnect(statement, body, connection, res, callback) {
 
 		if (!err) {
 			var resObject = new Object();
-			resObject["error"] = "none";
-			resObject["isError"] = false;
-			if (results.length != 2) {
-				resObject["data"] = results;
-			} else {
+			resObject["error"] = null;
+			if (results.length == 2) {
 				resObject["data"] = results[0];
 				resObject["status"] = results[1];
+			} else {
+				resObject["data"] = results;
 			}
 			if (typeof callback !== 'undefined') {
 				callback(resObject, res);
@@ -165,7 +164,7 @@ function onConnect(statement, body, connection, res, callback) {
 			if (!callback) {
 				onError(err, res);
 			} else if (callback.length == 3) {
-				resObject["isError"] = true;
+				resObject["error"] = "unknown";
 				callback(resObject, res, err);
 			}
 		}

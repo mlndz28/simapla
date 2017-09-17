@@ -25,7 +25,7 @@ var getProcedureNames = function (connection, res) {
 	return {
 		json: function (obj) {
 
-			if(obj.error != "none"){
+			if(obj.error){
 				res.json({data: [], error: obj.error});
 				return;
 			}

@@ -51,7 +51,7 @@ module.exports = {
       let query = `call SimaplaDb.registerStudent(${values})`;
       console.log(query);
       connection.query(query, {}, res, (resObject, res) => {
-          if (resObject.error == 'none') {
+          if (!resObject.error) {
               if (typeof resObject.data[3] != 'undefined'){
                   req.session.logged = true;
                   req.session.me = {};
@@ -112,7 +112,7 @@ module.exports = {
         let query = `call SimaplaDb.register${roleName}(${values})`;
         console.log(query);
         connection.query(query, {}, res, (resObject, res) => {
-            if (resObject.error == 'none') {
+            if (!resObject.error) {
                 if (typeof resObject.data != 'undefined' && typeof resObject.data[3] != 'undefined'){
                     mailSrv.simpleMail(
                         "Simapla Digital <info@simapladigital.org>",
@@ -144,7 +144,7 @@ function generateCarnet(){
 let isFirstSignup = (res, first, notFirst) => {
   let query = `SELECT count(*) as count FROM Person;`;
   DbConnectionService.query(query, {}, res, (resObject, res, err) => {
-    if (resObject.isError) res.send(err);
+    if (resObject.error) res.send(err);
 
     if (resObject.data.count > 0) first();
     else notFirst();
