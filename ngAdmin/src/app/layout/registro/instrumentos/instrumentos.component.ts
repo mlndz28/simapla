@@ -1,24 +1,24 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
-import { Http, Response, URLSearchParams} from '@angular/http';
-
 import { ToastsManager, Toast } from 'ng2-toastr';
+
+import { httpService } from '../../../shared/services/http';
 
 /** Dropdown selects */
 class Select {
-	/** Dropdown options */
+    /** Dropdown options */
     data: any[];
-	/** Current selected value */
+    /** Current selected value */
     selected: any;
-	/** Whether the value is ready to be submitted or not */
+    /** Whether the value is ready to be submitted or not */
     invalid: boolean;
 }
 
 /** Data input */
 class Input {
-	/** Current input value */
+    /** Current input value */
     value: string;
-	/** Whether the value is ready to be submitted or not */
+    /** Whether the value is ready to be submitted or not */
     invalid: boolean;
 }
 
@@ -27,7 +27,7 @@ class Input {
     templateUrl: './instrumentos.component.html',
     styleUrls: ['./instrumentos.component.scss'],
     animations: [routerTransition()],
-    providers: [Select, Input]
+    providers: [Select, Input, httpService]
 })
 
 export class InstrumentosComponent implements OnInit {
@@ -39,7 +39,7 @@ export class InstrumentosComponent implements OnInit {
     model: Input = new Input();
     price: Input = new Input();
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private http: Http) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private http: httpService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -80,10 +80,9 @@ export class InstrumentosComponent implements OnInit {
 	 * Retrieve the list of available instruments types in the database.
 	 */
     getInstrumentNames() {
-        return this.http.get('http://localhost:1337/ws/instrument/name').map((res: Response) => res.json())
-            .subscribe(req => {
-                this.instrument.data = req.data.map(function(obj) { return { label: obj.name, value: obj.id }; }).sort(this.sortSelect);
-            });
+        return this.http.get('instrument/name', {}, { "name": "label", "id": "value" }).then(
+            response => this.instrument.data = response.sort(this.sortSelect)
+        );
     }
 
 
@@ -91,32 +90,36 @@ export class InstrumentosComponent implements OnInit {
      * Retrieve the list of available patrimonies in the database.
      */
     getPatrimony() {
-        return this.http.get('http://localhost:1337/ws/patrimony').map((res: Response) => res.json())
-            .subscribe(req => {
-                this.patrimony.data = req.data.map(function(obj) { return { label: obj.name, value: obj.id }; }).sort(this.sortSelect);
-            });
+        return this.http.get('patrimony', {}, { "name": "label", "id": "value" }).then(
+            response => this.patrimony.data = response.sort(this.sortSelect)
+        );
+
     }
 
 	/**
 	 * Insert an instrument in the database.
 	 */
     insertInstrument() {
-        let body = new URLSearchParams();
-        body.set('serialNumber', this.serial.value);
-        body.set('price', this.price.value);
-        body.set('color', this.color.value);
-        body.set('model', this.model.value);
-        body.set('idInstrumentName', this.instrument.selected);
-        body.set('idPatrimony', this.patrimony.selected);
 
-        return this.http.post('http://localhost:1337/ws/instrument', body).map((res: Response) => res.json())
-            .subscribe(req => {
-                if (!req.error) {
+        let body = {
+            serialNumber: this.serial.value,
+            price: this.price.value,
+            color: this.color.value,
+            model: this.model.value,
+            idInstrumentName: this.instrument.selected,
+            idPatrimony: this.patrimony.selected
+        };
+
+        return this.http.post('instrument', body, {}).then(
+            response => {
+                console.log(response);
+                if (!response.error) {
                     this.toastr.success('Instrumento registrado');
-                }else{
-					this.toastr.error('El instrumento no se ha podido registrar');
-				}
-            });
+                } else {
+                    this.toastr.error('El instrumento no se ha podido registrar');
+                }
+            }
+        );
     }
 
 }
