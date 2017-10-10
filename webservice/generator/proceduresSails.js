@@ -143,12 +143,13 @@ function routeCode(procedure) {
 				addFunction("\tconnection.query(\"" + query(procedure.name + method.name, method.parameters) + "\", req.body, res);");
         }
 		if (i1 != procedure.methods.length - 1){
-			addFunction("\t},");
+			addFunction("},");
 		}else{
-			addFunction("\t}");
+			addFunction("}");
 		}
     }
 
+	add("sails.config.policies['Ws/gen/procedures/" + controllerName + "'] = { '*': 'jwtAuth' };\n");
 	add("module.exports = {");
 	add(functionBuild);
 	add("}");

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
 import { ToastsManager, Toast } from 'ng2-toastr';
 
-import { httpService } from '../../../shared/services/http';
+import { httpService } from '../../../shared/services/http.service';
 
 /** Dropdown selects */
 class Select {

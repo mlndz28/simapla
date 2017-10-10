@@ -6,3 +6,5 @@ then
 else
 printf "Webapp must be running before generating the controllers\n\n\tTip: use 'sails lift'\n\n"
 fi
+
+printf "Done\n\nPlease restart the Sails app\n\n"

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams} from '@angular/http';
+import { Http, Response, URLSearchParams, Headers} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -7,8 +7,12 @@ import 'rxjs/add/operator/toPromise';
 export class httpService {
 
     private baseUrl = "http://localhost:1337/ws/";
+    private options;
 
     constructor(private http: Http) {
+        this.options = {
+            headers: new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') })
+        };
     }
 
 	/**
@@ -18,7 +22,8 @@ export class httpService {
 	 * @returns Promise on server response.
 	 */
     get(url, params, map): Promise<any> {
-        return this.http.get(this.parseURL(url, params)).toPromise().then(
+        console.log(this.options);
+        return this.http.get(this.parseURL(url, params), this.options).toPromise().then(
             response => response.json().data.map(this.mapResponse(map))
         );
     }
@@ -30,7 +35,7 @@ export class httpService {
 	 * @returns Promise on server response.
 	 */
     post(url, body, map): Promise<any> {
-        return this.http.post(this.parseURL(url, {}), this.toURLSearchParams(body)).toPromise().then(
+        return this.http.post(this.parseURL(url, {}), this.toURLSearchParams(body), this.options).toPromise().then(
             response => response.json().data.map(this.mapResponse(map))
         );
     }
@@ -42,7 +47,7 @@ export class httpService {
 	 * @returns Promise on server response.
 	 */
     delete(url, params, map): Promise<any> {
-        return this.http.delete(this.parseURL(url, params)).toPromise().then(
+        return this.http.delete(this.parseURL(url, params), this.options).toPromise().then(
             response => response.json().data.map(this.mapResponse(map))
         );
     }
@@ -54,7 +59,7 @@ export class httpService {
 	 * @returns Promise on server response.
 	 */
     put(url, body, map): Promise<any> {
-        return this.http.put(this.parseURL(url, {}), this.toURLSearchParams(body)).toPromise().then(
+        return this.http.put(this.parseURL(url, {}), this.toURLSearchParams(body), this.options).toPromise().then(
             response => response.json().data.map(this.mapResponse(map))
         );
     }
