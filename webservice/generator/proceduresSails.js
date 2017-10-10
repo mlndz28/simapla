@@ -11,7 +11,6 @@ var dir = config.routesDir;
 
 // Request to api/routes/tables (service must be up)
 http.request(options, function(res) {
-	console.log("Here");
     if (res.statusCode != 200) {
         console.log("Error retrieving data. Response status: " + res.statusCode);
     }
