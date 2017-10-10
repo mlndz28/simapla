@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
           if (!data.data[0][0]) console.log('no data');
           let response = data.data[0][0];
 
-          if (data.error == 'none' && response.name.length>0 && response.lastname.length>0) {
+          if (!data.error && response.name.length>0 && response.lastname.length>0) {
             this.name = `${response.name} ${response.lastname}`;
             console.log(this.name);
           }

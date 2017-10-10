@@ -1,0 +1,56 @@
+<div [@routerTransition]>
+	<app-page-header [heading]="'Registro de instrumentos'" [icon]="'fa-edit'"></app-page-header>
+
+	<div class="row">
+		<div class="col-lg-6">
+
+			<form role="form" id="needs-validation" (ngSubmit)="register()" novalidate>
+
+				<div class="form-group">
+					<label class="form-control-label" for="instrumentSuccess">Instrumento</label>
+					<ng-select id="instrumentSuccess" [multiple]="false" [options]="instrument.data" name="instrumentsSelect" [(ngModel)]="instrument.selected" required></ng-select>
+					<div class="form-control {{instrument.invalid?'is-invalid':''}}" style="display: none;"></div>
+					<div class="invalid-feedback">Campo requerido</div>
+				</div>
+
+				<fieldset class="form-group">
+					<label>Patrimonio</label>
+					<ng-select class="is-invalid" [multiple]="false" [options]="patrimony.data" name="patrimonySelect" [(ngModel)]="patrimony.selected"></ng-select>
+					<div class="form-control {{patrimony.invalid?'is-invalid':''}}" style="display: none;"></div>
+					<div class="invalid-feedback">Campo requerido</div>
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Número de serie</label>
+					<input class="form-control {{serial.invalid?'is-invalid':''}}" [(ngModel)]="serial.value" name="serial">
+					<div class="invalid-feedback">Campo requerido</div>
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Precio</label>
+					<input class="form-control {{price.invalid?'is-invalid':''}}" type="number" min="0" step="1000" [(ngModel)]="price.value" name="price" required>
+					<div class="invalid-feedback">Campo requerido</div>
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Modelo</label>
+					<input class="form-control {{model.invalid?'is-invalid':''}}" [(ngModel)]="model.value" name="model">
+					<div class="invalid-feedback">Campo requerido</div>
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label>Color</label>
+					<input class="form-control {{color.invalid?'is-invalid':''}}" [(ngModel)]="color.value" name="color">
+					<div class="invalid-feedback">Campo requerido</div>
+				</fieldset>
+
+				<button type="submit" class="btn btn-secondary">Registrar</button>
+				<button type="reset" class="btn btn-secondary">Reiniciar</button>
+
+
+			</form>
+
+		</div>
+	</div>
+	<!-- /.row -->
+</div>

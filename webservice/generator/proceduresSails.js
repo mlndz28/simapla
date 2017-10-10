@@ -30,9 +30,8 @@ http.request(options, function(res) {
 
 // Main function
 function generate(procedures) {
-    mkdirp(dir);
-
-    // rearrange procedures accordying so several methods can be written in the same controller
+	mkdirp(dir);
+    // rearrange accordying procedures so several methods can be written in the same controller
     let tempProcedures = [];
     for (i1 = 0; i1 < procedures.length; i1++) {
         let wholeName = procedures[i1].name.split(/(?=[A-Z])/); // split by caps
@@ -144,12 +143,13 @@ function routeCode(procedure) {
 				addFunction("\tconnection.query(\"" + query(procedure.name + method.name, method.parameters) + "\", req.body, res);");
         }
 		if (i1 != procedure.methods.length - 1){
-			addFunction("\t},");
+			addFunction("},");
 		}else{
-			addFunction("\t}");
+			addFunction("}");
 		}
     }
 
+	add("sails.config.policies['Ws/gen/procedures/" + controllerName + "'] = { '*': 'jwtAuth' };\n");
 	add("module.exports = {");
 	add(functionBuild);
 	add("}");

@@ -155,6 +155,25 @@ BEGIN
 	Person p inner join Roles ur
 	on p.idPerson = ur.idPerson
 	where p.carnet = pCarnet and pPwd = p.password;
-END	
+END
 //
 Delimiter ;
+
+DROP procedure IF EXISTS `instrumentNameGet`;
+
+DELIMITER $$
+USE `SimaplaDb`$$
+CREATE PROCEDURE `instrumentNameGet` ()
+BEGIN
+	SELECT idInstrumentName as `id`, name FROM `SimaplaDb`.`InstrumentName`;
+END$$
+
+DELIMITER ;
+
+DROP procedure IF EXISTS `patrimonyGet`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `patrimonyGet`()
+BEGIN
+	SELECT idPatrimony as `id`, name FROM `SimaplaDb`.`Patrimony`;
+END$$
+DELIMITER ;

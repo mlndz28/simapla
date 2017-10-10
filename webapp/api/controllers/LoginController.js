@@ -27,7 +27,7 @@ module.exports = {
         debug(`mysqlResponse:`);
         debug(mysqlResponse);
 
-        if (mysqlResponse.error !== 'none') {
+        if (mysqlResponse.error) {
           debug("Error: ");
           debug(mysqlResponse.error);
           return res.json({error: mysqlResponse.error});
@@ -35,18 +35,18 @@ module.exports = {
 
         let data = mysqlResponse.data;
 
-        if (typeof data[0] == 'undefined' || data[0].length == 0) {
+        if (typeof data == 'undefined' || data.length == 0) {
           return res.json({error: "Los credenciales no son correctos."});
         }
 
-        if (data[0].length > 0) {
-          debug('data[0]');
-          debug(data[0][0]);
-          debug(JSON.stringify(data[0][0]));
-          debug('data[0].idPerson: ' + data[0][0]['idPerson']);
-          debug('data[0].role: ' + data[0][0].role);
-          let idPerson = data[0][0].idPerson;
-          let role = data[0][0].role;
+        if (data.length > 0) {
+          debug('data');
+          debug(data);
+          debug(JSON.stringify(data));
+          debug('data.idPerson: ' + data['idPerson']);
+          debug('data.role: ' + data.role);
+          let idPerson = data.idPerson;
+          let role = data.role;
           return res.json({
             error:false,
             token:jwtService.issue({uid: idPerson, carnet: carnet, role: role}),
