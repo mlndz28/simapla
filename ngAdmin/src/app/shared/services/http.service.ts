@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewContainerRef } from '@angular/core';
 import { Http, Response, URLSearchParams, Headers} from '@angular/http';
+import { ToastsManager, Toast } from 'ng2-toastr';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -9,10 +10,16 @@ export class httpService {
     private baseUrl = "http://localhost:1337/ws/";
     private options;
 
-    constructor(private http: Http) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private http: Http) {
+        this.toastr.setRootViewContainerRef(vcr);
         this.options = {
             headers: new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('token') })
         };
+    }
+
+    handleError(error){
+      this.toastr.error(`Ha ocurrido un error de red`);
+      console.debug(`ERROR: ${JSON.stringify(error)}`);
     }
 
 	/**
@@ -23,9 +30,11 @@ export class httpService {
 	 */
     get(url, params, map): Promise<any> {
         console.log(this.options);
-        return this.http.get(this.parseURL(url, params), this.options).toPromise().then(
+        return this.http.get(this.parseURL(url, params), this.options).toPromise()
+        .then(
             response => response.json().data.map(this.mapResponse(map))
-        );
+        )
+        .catch(e => this.handleError(e));
     }
 
 	/**
@@ -35,9 +44,11 @@ export class httpService {
 	 * @returns Promise on server response.
 	 */
     post(url, body, map): Promise<any> {
-        return this.http.post(this.parseURL(url, {}), this.toURLSearchParams(body), this.options).toPromise().then(
+        return this.http.post(this.parseURL(url, {}), this.toURLSearchParams(body), this.options).toPromise()
+        .then(
             response => response.json().data.map(this.mapResponse(map))
-        );
+        )
+        .catch(e => this.handleError(e));;
     }
 
 	/**
@@ -47,9 +58,11 @@ export class httpService {
 	 * @returns Promise on server response.
 	 */
     delete(url, params, map): Promise<any> {
-        return this.http.delete(this.parseURL(url, params), this.options).toPromise().then(
+        return this.http.delete(this.parseURL(url, params), this.options).toPromise()
+        .then(
             response => response.json().data.map(this.mapResponse(map))
-        );
+        )
+        .catch(e => this.handleError(e));;
     }
 
 	/**
@@ -59,9 +72,11 @@ export class httpService {
 	 * @returns Promise on server response.
 	 */
     put(url, body, map): Promise<any> {
-        return this.http.put(this.parseURL(url, {}), this.toURLSearchParams(body), this.options).toPromise().then(
+        return this.http.put(this.parseURL(url, {}), this.toURLSearchParams(body), this.options).toPromise()
+        .then(
             response => response.json().data.map(this.mapResponse(map))
-        );
+        )
+        .catch(e => this.handleError(e));;
     }
 
 	/**

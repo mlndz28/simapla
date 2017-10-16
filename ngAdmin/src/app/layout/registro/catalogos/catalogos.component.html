@@ -1,0 +1,8 @@
+<p>
+  catalogos works!
+</p>
+<ng2-smart-table [settings]="settingsInstrumentNames"
+  [source]="sourceInstrumentNames"
+  (createConfirm)="onCreateConfirmInstrumentName($event)" 
+  (editConfirm)="onEditConfirmInstrumentName($event)" 
+  (deleteConfirm)="onDeleteConfirmInstrumentName($event)"></ng2-smart-table>

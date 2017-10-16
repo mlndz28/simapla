@@ -1,0 +1,82 @@
+:host /deep/ .widgets {
+  .smart-table-container {
+    width: 100%;
+  }
+}
+
+:host /deep/ {
+  ng2-smart-table {
+    th, td {
+      border: 1px solid #bbb !important;
+      line-height: 35px;
+      vertical-align: middle;
+      font-weight: 500 !important;
+    }
+
+    table tr td {
+      padding: 0 8px;
+    }
+
+    color: #333;
+
+    input {
+      line-height: 1.5 !important;
+    }
+
+    ng2-smart-table-cell {
+      color: #333;
+      line-height: 18px;
+    }
+
+    tbody {
+      tr {
+        color: #333;
+      }
+      tr:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    a.ng2-smart-sort-link {
+      font-size: 14px !important;
+      color: #333;
+      font-weight: 500;
+      &.sort {
+        font-weight: 500 !important;
+
+        &::after {
+          border-bottom-color: #333 !important;
+        }
+      }
+    }
+
+    .ng2-smart-actions {
+        width: 10px;
+      text-align: center;
+      .actions {
+        float: none;
+        text-align: center;
+      }
+    }
+
+    .ng2-smart-actions-title-add {
+      text-align: center;
+    }
+
+    a.ng2-smart-action, .ng2-smart-title {
+      font-size: 14px !important;
+      color: #333;
+      padding: 0 5px;
+      display: inline-block;
+
+      &.ng2-smart-action-add-add {
+        font-size: 25px !important;
+      }
+    }
+
+    nav.ng2-smart-pagination-nav {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
