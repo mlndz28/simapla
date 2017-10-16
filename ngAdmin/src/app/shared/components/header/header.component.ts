@@ -37,8 +37,8 @@ export class HeaderComponent implements OnInit {
       )
       .subscribe(
         (data : any) => {
-          if (!data.data[0][0]) console.log('no data');
-          let response = data.data[0][0];
+          if (!data.data[0]) console.log('no data');
+          let response = data.data[0];
 
           if (!data.error && response.name.length>0 && response.lastname.length>0) {
             this.name = `${response.name} ${response.lastname}`;

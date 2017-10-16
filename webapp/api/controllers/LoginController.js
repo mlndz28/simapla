@@ -45,8 +45,8 @@ module.exports = {
           debug(JSON.stringify(data));
           debug('data.idPerson: ' + data['idPerson']);
           debug('data.role: ' + data.role);
-          let idPerson = data.idPerson;
-          let role = data.role;
+          let idPerson = data[0].idPerson;
+          let role = data[0].role;
           return res.json({
             error:false,
             token:jwtService.issue({uid: idPerson, carnet: carnet, role: role}),
