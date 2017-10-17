@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
+import { ToastsManager, Toast } from 'ng2-toastr';
 import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
+import { httpService } from '../../../shared/services/http.service';
 
 @Component({
   selector: 'app-catalogos',
@@ -9,22 +11,23 @@ import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
     './catalogos.component.scss',
     '../../../../styles/smartTables.scss',
   ],
-  animations: [routerTransition()]
+  animations: [routerTransition()],
+  providers: [ httpService ],
 })
 export class CatalogosComponent implements OnInit {
 
-  instrumentNames: any = [
+  instrumentNames: { value: number, label: string }[] = [
     {
-      id: 1,
-      name: 'Trompeta',
+      value: 1,
+      label: 'Trompeta',
     },
     {
-      id: 2,
-      name: 'Violín',
+      value: 2,
+      label: 'Violín',
     }
   ];
 
-  sourceInstrumentNames: LocalDataSource;
+  sourceInstrumentNames: LocalDataSource = new LocalDataSource();
 
   settingsInstrumentNames = {
       add: {
@@ -44,18 +47,38 @@ export class CatalogosComponent implements OnInit {
           confirmDelete: true,
       },
     columns: {
-      name: {
+      label: {
         title: 'name',
         type: 'string',
       },
     }
   };
 
-  constructor() {
+  constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private http: httpService) {
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
-    this.sourceInstrumentNames = new LocalDataSource(this.instrumentNames); // create the source
+    this.sourceInstrumentNames.load(this.instrumentNames);
+    this.getInstrumentNames();
+  }
+
+  /**
+	 * Compare function for array.sort() using ng-select's data structure.
+	 */
+  sortSelect(a, b) {
+    if (a.label > b.label) return 1;
+    if (a.label < b.label) return -1;
+    return 0;
+  }
+
+  /**
+   * Retrieve the list of available instruments types in the database.
+   */
+  getInstrumentNames() {
+      return this.http.get('instrument/name', {}, { "name": "label", "id": "value" }).then(
+        response => this.sourceInstrumentNames.load(response.sort(this.sortSelect))
+    );
   }
 
   onCreateConfirmInstrumentName(event): void {
